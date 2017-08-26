@@ -434,6 +434,7 @@ sudo chmod -R 775 /var/log
 sudo chmod -R 775 /var/stratum
 sudo chown -R www-data:www-data /var/web
 sudo chmod -R 775 /var/web
+sudo mkdir /root/backup/
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
