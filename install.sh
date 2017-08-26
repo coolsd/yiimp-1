@@ -8,12 +8,6 @@
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
 # BTC Donation: 
 ################################################################################
-    
-    # make /bin/sh symlink to bash instead of dash:
-    echo "dash dash/sh boolean false" | sudo debconf-set-selections
-    sudo DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
-    
-
 output() {
     printf "\E[0;33;40m"
     echo $1
