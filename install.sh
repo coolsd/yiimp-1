@@ -67,6 +67,7 @@ clear
     sudo aptitude -y install gnutls-dev
     sudo aptitude -y install librtmp-dev
     sudo aptitude -y install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
+    sudo aptitude -y install sendmail
     clear
     output "Grabbing yiimp fron Github, building files and setting file structure."
     cd ~
@@ -83,7 +84,9 @@ clear
     sudo cp -r stratum /var/stratum
     sudo cp -a bin/. /bin/
     sudo cp -r blocknotify/blocknotify /var/stratum
-    
+    sudo mkdir /etc/yiimp    
+    sudo cp /etc/stratum/config /etc/stratum/config.old
+    sudo cp /etc/stratum.config.sample /etc/stratum/config
     output "Update default timezone."
     output "Thanks for using this installation script. Donations welcome"
     # check if link file
@@ -269,7 +272,30 @@ user=root
 password='"${rootpasswd}"'
 ' | sudo -E tee ~/.my.cnf >/dev/null 2>&1
       sudo chmod 0600 ~/.my.cnf
-    
+
+  echo '  
+    <?php
+/* Sample config file to put in /etc/yiimp/keys.php */
+
+define('YIIMP_MYSQLDUMP_USER', 'panel');
+define('YIIMP_MYSQLDUMP_PASS', '$password');
+
+/* Keys required to create/cancel orders and access your balances/deposit addresses */
+define('EXCH_BITTREX_SECRET', '<my_bittrex_api_secret_key>');
+define('EXCH_BITSTAMP_SECRET','');
+define('EXCH_BLEUTRADE_SECRET', '');
+define('EXCH_BTER_SECRET', '');
+define('EXCH_CCEX_SECRET', '');
+define('EXCH_COINMARKETS_PASS', '');
+define('EXCH_CRYPTOPIA_SECRET', '');
+define('EXCH_EMPOEX_SECKEY', '');
+define('EXCH_HITBTC_SECRET', '');
+define('EXCH_KRAKEN_SECRET','');
+define('EXCH_LIVECOIN_SECRET', '');
+define('EXCH_NOVA_SECRET','');
+define('EXCH_POLONIEX_SECRET', '');
+define('EXCH_YOBIT_SECRET', '');
+' | sudo -E tee /etc/yiimp/keys.php >/dev/null 2>&1
  
 
     output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
