@@ -6,7 +6,8 @@
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
-# BTC Donation: 
+# BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp
+# 
 ################################################################################
 output() {
     printf "\E[0;33;40m"
@@ -25,7 +26,7 @@ clear
     read -p "Enter servername (e.g. portal.example.com) : " SERVNAME
     read -p "Enter time zone (e.g. America/New_York) : " TIME
     
-    output "If you found this helpful, please donate!"
+    output "If you found this helpful, please donate to BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
     output "Updating system and installing required packages."
 
     #Disable AppArmor
@@ -193,11 +194,36 @@ password='"${rootpasswd}"'
  
 
     output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
+    output "BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
+    wait 35
+    
     output "Peforming the SQL import"
     cd ~
     cd yiimp/sql
     # import sql dump
     sudo zcat 2016-04-03-yaamp.sql.gz | sudo mysql --defaults-group-suffix=host1
+    # oh the humanity!
+     sudo mysql --defaults-group-suffix=host1 --force < 2015-07-01-accounts_hostaddr.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2015-07-15-coins_hasmasternodes.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2015-09-20-blocks_worker.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-02-17-payouts_errmsg.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-02-23-shares_diff.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-03-26-markets.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-03-30-coins.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-04-03-accounts.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-04-24-market_history.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-04-27-settings.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-05-11-coins.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-05-15-benchmarks.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-05-23-bookmarks.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-06-01-notifications.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-06-04-bench_chips.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2016-11-23-coins.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-02-05-benchmarks.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-03-31-earnings_index.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-05-accounts_case_swaptime.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-06-payouts_coinid_memo.sql
+     
     clear
     output "Generating a basic serverconfig.php"
     # make config file
@@ -235,7 +261,7 @@ define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
 define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1Auhps1mHZQpoX4mCcVL8odU81VakZQ6dR'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${SERVNAME}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
-define('"'"'YAAMP_SITE_NAME'"'"', '"'"'YiiMP'"'"');
+define('"'"'YAAMP_SITE_NAME'"'"', '"'"'TheCryptoPool'"'"');
 define('"'"'YAAMP_ADMIN_EMAIL'"'"', '"'"''"${EMAIL}"''"'"');
 define('"'"'YAAMP_ADMIN_IP'"'"', '"'"''"'"'); // samples: "80.236.118.26,90.234.221.11" or "10.0.0.1/8"
 define('"'"'YAAMP_ADMIN_WEBCONSOLE'"'"', true);
@@ -304,4 +330,10 @@ sudo chmod -R 775 /var/stratum
 sudo chown -R www-data:www-data /var/web
 sudo chmod -R 775 /var/web
 sudo service nginx restart
-    
+clear
+output "Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.conf. this installer did not directly install anything required to build coins."
+output "Please make sure to chnage your wallet addresses in the /var/web/serverconfig.php file."
+output "Please make sure to add your public and private keys."
+output "If you found this script helpful please consider donating some BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
+    wait 65
+
