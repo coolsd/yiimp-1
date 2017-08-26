@@ -157,6 +157,85 @@ echo '
 sudo ln -s /etc/nginx/sites-available/$SERVNAME.conf /etc/nginx/sites-enabled/$SERVNAME.conf
 sudo ln -s /var/web /var/www/$SERVNAME/html
 sudo service nginx restart
+    output "Install LetsEncrypt and setting SSL"
+    sudo aptitude -y install letsencrypt
+    sudo letsencrypt certonly -a webroot --webroot-path=/var/web --email "$EMAIL" --agree-tos -d "$SERVNAME"
+    sudo rm /etc/nginx/sites-available/$SERVNAME.conf
+    sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+    # I am SSL Man!
+ echo '
+    server {
+        listen 80;
+        listen [::]:80;
+        server_name '"${SERVNAME}"';
+    	# enforce https
+        return 301 https://$server_name$request_uri;
+	}
+	
+	server {
+            listen 443 ssl http2;
+            listen [::]:443 ssl http2;
+            server_name '"${SERVNAME}"';
+        
+            root /var/www/'"${SERVNAME}"'/html/web;
+            index index.php;
+        
+            access_log /var/log/nginx/'"${SERVNAME}"'.app-accress.log;
+            error_log  /var/log/nginx/'"${SERVNAME}"'.app-error.log error;
+        
+            # allow larger file uploads and longer script runtimes
+            client_max_body_size 100m;
+            client_body_timeout 120s;
+            
+            sendfile off;
+        
+            # strengthen ssl security
+            ssl_certificate /etc/letsencrypt/live/'"${SERVNAME}"'/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/'"${SERVNAME}"'/privkey.pem;
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_prefer_server_ciphers on;
+            ssl_session_cache shared:SSL:10m;
+            ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
+            ssl_dhparam /etc/ssl/certs/dhparam.pem;
+        
+            # Add headers to serve security related headers
+            add_header Strict-Transport-Security "max-age=15768000; preload;";
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Robots-Tag none;
+            add_header Content-Security-Policy "frame-ancestors 'self'";
+        
+        location / {
+        try_files $uri $uri/ /index.php?$args;
+        }
+        location @rewrite {
+        rewrite ^/(.*)$ /index.php?r=$1;
+        }
+    
+        
+            location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+                fastcgi_index index.php;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_intercept_errors off;
+                fastcgi_buffer_size 16k;
+                fastcgi_buffers 4 16k;
+                fastcgi_connect_timeout 300;
+                fastcgi_send_timeout 300;
+                fastcgi_read_timeout 300;
+                include /etc/nginx/fastcgi_params;
+            }
+        
+            location ~ /\.ht {
+                deny all;
+            }
+        }
+        
+' | sudo -E tee /etc/nginx/sites-available/thecryptopool.com.conf >/dev/null 2>&1
+sudo service nginx restart
+sudo service php7.0-fpm reload
     clear
     output "Now for the database fun!"
     # create database
@@ -330,10 +409,11 @@ sudo chmod -R 775 /var/stratum
 sudo chown -R www-data:www-data /var/web
 sudo chmod -R 775 /var/web
 sudo service nginx restart
+sudo service php7.0-fpm reload
 clear
 output "Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.conf. this installer did not directly install anything required to build coins."
 output "Please make sure to chnage your wallet addresses in the /var/web/serverconfig.php file."
 output "Please make sure to add your public and private keys."
 output "If you found this script helpful please consider donating some BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
-    wait 65
+
 
