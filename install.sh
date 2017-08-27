@@ -33,7 +33,7 @@ output ""
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
     
-otput "adding host";
+output "adding host"
     HOSTS_LINE="$server_ip\t$server_name"
     if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
         then
