@@ -81,12 +81,16 @@ clear
     sudo make
     cd ..
     sudo cp -r web /var/
+    sudo mkdir /var/stratum
+    cd stratum
+    sudo cp -a config.sample/. /var/stratum/config
     sudo cp -r stratum /var/stratum
+    sudo cp -r run.sh /var/stratum
     sudo cp -a bin/. /bin/
     sudo cp -r blocknotify/blocknotify /var/stratum
-    sudo mkdir /etc/yiimp    
-    sudo cp /etc/stratum/config /etc/stratum/config.old
-    sudo cp /etc/stratum.config.sample /etc/stratum/config
+    sudo mkdir /etc/yiimp
+    sudo mkdir /root/backup/
+    sudo cp -r /var/web/keys.sample.php /etc/yiimp
     output "Update default timezone."
     output "Thanks for using this installation script. Donations welcome"
     # check if link file
@@ -426,15 +430,13 @@ $configAlgoNormCoef = array(
 
   output "Final Directory permissions"
 sudo usermod -aG www-data $whoami
-sudo chown -R www-data:www-data /var/www/$SERVNAME/html
 sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
-sudo chmod -R 775 /var/www/$SERVNAME/html
-sudo chmod -R 775 /var/log
-sudo chmod -R 775 /var/stratum
 sudo chown -R www-data:www-data /var/web
-sudo chmod -R 775 /var/web
-sudo mkdir /root/backup/
+sudo chmod -R 777 /var/web
+sudo chmod -R 777 /var/stratum
+sudo chmod -R 777 /root/backup/
+sudo chmod -R 777 /var/log
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
