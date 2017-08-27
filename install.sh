@@ -428,6 +428,7 @@ $configAlgoNormCoef = array(
 );
 ' | sudo -E tee /var/web/serverconfig.php >/dev/null 2>&1
 
+
   output "Final Directory permissions"
 sudo usermod -aG www-data $whoami
 sudo chown -R www-data:www-data /var/log
@@ -440,9 +441,12 @@ sudo chmod -R 777 /var/log
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
-output "Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.conf. this installer did not directly install anything required to build coins."
+output "Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins."
+output ""
 output "Please make sure to chnage your wallet addresses in the /var/web/serverconfig.php file."
+output ""
 output "Please make sure to add your public and private keys."
+output ""
 output "If you found this script helpful please consider donating some BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
 
 
