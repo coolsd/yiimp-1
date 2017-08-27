@@ -112,14 +112,15 @@ otput "adding host";
     echo $root_email > sudo tee --append ~/.forward
 
     if [[ ("$send_email" == "y" || "$send_email" == "Y" || "$send_email" == "") ]]; then
-        echo "This is a mail test for the SMTP Service." > /tmp/email.message
-        echo "You should receive this !" >> /tmp/email.message
-        echo "" >> /tmp/email.message
-        echo "Cheers" >> /tmp/email.message
-        sendmail -s "SMTP Testing" $root_email < /tmp/email.message
+        echo "This is a mail test for the SMTP Service." > sudo tee --append /tmp/email.message
+        echo "You should receive this !" >> sudo tee --append /tmp/email.message
+        echo "" >> sudo tee --append /tmp/email.message
+        echo "Cheers" >> sudo tee --append /tmp/email.message
+        sudo sendmail -s "SMTP Testing" $root_email < sudo tee --append /tmp/email.message
 
-        rm -f /tmp/email.message
+        sudo rm -f /tmp/email.message
         echo "Mail sent"
+    fi
     fi
     
     output "Some optional installs"
