@@ -28,15 +28,16 @@ output ""
     read -p "Enter time zone (e.g. America/New_York) : " TIME
     read -e -p "New server name (like srv.company.tld) : " server_name
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
+    read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
     if [[ "$server_name" != "" ]]; then
-    echo $server_name > /etc/hostname
+    echo $server_name > sudo tee --append /etc/hostname
     IP=$(ip addr show | grep eth0 | grep inet | tr -s " " | cut -f3 -d " " | cut -f1 -d "/")
 
     hosts_ip=$(grep -q $IP /etc/hosts)
     if [[ "$hosts_ip" != "" ]]; then
         sed -i "s/$IP.*/$IP $server_name/" /etc/hosts
     else
-        echo "$IP $server_name" >> /etc/hosts
+        echo "$IP $server_name" >> sudo tee --append /etc/hosts
     fi
 
     hostname $server_name
@@ -104,10 +105,9 @@ output ""
     output "Testing to see if server emails are sent"
     output ""
     if [[ "$root_email" != "" ]]; then
-    echo $root_email > ~/.email
-    echo $root_email > ~/.forward
+    echo $root_email > sudo tee --append ~/.email
+    echo $root_email > sudo tee --append ~/.forward
 
-    read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
     if [[ ("$send_email" == "y" || "$send_email" == "Y" || "$send_email" == "") ]]; then
         echo "This is a mail test for the SMTP Service." > /tmp/email.message
         echo "You should receive this !" >> /tmp/email.message
