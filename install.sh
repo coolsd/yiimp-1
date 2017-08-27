@@ -22,7 +22,7 @@ displayErr() {
     exit 1;
 }
 clear
-output "Make sure you double check before hitting enter! Only one shot at these!
+output "Make sure you double check before hitting enter! Only one shot at these!"
 output ""
     read -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -p "Enter time zone (e.g. America/New_York) : " TIME
