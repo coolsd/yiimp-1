@@ -24,27 +24,30 @@ displayErr() {
 clear
 output "Make sure you double check before hitting enter! Only one shot at these!"
 output ""
-    read -p "Enter support email (e.g. admin@example.com) : " EMAIL
-    read -p "Enter time zone (e.g. America/New_York) : " TIME
-    read -e -p "New server name (like srv.company.tld) : " server_name
+    read -e -p "Enter time zone (e.g. America/New_York) : " TIME
+    read -e -p "Server name (like srv.company.tld) : " server_name
+    ifconfig | perl -nle'/dr:(\S+)/ && print $1'
+    read -e -p "Please enter your servers IP address, if only 127.0.0.1 is shown, enter that : " server_ip
+    read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
+    read -e -p "Server Admin contact email : " root_email
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
-    if [[ "$server_name" != "" ]]; then
-    echo $server_name > sudo tee --append /etc/hostname
-    IP=$(ip addr show | grep eth0 | grep inet | tr -s " " | cut -f3 -d " " | cut -f1 -d "/")
+    
+otput "adding host";
+    HOSTS_LINE="$server_ip\t$server_name"
+    if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+        then
+            echo "$HOSTNAME already exists : $(grep $HOSTNAME $ETC_HOSTS)"
+        else
+            echo "Adding $HOSTNAME to your $ETC_HOSTS";
+            sudo -- sh -c -e "echo '$HOSTS_LINE' >> /etc/hosts";
 
-    hosts_ip=$(grep -q $IP /etc/hosts)
-    if [[ "$hosts_ip" != "" ]]; then
-        sed -i "s/$IP.*/$IP $server_name/" /etc/hosts
-    else
-        echo "$IP $server_name" >> sudo tee --append /etc/hosts
-    fi
-
-    hostname $server_name
-
-    /etc/init.d/hostname.sh
-    fi
-    read -e -p "Server Admin contact email : " root_email
+            if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+                then
+                    echo "$HOSTNAME was added succesfully \n $(grep $HOSTNAME /etc/hosts)";
+                else
+                    echo "Failed to Add $HOSTNAME, Try again!";
+            fi
     fi
     
     output "If you found this helpful, please donate to BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
