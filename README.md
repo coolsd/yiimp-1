@@ -17,6 +17,7 @@ After you add the missing information to those files then run:
 ./block.sh
 
 curl -Lo install.sh https://raw.githubusercontent.com/crombiecrunch/yiimp/master/install.sh 
+
 bash install.sh
 
 You will be prompted for email, FDQN, and time zone. You onkly get one shot to enter this information correctly!
