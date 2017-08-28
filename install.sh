@@ -159,7 +159,26 @@ output "adding host"
     sudo cp -a config.sample/. /var/stratum/config
     sudo cp -r stratum /var/stratum
     sudo cp -r run.sh /var/stratum
+    cd ..
     sudo cp -a bin/. /bin/
+    #fixing yiimp
+    sudo sed -i 's/ROOTDIR=/data/yiimp/ROOTDIR=/data//g' /bin/yiimp
+    #fixing run.sh
+    sudo rm -r /var/stratum/config/run.sh
+echo '
+#!/bin/bash
+
+ulimit -n 10240
+ulimit -u 10240
+
+cd /var/stratum
+while true; do
+        ./stratum /var/stratum/config/$1
+        sleep 2
+done
+exec bash
+' | sudo -E tee /var/stratum/config/run.sh >/dev/null 2>&1
+sudo chmod +x run.sh
     sudo cp -r blocknotify/blocknotify /var/stratum
     sudo mkdir /etc/yiimp
     sudo mkdir /root/backup/
