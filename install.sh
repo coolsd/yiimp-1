@@ -26,12 +26,11 @@ output "Make sure you double check before hitting enter! Only one shot at these!
 output ""
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
     read -e -p "Server name (like srv.company.tld) : " server_name
-    read -e -p "Do you want the script to update your host file? If not sure answer no : " host_file
-    ifconfig | perl -nle'/dr:(\S+)/ && print $1'
-    read -e -p "Please enter your servers IP address, if only 127.0.0.1 is shown, enter that : " server_ip
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Server Admin contact email : " root_email
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
+    read -e -p "Do you want the script to update your host file? If not sure answer no [Y/n]: " host_file
+    read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
     read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
  
  if [[ ("$host_file" == "y" || "$host_file" == "Y" || "$host_file" == "") ]]; then
@@ -54,23 +53,6 @@ output ""
             fi
     fi
     fi
-output "adding host"
-    HOSTS_LINE="$server_ip\t$server_name"
-    if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
-        then
-            echo "$HOSTNAME already exists : $(grep $HOSTNAME $ETC_HOSTS)"
-        else
-            echo "Adding $HOSTNAME to your $ETC_HOSTS";
-            sudo -- sh -c -e "echo '$HOSTS_LINE' >> /etc/hosts";
-
-            if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
-                then
-                    echo "$HOSTNAME was added succesfully \n $(grep $HOSTNAME /etc/hosts)";
-                else
-                    echo "Failed to Add $HOSTNAME, Try again!";
-            fi
-    fi
-    
     output "If you found this helpful, please donate to BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
     output ""
     output "Updating system and installing required packages."
@@ -272,12 +254,29 @@ echo '
         location ~ /.well-known {
             allow all;
         }
-    }
+    	    location /phpmyadmin {
+  		root /usr/share/;
+  		index index.php;
+  		try_files $uri $uri/ =404;
+
+  		location ~ ^/phpmyadmin/(doc|sql|setup)/ {
+    		deny all;
+  	}
+
+  		location ~ /phpmyadmin/(.+\.php)$ {
+    		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    		include fastcgi_params;
+    		include snippets/fastcgi-php.conf;
+  	}
+ }
+ }
 ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 
 sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
 sudo ln -s /var/web /var/www/$server_name/html
 sudo service nginx restart
+	if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     output "Install LetsEncrypt and setting SSL"
     sudo aptitude -y install letsencrypt
     sudo letsencrypt certonly -a webroot --webroot-path=/var/web --email "$EMAIL" --agree-tos -d "$server_name"
@@ -371,6 +370,7 @@ sudo service nginx restart
  }
         
 ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
+	fi
 sudo service nginx restart
 sudo service php7.0-fpm reload
     clear
