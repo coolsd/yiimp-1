@@ -547,7 +547,7 @@ sudo sed -i 's/server = yaamp.com/server = '$server_name'/g' *.conf
 sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
 sudo sed -i 's/database = yaamp/database = yiimpfrontend/g' *.conf
 sudo sed -i 's/username = root/username = stratum/g' *.conf
-sudo sed -i 's/password = patofpaq/password = '$password2}'/g' *.conf
+sudo sed -i 's/password = patofpaq/password = '$password2'/g' *.conf
 cd ~
 
 
