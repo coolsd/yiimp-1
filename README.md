@@ -14,24 +14,24 @@ This script has an interactive begining and will ask for the following informati
 
 Once those questions are answered the script will then be fully automated for the rest of the install. 
 
-The script will update your hosts file with server ip and server name. 
-Disable and remove AppAromor
-Update and Upgrade Ubuntu Packages
-Install Aptitude
-Install and configure Nginx
-Install MariaDB with random root password
-Install php7
-Install various dev packages required for building blocknotify and stratum 
-Install SendMail
-Install Fail2Ban if selected
-Install and configur phpmyadmin with random password for phpmyadmin user
-Clone yiimp build packages, create directory structure, set file permissions, and more
-Update server clock
-Install LetsEncrypt
-Create yiimp database, create 2 users with random passwords - passwords saved in ~/.my.cnf
-Import the sql dumps from yiimp
-Create base yiimp serverconfig.php file to get you going
-Updates all directory permissions 
+1. The script will update your hosts file with server ip and server name.
+2. Disable and remove AppAromor
+3. Update and Upgrade Ubuntu Packages
+4. Install Aptitude
+5. Install and configure Nginx
+6. Install MariaDB with random root password
+7. Install php7
+8. Install various dev packages required for building blocknotify and stratum
+9. Install SendMail
+10. Install Fail2Ban if selected
+11. Install and configur phpmyadmin with random password for phpmyadmin user
+13. Clone yiimp build packages, create directory structure, set file permissions, and more
+14. Update server clock
+15. Install LetsEncrypt
+16. Create yiimp database, create 2 users with random passwords - passwords saved in ~/.my.cnf
+17. Import the sql dumps from yiimp
+18. Create base yiimp serverconfig.php file to get you going
+19. Updates all directory permissions
 
 This install script will get you 95% ready to go with yiimp. There are a few things you need to do after the main install is finished.
 
