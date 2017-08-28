@@ -26,13 +26,34 @@ output "Make sure you double check before hitting enter! Only one shot at these!
 output ""
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
     read -e -p "Server name (like srv.company.tld) : " server_name
+    read -e -p "Do you want the script to update your host file? If not sure answer no : " host_file
     ifconfig | perl -nle'/dr:(\S+)/ && print $1'
     read -e -p "Please enter your servers IP address, if only 127.0.0.1 is shown, enter that : " server_ip
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Server Admin contact email : " root_email
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
-    
+ 
+ if [[ ("$host_file" == "y" || "$host_file" == "Y" || "$host_file" == "") ]]; then
+    ifconfig | perl -nle'/dr:(\S+)/ && print $1'
+    read -e -p "Please enter your servers IP address, if only 127.0.0.1 is shown, enter that : " server_ip
+    output "adding host"
+    HOSTS_LINE="$server_ip\t$server_name"
+    if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+        then
+            echo "$HOSTNAME already exists : $(grep $HOSTNAME $ETC_HOSTS)"
+        else
+            echo "Adding $HOSTNAME to your $ETC_HOSTS";
+            sudo -- sh -c -e "echo '$HOSTS_LINE' >> /etc/hosts";
+
+            if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
+                then
+                    echo "$HOSTNAME was added succesfully \n $(grep $HOSTNAME /etc/hosts)";
+                else
+                    echo "Failed to Add $HOSTNAME, Try again!";
+            fi
+    fi
+    fi
 output "adding host"
     HOSTS_LINE="$server_ip\t$server_name"
     if [ -n "$(grep $HOSTNAME /etc/hosts)" ]
