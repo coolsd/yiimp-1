@@ -101,6 +101,7 @@ output ""
     sudo aptitude -y install librtmp-dev
     sudo aptitude -y install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
     sudo aptitude -y install sendmail
+    sudo aptitude -y install git
     sudo aptitude -y install pwgen -y
     clear
     
