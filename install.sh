@@ -6,7 +6,7 @@
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
-# BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp
+# BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
 # 
 ################################################################################
 output() {
@@ -53,7 +53,7 @@ output ""
             fi
     fi
     fi
-    output "If you found this helpful, please donate to BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
+    output "If you found this helpful, please donate to BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
     output ""
     output "Updating system and installing required packages."
     output ""
@@ -435,7 +435,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
 
     output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
     output ""
-    output "BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
+    output "BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
     output ""
     
     output "Peforming the SQL import"
@@ -501,7 +501,7 @@ define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
 
-define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1Auhps1mHZQpoX4mCcVL8odU81VakZQ6dR'"'"');
+define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${server_name}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
 define('"'"'YAAMP_SITE_NAME'"'"', '"'"'TheCryptoPool'"'"');
@@ -541,7 +541,7 @@ define('"'"'NICEHASH_DEPOSIT_AMOUNT'"'"','"'"'0.01'"'"');
 
 
 $cold_wallet_table = array(
-	'"'"'1C23KmLeCaQSLLyKVykHEUse1R7jRDv9j9'"'"' => 0.10,
+	'"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"' => 0.10,
 );
 
 // Sample fixed pool fees
@@ -592,6 +592,6 @@ output "Please make sure to change your wallet addresses in the /var/web/serverc
 output ""
 output "Please make sure to add your public and private keys."
 output ""
-output "If you found this script helpful please consider donating some BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp"
+output "If you found this script helpful please consider donating some BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
 
 
