@@ -52,6 +52,6 @@ curl -Lo install.sh https://raw.githubusercontent.com/crombiecrunch/yiimp/master
 bash install.sh
 
 
-If this helped you or you feel giving please donate BTC Donation: 1AxK9a7dgeHvf3VFuwZ2adGiQTX6S1nhrp
+If this helped you or you feel giving please donate BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
 
 Crombie Crunch
