@@ -54,4 +54,6 @@ bash install.sh
 
 If this helped you or you feel giving please donate BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
 
+Feel free to join our Discord channel at https://discord.gg/zdBbAQ
+
 Crombie Crunch
