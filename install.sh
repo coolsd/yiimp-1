@@ -59,17 +59,7 @@ output ""
     sudo aptitude -y install nginx
     sudo service nginx start
     sudo service cron start
-    #Hardning Nginx
-    echo 'map $http_user_agent $blockedagent {
-default         0;
-~*malicious     1;
-~*bot           1;
-~*backdoor      1;
-~*crawler       1;
-~*bandit        1;
-}
-' | sudo -E tee /etc/nginx/blockuseragents.rules >/dev/null 2>&1
-    
+        
     output "Installing Mariadb Server."
     output ""
     # create random password
@@ -202,18 +192,10 @@ sudo chmod +x run.sh
     
     output "Creating webserver initial config file"
     output ""
-echo 'include /etc/nginx/blockuseragents.rules;
-    server {
-    	if ($blockedagent) {
-		return 403;
-	}
-	if ($request_method !~ ^(GET|HEAD|POST)$) {
-	return 444;
-	}
+echo 'server {
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
-    	Server_tokens        off;
         root "/var/www/'"${server_name}"'/html/web";
         index index.html index.htm index.php;
         charset utf-8;
@@ -232,10 +214,8 @@ echo 'include /etc/nginx/blockuseragents.rules;
         error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
     
         # allow larger file uploads and longer script runtimes
-        client_body_buffer_size  1k;
-	client_header_buffer_size 1k;
-	client_max_body_size 1k;
-	large_client_header_buffers 2 1k;
+        client_max_body_size 100m;
+        client_body_timeout 120s;
     
         sendfile off;
     
@@ -288,29 +268,15 @@ sudo service nginx restart
     sudo rm /etc/nginx/sites-available/$server_name.conf
     sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
     # I am SSL Man!
-echo 'include /etc/nginx/blockuseragents.rules;
-    server {
-    	if ($blockedagent) {
-		return 403;
-	}
-	if ($request_method !~ ^(GET|HEAD|POST)$) {
-	return 444;
-	}
+echo 'server {
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
-	Server_tokens        off;
     	# enforce https
         return 301 https://$server_name$request_uri;
 	}
 	
 	server {
-	if ($blockedagent) {
-		return 403;
-	}
-	if ($request_method !~ ^(GET|HEAD|POST)$) {
-	return 444;
-	}
             listen 443 ssl http2;
             listen [::]:443 ssl http2;
             server_name '"${server_name}"';
@@ -322,10 +288,8 @@ echo 'include /etc/nginx/blockuseragents.rules;
             error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
         
             # allow larger file uploads and longer script runtimes
-	client_body_buffer_size  1k;
-	client_header_buffer_size 1k;
-	client_max_body_size 1k;
-	large_client_header_buffers 2 1k;
+        client_max_body_size 100m;
+        client_body_timeout 120s;
             
             sendfile off;
         
