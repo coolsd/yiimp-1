@@ -25,13 +25,16 @@ clear
 output "Make sure you double check before hitting enter! Only one shot at these!"
 output ""
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
-    read -e -p "Server name (like srv.company.tld) : " server_name
+    read -e -p "Server name (e.g. srv.company.tld) : " server_name
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Server Admin contact email : " root_email
+    read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
+    output "These next questions are to help secure your yiimp installation."
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
-    read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
- 
+    read -e -p "Please enter a new location for /adminRights this is to customize the admin entrance url (e.g. example.com/myAdminpanel) : " admin_panel
+    
+    clear 
     output "If you found this helpful, please donate to BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
     output ""
     output "Updating system and installing required packages."
@@ -56,6 +59,16 @@ output ""
     sudo aptitude -y install nginx
     sudo service nginx start
     sudo service cron start
+    #Hardning Nginx
+    echo 'map $http_user_agent $blockedagent {
+default         0;
+~*malicious     1;
+~*bot           1;
+~*backdoor      1;
+~*crawler       1;
+~*bandit        1;
+}
+' | sudo -E tee /etc/nginx/blockuseragents.rules >/dev/null 2>&1
     
     output "Installing Mariadb Server."
     output ""
@@ -126,16 +139,20 @@ output ""
     output ""
     output "Grabbing yiimp fron Github, building files and setting file structure."
     output ""
+    #Generating Random Password for stratum
+    blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     cd ~
     git clone https://github.com/tpruvot/yiimp.git
     cd yiimp
     cd blocknotify
+    sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     sudo make
     cd ~/yiimp/stratum/iniparser
     sudo make
     cd ..
     sudo make
     cd ..
+    sudo sed -i 's/AdminRights/'$admin_panel'/' web/yaamp/modules/site/SiteController.php
     sudo cp -r web /var/
     sudo mkdir /var/stratum
     cd stratum
@@ -185,12 +202,18 @@ sudo chmod +x run.sh
     
     output "Creating webserver initial config file"
     output ""
-echo '
+echo 'include /etc/nginx/blockuseragents.rules;
     server {
+    	if ($blockedagent) {
+		return 403;
+	}
+	if ($request_method !~ ^(GET|HEAD|POST)$) {
+	return 444;
+	}
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
-    
+    	Server_tokens        off;
         root "/var/www/'"${server_name}"'/html/web";
         index index.html index.htm index.php;
         charset utf-8;
@@ -209,8 +232,10 @@ echo '
         error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
     
         # allow larger file uploads and longer script runtimes
-            client_max_body_size 100m;
-        client_body_timeout 120s;
+        client_body_buffer_size  1k;
+	client_header_buffer_size 1k;
+	client_max_body_size 1k;
+	large_client_header_buffers 2 1k;
     
         sendfile off;
     
@@ -263,16 +288,29 @@ sudo service nginx restart
     sudo rm /etc/nginx/sites-available/$server_name.conf
     sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
     # I am SSL Man!
- echo '
+echo 'include /etc/nginx/blockuseragents.rules;
     server {
+    	if ($blockedagent) {
+		return 403;
+	}
+	if ($request_method !~ ^(GET|HEAD|POST)$) {
+	return 444;
+	}
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
+	Server_tokens        off;
     	# enforce https
         return 301 https://$server_name$request_uri;
 	}
 	
 	server {
+	if ($blockedagent) {
+		return 403;
+	}
+	if ($request_method !~ ^(GET|HEAD|POST)$) {
+	return 444;
+	}
             listen 443 ssl http2;
             listen [::]:443 ssl http2;
             server_name '"${server_name}"';
@@ -284,8 +322,10 @@ sudo service nginx restart
             error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
         
             # allow larger file uploads and longer script runtimes
-            client_max_body_size 100m;
-            client_body_timeout 120s;
+	client_body_buffer_size  1k;
+	client_header_buffer_size 1k;
+	client_max_body_size 1k;
+	large_client_header_buffers 2 1k;
             
             sendfile off;
         
