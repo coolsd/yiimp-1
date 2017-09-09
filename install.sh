@@ -59,6 +59,16 @@ output ""
     sudo aptitude -y install nginx
     sudo service nginx start
     sudo service cron start
+    #Making Nginx a bit hard
+    echo 'map $http_user_agent $blockedagent {
+default         0;
+~*malicious     1;
+~*bot           1;
+~*backdoor      1;
+~*crawler       1;
+~*bandit        1;
+}
+' | sudo -E tee /etc/nginx/blockuseragents.rules >/dev/null 2>&1
         
     output "Installing Mariadb Server."
     output ""
@@ -192,7 +202,14 @@ sudo chmod +x run.sh
     
     output "Creating webserver initial config file"
     output ""
-echo 'server {
+echo 'include /etc/nginx/blockuseragents.rules;
+	server {
+	if ($blockedagent) {
+                return 403;
+        }
+        if ($request_method !~ ^(GET|HEAD|POST)$) {
+        return 444;
+        }
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
@@ -214,9 +231,10 @@ echo 'server {
         error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
     
         # allow larger file uploads and longer script runtimes
-        client_max_body_size 100m;
-        client_body_timeout 120s;
-    
+ 	client_body_buffer_size  1k;
+        client_header_buffer_size 1k;
+        client_max_body_size 1k;
+        large_client_header_buffers 2 1k;
         sendfile off;
     
         location ~ \.php$ {
@@ -268,7 +286,14 @@ sudo service nginx restart
     sudo rm /etc/nginx/sites-available/$server_name.conf
     sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
     # I am SSL Man!
-echo 'server {
+echo 'include /etc/nginx/blockuseragents.rules;
+	server {
+	if ($blockedagent) {
+                return 403;
+        }
+        if ($request_method !~ ^(GET|HEAD|POST)$) {
+        return 444;
+        }
         listen 80;
         listen [::]:80;
         server_name '"${server_name}"';
@@ -277,6 +302,12 @@ echo 'server {
 	}
 	
 	server {
+	if ($blockedagent) {
+                return 403;
+        }
+        if ($request_method !~ ^(GET|HEAD|POST)$) {
+        return 444;
+        }
             listen 443 ssl http2;
             listen [::]:443 ssl http2;
             server_name '"${server_name}"';
@@ -288,10 +319,11 @@ echo 'server {
             error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
         
             # allow larger file uploads and longer script runtimes
-        client_max_body_size 100m;
-        client_body_timeout 120s;
-            
-            sendfile off;
+ 	client_body_buffer_size  1k;
+        client_header_buffer_size 1k;
+        client_max_body_size 1k;
+        large_client_header_buffers 2 1k;
+        sendfile off;
         
             # strengthen ssl security
             ssl_certificate /etc/letsencrypt/live/'"${server_name}"'/fullchain.pem;
@@ -563,10 +595,12 @@ sudo usermod -aG www-data $whoami
 sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
 sudo chown -R www-data:www-data /var/web
-sudo chmod -R 777 /var/web
-sudo chmod -R 777 /var/stratum
+sudo chmod -R 755 /var/web
+sudo chmod -R 755 /var/stratum
+sudo chmod -R 777 /var/web/yaamp/runtime
 sudo chmod -R 777 /root/backup/
 sudo chmod -R 777 /var/log
+sudo chmod -R 644 serverconfig.php
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
