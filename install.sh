@@ -584,6 +584,7 @@ $configAlgoNormCoef = array(
 output "Updating stratum config files with database connection info."
 output ""
 cd /var/stratum/config
+sudo sed -i 's/password = tu8tu5/password = '$blckntifypass'/g' *.conf
 sudo sed -i 's/server = yaamp.com/server = '$server_name'/g' *.conf
 sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
 sudo sed -i 's/database = yaamp/database = yiimpfrontend/g' *.conf
