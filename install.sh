@@ -39,11 +39,6 @@ output ""
     output ""
     output "Updating system and installing required packages."
     output ""
-
-    #Disable AppArmor
-    sudo service apparmor stop
-    sudo update-rc.d -f apparmor remove
-    sudo apt-get -y remove apparmor apparmor-utils
     
     # update package and upgrade Ubuntu
     sudo apt-get -y update 
