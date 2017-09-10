@@ -228,7 +228,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
         large_client_header_buffers 2 1k;
         sendfile off;
     
-        location ~ \.php$ {
+        location ~ ^/index\.php$ {
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
             fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
             fastcgi_index index.php;
@@ -340,7 +340,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
         }
     
         
-            location ~ \.php$ {
+            location ~ ^/index\.php$ {
                 fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
                 fastcgi_index index.php;
