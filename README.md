@@ -47,7 +47,7 @@ After you add the missing information to those files then run:
 
 To download and run 
 
-curl -Lo install.sh https://raw.githubusercontent.com/crombiecrunch/yiimp/master/install.sh 
+curl -Lo install.sh https://raw.githubusercontent.com/crombiecrunch/yiimp_install_scrypt/master/install.sh
 
 bash install.sh
 
