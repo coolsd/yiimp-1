@@ -190,11 +190,7 @@ sudo chmod +x run.sh
     clear
     output "Making Web Server Magic Happen!"
     # adding user to group, creating dir structure, setting permissions
-    whoami=`whoami`
-    sudo mkdir -p /var/www/$server_name/html
-    sudo chown -R $whoami:$whoami /var/www/$server_name/html
-    sudo chmod -R 775 /var/www/$server_name/html
-    
+      sudo mkdir -p /var/www/$server_name/html  
     output "Creating webserver initial config file"
     output ""
 echo 'include /etc/nginx/blockuseragents.rules;
@@ -586,10 +582,12 @@ cd ~
 
 output "Final Directory permissions"
 output ""
+whoami=`whoami`
 sudo usermod -aG www-data $whoami
 sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
 sudo chown -R www-data:www-data /var/web
+sudo chmod -R 755 /var/www/$server_name/html
 sudo chmod -R 755 /var/web
 sudo chmod -R 755 /var/stratum
 sudo chmod -R 777 /var/web/yaamp/runtime
