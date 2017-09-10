@@ -240,15 +240,22 @@ echo 'include /etc/nginx/blockuseragents.rules;
             fastcgi_connect_timeout 300;
             fastcgi_send_timeout 300;
             fastcgi_read_timeout 300;
+	    try_files $uri $uri/ =404;
         }
-    
-        location ~ /\.ht {
-            deny all;
+		location ~ \.php$ {
+        	return 404;
         }
-        location ~ /.well-known {
-            allow all;
+
+		location ~ \.sh {
+		return 404;
         }
-    	    location /phpmyadmin {
+		location ~ /\.ht {
+		deny all;
+        }
+		location ~ /.well-known {
+		allow all;
+        }
+		location /phpmyadmin {
   		root /usr/share/;
   		index index.php;
   		try_files $uri $uri/ =404;
@@ -353,7 +360,15 @@ echo 'include /etc/nginx/blockuseragents.rules;
                 fastcgi_send_timeout 300;
                 fastcgi_read_timeout 300;
                 include /etc/nginx/fastcgi_params;
-            }
+	    	try_files $uri $uri/ =404;
+        }
+		location ~ \.php$ {
+        	return 404;
+        }
+
+		location ~ \.sh {
+		return 404;
+        }
         
             location ~ /\.ht {
                 deny all;
