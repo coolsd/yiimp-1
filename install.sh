@@ -137,7 +137,7 @@ default         0;
     #Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     cd ~
-    git clone https://github.com/tpruvot/yiimp.git
+    git clone https://github.com/magnatum/yiimp.git
     cd yiimp
     cd blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
@@ -173,7 +173,7 @@ while true; do
 done
 exec bash
 ' | sudo -E tee /var/stratum/config/run.sh >/dev/null 2>&1
-sudo chmod +x run.sh
+sudo chmod +x /var/stratum/config/run.sh
     sudo cp -r blocknotify/blocknotify /var/stratum
     sudo mkdir /etc/yiimp
     sudo mkdir /root/backup/
@@ -466,14 +466,6 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
     # import sql dump
     sudo zcat 2016-04-03-yaamp.sql.gz | sudo mysql --defaults-group-suffix=host1
     # oh the humanity!
-     sudo mysql --defaults-group-suffix=host1 --force < 2015-07-01-accounts_hostaddr.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2015-07-15-coins_hasmasternodes.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2015-09-20-blocks_worker.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2016-02-17-payouts_errmsg.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2016-02-23-shares_diff.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2016-03-26-markets.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2016-03-30-coins.sql
-     sudo mysql --defaults-group-suffix=host1 --force < 2016-04-03-accounts.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2016-04-24-market_history.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2016-04-27-settings.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2016-05-11-coins.sql
@@ -605,10 +597,10 @@ sudo chown -R www-data:www-data /var/web
 sudo chmod -R 755 /var/www/$server_name/html
 sudo chmod -R 755 /var/web
 sudo chmod -R 755 /var/stratum
-sudo chmod -R 777 /var/web/yaamp/runtime
-sudo chmod -R 777 /root/backup/
-sudo chmod -R 777 /var/log
-sudo chmod -R 644 serverconfig.php
+sudo chmod -R 755 /var/web/yaamp/runtime
+sudo chmod -R 755 /root/backup/
+sudo chmod -R 755 /var/log
+sudo chmod -R 500 /var/web/serverconfig.php
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
