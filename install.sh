@@ -25,7 +25,7 @@ clear
 output "Make sure you double check before hitting enter! Only one shot at these!"
 output ""
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
-    read -e -p "Server name (e.g. srv.company.tld) : " server_name
+    read -e -p "Server name (no http:// or www. just example.com) : " server_name
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Server Admin contact email : " root_email
     read -e -p "Send an mail to test the smtp service? [Y/n] : " send_email
@@ -52,6 +52,7 @@ output ""
     output "Installing Nginx server."
     output ""
     sudo aptitude -y install nginx
+    sudo rm /etc/nginx/sites-enabled/default
     sudo service nginx start
     sudo service cron start
     #Making Nginx a bit hard
@@ -157,7 +158,7 @@ default         0;
     cd ..
     sudo cp -a bin/. /bin/
     #fixing yiimp
-    sudo sed -i 's/ROOTDIR=/data/yiimp/ROOTDIR=/data//g' /bin/yiimp
+    sed -i "s|ROOTDIR=/data/yiimp|ROOTDIR=/var|g" /bin/yiimp
     #fixing run.sh
     sudo rm -r /var/stratum/config/run.sh
 echo '
@@ -203,7 +204,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
         }
         listen 80;
         listen [::]:80;
-        server_name '"${server_name}"';
+        server_name '"${server_name}"' www.'"${server_name}"';
         root "/var/www/'"${server_name}"'/html/web";
         index index.html index.htm index.php;
         charset utf-8;
@@ -280,7 +281,7 @@ sudo service nginx restart
 	if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     output "Install LetsEncrypt and setting SSL"
     sudo aptitude -y install letsencrypt
-    sudo letsencrypt certonly -a webroot --webroot-path=/var/web --email "$EMAIL" --agree-tos -d "$server_name"
+    sudo letsencrypt certonly -a webroot --webroot-path=/var/web --email "$EMAIL" --agree-tos -d "$server_name" -d www."$server_name"
     sudo rm /etc/nginx/sites-available/$server_name.conf
     sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
     # I am SSL Man!
@@ -308,7 +309,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
         }
             listen 443 ssl http2;
             listen [::]:443 ssl http2;
-            server_name '"${server_name}"';
+            server_name '"${server_name}"' www.'"${server_name}"';
         
             root /var/www/'"${server_name}"'/html/web;
             index index.php;
