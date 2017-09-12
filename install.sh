@@ -223,10 +223,10 @@ echo 'include /etc/nginx/blockuseragents.rules;
         error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
     
         # allow larger file uploads and longer script runtimes
- 	client_body_buffer_size  1k;
-        client_header_buffer_size 1k;
-        client_max_body_size 1k;
-        large_client_header_buffers 2 1k;
+ 	client_body_buffer_size  50k;
+        client_header_buffer_size 50k;
+        client_max_body_size 50k;
+        large_client_header_buffers 2 50k;
         sendfile off;
     
         location ~ ^/index\.php$ {
@@ -318,10 +318,10 @@ echo 'include /etc/nginx/blockuseragents.rules;
             error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
         
             # allow larger file uploads and longer script runtimes
- 	client_body_buffer_size  1k;
-        client_header_buffer_size 1k;
-        client_max_body_size 1k;
-        large_client_header_buffers 2 1k;
+ 	client_body_buffer_size  50k;
+        client_header_buffer_size 50k;
+        client_max_body_size 50k;
+        large_client_header_buffers 2 50k;
         sendfile off;
         
             # strengthen ssl security
