@@ -595,13 +595,13 @@ sudo usermod -aG www-data $whoami
 sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
 sudo chown -R www-data:www-data /var/web
-sudo chmod -R 755 /var/www/$server_name/html
-sudo chmod -R 755 /var/web
-sudo chmod -R 755 /var/stratum
-sudo chmod -R 755 /var/web/yaamp/runtime
-sudo chmod -R 755 /root/backup/
-sudo chmod -R 755 /var/log
-sudo chmod -R 500 /var/web/serverconfig.php
+sudo chmod -R 775 /var/www/$server_name/html
+sudo chmod -R 775 /var/web
+sudo chmod -R 775 /var/stratum
+sudo chmod -R 775 /var/web/yaamp/runtime
+sudo chmod -R 775 /root/backup/
+sudo chmod -R 775 /var/log
+sudo chmod -R 775 /var/web/serverconfig.php
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
