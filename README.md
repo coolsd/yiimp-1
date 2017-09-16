@@ -1,37 +1,42 @@
 # yiimp
 Install script for yiimp on Ubuntu 16.04
 
-Before running this script make sure you are on a fresh server and running as a user. Do not run this script under root!
+While I did add some server security to the script, it is every server owners responsibility to fully secure their own servers. After the installation you will still need to customize your serverconfig.php file to your liking, add your API keys, and build/add your coins to the control panel. 
 
-This script has an interactive begining and will ask for the following information:
-1. Your time zone
-2. Server Name - IMPORTANT - You must already have your domain name pointed to your server before running the script or else the SSL install will fail!
-3. Server IP for hosts file update
-4. Support Email Address 
-5. Server Admin Email Address 
-6. If you would like fail2ban installed
-7. Send test email from server
+There will be several wallets already in yiimp. These have nothing to do with the installation script and are from the database import from the yiimp github. 
+
+If you need further assistance we have a small but growing discord channel at https://discord.gg/uQ5wdTC 
+
+*****Do not run the script as root*****
+
+This script has an interactive beginning and will ask for the following information:
+
+Your time zone
+Server Name 
+Support Email Address
+Server Admin Email Address
+If you would like fail2ban installed
+If you would like to have SSL (LetsEncrypt) installed - Your domain must be pointed to your server prior to running the script or SSL will fail to install. 
+New custom location for yiimp admin login. 
 
 Once those questions are answered the script will then be fully automated for the rest of the install. 
 
-1. The script will update your hosts file with server ip and server name.
-2. Disable and remove AppAromor
-3. Update and Upgrade Ubuntu Packages
-4. Install Aptitude
-5. Install and configure Nginx
-6. Install MariaDB with random root password
-7. Install php7
-8. Install various dev packages required for building blocknotify and stratum
-9. Install SendMail
-10. Install Fail2Ban if selected
-11. Install and configur phpmyadmin with random password for phpmyadmin user
-13. Clone yiimp build packages, create directory structure, set file permissions, and more
-14. Update server clock
-15. Install LetsEncrypt
-16. Create yiimp database, create 2 users with random passwords - passwords saved in ~/.my.cnf
-17. Import the sql dumps from yiimp
-18. Create base yiimp serverconfig.php file to get you going
-19. Updates all directory permissions
+. Update and Upgrade Ubuntu Packages
+. Install Aptitude
+. Install and configure Nginx
+. Install MariaDB with random root password
+. Install php7
+. Install various dev packages required for building blocknotify and stratum
+. Install SendMail
+. Install Fail2Ban if selected
+. Install and configur phpmyadmin with random password for phpmyadmin user
+. Clone yiimp build packages, create directory structure, set file permissions, and more
+. Update server clock
+. Install LetsEncrypt if selected
+. Create yiimp database, create 2 users with random passwords - passwords saved in ~/.my.cnf
+. Import the sql dumps from yiimp
+. Create base yiimp serverconfig.php file to get you going
+. Updates all directory permissions
 
 This install script will get you 95% ready to go with yiimp. There are a few things you need to do after the main install is finished.
 
@@ -41,9 +46,9 @@ You must update the following files:
 2. /etc/yiimp/keys.php - update with secrect keys from the exchanges. 
 
 After you add the missing information to those files then run:
-./main.sh
-./loop2.sh
-./block.sh
+bash main.sh
+bash loop2.sh
+bash block.sh
 
 To download and run 
 
