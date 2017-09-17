@@ -57,7 +57,7 @@ curl -Lo install.sh https://raw.githubusercontent.com/crombiecrunch/yiimp_instal
 bash install.sh
 
 
-If this helped you or you feel giving please donate BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
+If this helped you or you feel giving please donate BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD
 
 Feel free to join our Discord channel at https://discord.gg/zdBbAQ
 
