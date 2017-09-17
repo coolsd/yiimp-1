@@ -6,7 +6,7 @@
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
-# BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
+# BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD
 # 
 ################################################################################
 output() {
@@ -35,7 +35,7 @@ output ""
     read -e -p "Please enter a new location for /adminRights this is to customize the admin entrance url (e.g. example.com/myAdminpanel) : " admin_panel
     
     clear 
-    output "If you found this helpful, please donate to BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
+    output "If you found this helpful, please donate to BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD"
     output ""
     output "Updating system and installing required packages."
     output ""
@@ -457,7 +457,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
 
     output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
     output ""
-    output "BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
+    output "BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD"
     output ""
     
     output "Peforming the SQL import"
@@ -515,7 +515,7 @@ define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
 
-define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"');
+define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${server_name}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
 define('"'"'YAAMP_SITE_NAME'"'"', '"'"'TheCryptoPool'"'"');
@@ -555,7 +555,7 @@ define('"'"'NICEHASH_DEPOSIT_AMOUNT'"'"','"'"'0.01'"'"');
 
 
 $cold_wallet_table = array(
-	'"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"' => 0.10,
+	'"'"'16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD'"'"' => 0.10,
 );
 
 // Sample fixed pool fees
@@ -611,6 +611,6 @@ output "Please make sure to change your wallet addresses in the /var/web/serverc
 output ""
 output "Please make sure to add your public and private keys."
 output ""
-output "If you found this script helpful please consider donating some BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
+output "If you found this script helpful please consider donating some BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD"
 
 
