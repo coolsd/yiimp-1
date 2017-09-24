@@ -259,6 +259,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
     	# I am SSL Man!
 	echo 'include /etc/nginx/blockuseragents.rules;
 	server_tokens off;
+	add_header Strict-Transport-Security "max-age=31536000; includeSubdomains;";
 	add_header X-Frame-Options SAMEORIGIN;
 	add_header X-Content-Type-Options nosniff;
 	add_header X-XSS-Protection "1; mode=block";
@@ -302,7 +303,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
   	ssl_session_timeout 1d;
   	ssl_session_tickets off;
 	
-	ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+	ssl_dhparam /etc/ssl/certs/dhparam.pem;
 	ssl_prefer_server_ciphers on;
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         
