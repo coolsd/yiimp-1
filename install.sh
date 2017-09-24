@@ -31,6 +31,7 @@ output ""
     read -e -p "Please enter a new location for /site/adminRights this is to customize the admin entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter your Public IP for admin access (http://www.whatsmyip.org/) : " Public
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
+    read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
     
     
@@ -89,6 +90,43 @@ output ""
     output "Some optional installs"
     if [[ ("$install_fail2ban" == "y" || "$install_fail2ban" == "Y" || "$install_fail2ban" == "") ]]; then
     sudo aptitude -y install fail2ban
+    fi
+    if [[ ("$UFW" == "y" || "$UFW" == "Y" || "$UFW" == "") ]]; then
+    sudo apt-get install ufw
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw allow ssh
+    sudo ufw allow http
+    sudo ufw allow https
+    sudo ufw allow 2142/tcp
+    sudo ufw allow 3739/tcp
+    sudo ufw allow 3525/tcp
+    sudo ufw allow 4233/tcp
+    sudo ufw allow 3747/tcp
+    sudo ufw allow 5033/tcp
+    sudo ufw allow 4262/tcp
+    sudo ufw allow 3737/tcp
+    sudo ufw allow 3556/tcp
+    sudo ufw allow 3553/tcp
+    sudo ufw allow 4633/tcp
+    sudo ufw allow 8433/tcp
+    sudo ufw allow 3555/tcp
+    sudo ufw allow 3833/tcp
+    sudo ufw allow 4533/tcp
+    sudo ufw allow 4133/tcp
+    sudo ufw allow 5339/tcp
+    sudo ufw allow 8533/tcp
+    sudo ufw allow 3334/tcp
+    sudo ufw allow 4933/tcp
+    sudo ufw allow 3333/tcp
+    sudo ufw allow 6033/tcp
+    sudo ufw allow 3739/tcp
+    sudo ufw allow 5766/tcp
+    sudo ufw allow 3533/tcp
+    sudo ufw allow 4033/tcp
+    sudo ufw allow 3433/tcp
+    sudo ufw allow 3633/tcp
+    sudo ufw enable    
     fi
     
     clear
