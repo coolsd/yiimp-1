@@ -164,29 +164,29 @@ output ""
     sudo mkdir -p /var/stratum
     cd $HOME/yiimp/stratum
     sudo cp -a config.sample/. /var/stratum/config
-    sudo cp -r stratum /var/stratum
-    sudo cp -r run.sh /var/stratum
-    cd $HOME/yiimp
-    sudo cp -a $HOME/yiimp/bin/. /bin/
-    sudo cp -r $HOME/yiimp/blocknotify/blocknotify /var/stratum
-    sudo mkdir -p /etc/yiimp
-    sudo mkdir -p /$HOME/backup/
-    sudo cp -r $HOME/yiimp/var/web/keys.sample.php /etc/yiimp/
-    output "Update default timezone."
-    output "Thanks for using this installation script. Donations welcome"
+sudo cp -r stratum /var/stratum
+sudo cp -r run.sh /var/stratum
+cd $HOME/yiimp
+sudo cp -a $HOME/yiimp/bin/. /bin/
+sudo cp -r $HOME/yiimp/blocknotify/blocknotify /var/stratum
+sudo mkdir -p /etc/yiimp
+sudo mkdir -p /$HOME/backup/
+sudo cp -r $HOME/yiimp/var/web/keys.sample.php /etc/yiimp/
+output "Update default timezone."
+output "Thanks for using this installation script. Donations welcome"
     # check if link file
-    sudo [ -L /etc/localtime ] &&  sudo unlink /etc/localtime
+sudo [ -L /etc/localtime ] &&  sudo unlink /etc/localtime
     # update time zone
-    sudo ln -sf /usr/share/zoneinfo/$TIME /etc/localtime
-    sudo aptitude -y install ntpdate
+sudo ln -sf /usr/share/zoneinfo/$TIME /etc/localtime
+sudo aptitude -y install ntpdate
     # write time to clock.
-    sudo hwclock -w
-    clear
-    output "Making Web Server Magic Happen!"
+sudo hwclock -w
+clear
+output "Making Web Server Magic Happen!"
     # adding user to group, creating dir structure, setting permissions
-    sudo mkdir -p /var/www/$server_name/html  
-    output "Creating webserver initial config file"
-    output ""
+sudo mkdir -p /var/www/$server_name/html  
+output "Creating webserver initial config file"
+output ""
 #Making Nginx a bit hard
 echo 'map $http_user_agent $blockedagent {
 default         0;
@@ -407,26 +407,25 @@ echo 'include /etc/nginx/blockuseragents.rules;
         
 ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 	fi
-	sudo service nginx restart
-	sudo service php7.0-fpm reload
-    	clear
-    	output "Now for the database fun!"
+sudo service nginx restart
+sudo service php7.0-fpm reload
+clear
+output "Now for the database fun!"
     	# create database
-    	Q1="CREATE DATABASE IF NOT EXISTS yiimpfrontend;"
-    	Q2="GRANT ALL ON *.* TO 'panel'@'localhost' IDENTIFIED BY '$password';"
-    	Q3="FLUSH PRIVILEGES;"
-    	SQL="${Q1}${Q2}${Q3}"
-    	sudo mysql -u root -p="" -e "$SQL"
+Q1="CREATE DATABASE IF NOT EXISTS yiimpfrontend;"
+Q2="GRANT ALL ON *.* TO 'panel'@'localhost' IDENTIFIED BY '$password';"
+Q3="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}${Q3}"
+sudo mysql -u root -p="" -e "$SQL"
     	# create stratum user
-    	Q1="GRANT ALL ON *.* TO 'stratum'@'localhost' IDENTIFIED BY '$password2';"
-    	Q2="FLUSH PRIVILEGES;"
-    	SQL="${Q1}${Q2}"
-    	sudo mysql -u root -p="" -e "$SQL"  
+Q1="GRANT ALL ON *.* TO 'stratum'@'localhost' IDENTIFIED BY '$password2';"
+Q2="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}"
+sudo mysql -u root -p="" -e "$SQL"  
     
     	#Create my.cnf
     
- echo '
-[clienthost1]
+echo '[clienthost1]
 user=panel
 password='"${password}"'
 database=yiimpfrontend
@@ -468,33 +467,33 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
 ' | sudo -E tee /etc/yiimp/keys.php >/dev/null 2>&1
  
 
-    	output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
-    	output ""
-    	output "BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD"
-    	output ""
+output "Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you"
+output ""
+output "BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD"
+output ""
     
-    	output "Peforming the SQL import"
-    	output ""
-    	cd ~
-    	cd yiimp/sql
+output "Peforming the SQL import"
+output ""
+cd ~
+cd yiimp/sql
     	# import sql dump
-    	sudo zcat 2016-04-03-yaamp.sql.gz | sudo mysql --defaults-group-suffix=host1
+sudo zcat 2016-04-03-yaamp.sql.gz | sudo mysql --defaults-group-suffix=host1
     	# oh the humanity!
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-04-24-market_history.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-04-27-settings.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-05-11-coins.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-05-15-benchmarks.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-05-23-bookmarks.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-06-01-notifications.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-06-04-bench_chips.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2016-11-23-coins.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2017-02-05-benchmarks.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2017-03-31-earnings_index.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2017-05-accounts_case_swaptime.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2017-06-payouts_coinid_memo.sql
-     	sudo mysql --defaults-group-suffix=host1 --force < 2017-09-notifications.sql
-    	clear
-    	output "Generating a basic serverconfig.php"
+sudo mysql --defaults-group-suffix=host1 --force < 2016-04-24-market_history.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-04-27-settings.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-05-11-coins.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-05-15-benchmarks.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-05-23-bookmarks.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-06-01-notifications.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-06-04-bench_chips.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2016-11-23-coins.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2017-02-05-benchmarks.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2017-03-31-earnings_index.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2017-05-accounts_case_swaptime.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2017-06-payouts_coinid_memo.sql
+sudo mysql --defaults-group-suffix=host1 --force < 2017-09-notifications.sql
+clear
+output "Generating a basic serverconfig.php"
     	output ""
     	# make config file
 echo '<?php
@@ -519,9 +518,6 @@ define('"'"'YAAMP_FEES_RENTING'"'"', 2);
 define('"'"'YAAMP_TXFEE_RENTING_WD'"'"', 0.002);
 define('"'"'YAAMP_PAYMENTS_FREQ'"'"', 3*60*60);
 define('"'"'YAAMP_PAYMENTS_MINI'"'"', 0.001);
-if [[ ("$BTC" == "y" || "$BTC" == "Y") ]]; then
-define('"'"'YAAMP_ALLOW_EXCHANGE'"'"', true);
-fi
 define('"'"'YAAMP_ALLOW_EXCHANGE'"'"', false);
 define('"'"'YIIMP_PUBLIC_EXPLORER'"'"', true);
 define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', true);
@@ -590,37 +586,37 @@ $configAlgoNormCoef = array(
 );
 ' | sudo -E tee /var/web/serverconfig.php >/dev/null 2>&1
 
-	output "Updating stratum config files with database connection info."
-	output ""
-	cd /var/stratum/config
-	sudo sed -i 's/password = tu8tu5/password = '$blckntifypass'/g' *.conf
-	sudo sed -i 's/server = yaamp.com/server = '$server_name'/g' *.conf
-	sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
-	sudo sed -i 's/database = yaamp/database = yiimpfrontend/g' *.conf
-	sudo sed -i 's/username = root/username = stratum/g' *.conf
-	sudo sed -i 's/password = patofpaq/password = '$password2'/g' *.conf
-	cd /var/web
+output "Updating stratum config files with database connection info."
+output ""
+cd /var/stratum/config
+sudo sed -i 's/password = tu8tu5/password = '$blckntifypass'/g' *.conf
+sudo sed -i 's/server = yaamp.com/server = '$server_name'/g' *.conf
+sudo sed -i 's/host = yaampdb/host = localhost/g' *.conf
+sudo sed -i 's/database = yaamp/database = yiimpfrontend/g' *.conf
+sudo sed -i 's/username = root/username = stratum/g' *.conf
+sudo sed -i 's/password = patofpaq/password = '$password2'/g' *.conf
+cd /var/web
 
 
-	output "Final Directory permissions"
-	output ""
-	whoami=`whoami`
-	sudo usermod -aG www-data $whoami
-	sudo chown -R www-data:www-data /var/log
-	sudo chown -R www-data:www-data /var/stratum
-	sudo chown -R www-data:www-data /var/web
-	sudo chmod -R 775 /var/www/$server_name/html
-	sudo chmod -R 775 /var/web
-	sudo chmod -R 775 /var/stratum
-	sudo chmod -R 775 /var/web/yaamp/runtime
-	sudo chmod -R 775 /$HOME/backup/
-	sudo chmod -R 775 /var/log
-	sudo chmod -R 775 /var/web/serverconfig.php
-	sudo mv /$HOME/yiimp /$HOME/yiimp-install-folder-only-do-not-for-use
-	sudo service nginx restart
-	sudo service php7.0-fpm reload
-	clear
-	clear
+output "Final Directory permissions"
+output ""
+whoami=`whoami`
+sudo usermod -aG www-data $whoami
+sudo chown -R www-data:www-data /var/log
+sudo chown -R www-data:www-data /var/stratum
+sudo chown -R www-data:www-data /var/web
+sudo chmod -R 775 /var/www/$server_name/html
+sudo chmod -R 775 /var/web
+sudo chmod -R 775 /var/stratum
+sudo chmod -R 775 /var/web/yaamp/runtime
+sudo chmod -R 775 /$HOME/backup/
+sudo chmod -R 775 /var/log
+sudo chmod -R 775 /var/web/serverconfig.php
+sudo mv /$HOME/yiimp /$HOME/yiimp-install-folder-only-do-not-for-use
+sudo service nginx restart
+sudo service php7.0-fpm reload
+clear
+clear
 output "Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins."
 output ""
 output "Please make sure to change your wallet addresses in the /var/web/serverconfig.php file."
