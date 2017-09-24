@@ -120,13 +120,12 @@ output ""
     sudo ufw allow 4933/tcp
     sudo ufw allow 3333/tcp
     sudo ufw allow 6033/tcp
-    sudo ufw allow 3739/tcp
     sudo ufw allow 5766/tcp
     sudo ufw allow 3533/tcp
     sudo ufw allow 4033/tcp
     sudo ufw allow 3433/tcp
     sudo ufw allow 3633/tcp
-    sudo ufw enable    
+    sudo ufw --force enable    
     fi
     
     clear
@@ -147,7 +146,7 @@ output ""
     #Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     cd ~
-    git clone https://github.com/crombiecrunch/yiimp-reloaded.git
+    git clone https://github.com/crombiecrunch/yiimp-reloaded.git yiimp
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     sudo make
