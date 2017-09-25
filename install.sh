@@ -146,7 +146,7 @@ output ""
     #Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     cd ~
-    git clone https://github.com/crombiecrunch/yiimp-reloaded.git yiimp
+    git clone https://github.com/tpruvot/yiimp.git
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     sudo make
@@ -172,6 +172,22 @@ sudo cp -r $HOME/yiimp/blocknotify/blocknotify /var/stratum
 sudo mkdir -p /etc/yiimp
 sudo mkdir -p /$HOME/backup/
 sudo cp -r $HOME/yiimp/var/web/keys.sample.php /etc/yiimp/
+#fixing yiimp
+    sed -i "s|ROOTDIR=/data/yiimp|ROOTDIR=/var|g" /bin/yiimp
+    #fixing run.sh
+    sudo rm -r /var/stratum/config/run.sh
+echo '
+#!/bin/bash
+ulimit -n 10240
+ulimit -u 10240
+cd /var/stratum
+while true; do
+        ./stratum /var/stratum/config/$1
+        sleep 2
+done
+exec bash
+' | sudo -E tee /var/stratum/config/run.sh >/dev/null 2>&1
+sudo chmod +x /var/stratum/config/run.sh
 output "Update default timezone."
 output "Thanks for using this installation script. Donations welcome"
     # check if link file
@@ -333,10 +349,6 @@ echo 'include /etc/nginx/blockuseragents.rules;
 	
         access_log /var/log/nginx/'"${server_name}"'.app-accress.log;
         error_log  /var/log/nginx/'"${server_name}"'.app-error.log error;
-	
-  	ssl_session_cache shared:SSL:50m;
-  	ssl_session_timeout 1d;
-  	ssl_session_tickets off;
 	
 	ssl_dhparam /etc/ssl/certs/dhparam.pem;
 	ssl_prefer_server_ciphers on;
@@ -599,16 +611,11 @@ output "Final Directory permissions"
 output ""
 whoami=`whoami`
 sudo usermod -aG www-data $whoami
-sudo chown -R www-data:www-data /var/log
-sudo chown -R www-data:www-data /var/stratum
-sudo chown -R www-data:www-data /var/web
-sudo chmod -R 775 /var/www/$server_name/html
-sudo chmod -R 775 /var/web
-sudo chmod -R 775 /var/stratum
-sudo chmod -R 775 /var/web/yaamp/runtime
-sudo chmod -R 775 /$HOME/backup/
-sudo chmod -R 775 /var/log
-sudo chmod -R 775 /var/web/serverconfig.php
+sudo find /var/web -type d -exec chmod 755 {} +
+sudo find /var/web -type f -exec chmod 644 {} +
+sudo chgrp $whoami /var/yaamp/runtime
+sudo chmod g+w /var/yaamp/runtime
+sudo chmod -R 777 /$HOME/backup/
 sudo mv /$HOME/yiimp /$HOME/yiimp-install-folder-only-do-not-for-use
 sudo service nginx restart
 sudo service php7.0-fpm reload
