@@ -428,7 +428,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
 	fi
 sudo service nginx restart
 sudo service php7.0-fpm reload
-fi
+else
 echo 'include /etc/nginx/blockuseragents.rules;
 	server {
 	if ($blockedagent) {
@@ -625,7 +625,7 @@ echo 'include /etc/nginx/blockuseragents.rules;
 	fi
 sudo service nginx restart
 sudo service php7.0-fpm reload
-
+fi
     clear
     output "Now for the database fun!"
     # create database
