@@ -815,6 +815,7 @@ sudo chmod -R 775 /var/web/yaamp/runtime
 sudo chmod -R 775 /root/backup/
 sudo chmod -R 775 /var/log
 sudo chmod -R 775 /var/web/serverconfig.php
+sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
 sudo service nginx restart
 sudo service php7.0-fpm reload
 clear
