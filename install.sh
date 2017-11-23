@@ -1,12 +1,12 @@
 #!/bin/bash
 ################################################################################
-# Author:   crombiecrunch
-# 
-# Web:      www.thecryptopool.com
+# Original Author:   crombiecrunch
+# Current Author: manfromafar
+# Web:     yiimp.poolofd32th.club 
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
-# BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y
+# BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH
 # 
 ################################################################################
 output() {
@@ -36,7 +36,7 @@ output ""
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
     
     clear 
-    output "If you found this helpful, please donate to BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
+    output "If you found this helpful, please donate to BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH"
     output ""
     output "Updating system and installing required packages."
     output ""
@@ -197,7 +197,7 @@ sudo cp -r stratum /var/stratum
 sudo cp -r run.sh /var/stratum
 cd $HOME/yiimp
 sudo cp -r $HOME/yiimp/bin/. /bin/
-sudo cp -r $HOME/yiimp/blocknotify/blocknotify /var/stratum
+sudo cp -r $HOME/yiimp/blocknotify/blocknotify /usr/local/bin/
 sudo mkdir -p /etc/yiimp
 sudo mkdir -p /$HOME/backup/
 #fixing yiimp
@@ -708,6 +708,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
      sudo mysql --defaults-group-suffix=host1 --force < 2017-05-accounts_case_swaptime.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2017-06-payouts_coinid_memo.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2017-09-notifications.sql
+     sudo mysql --defaults-group-suffix=host1 --force < 2017-10-bookmarks.sql
      
     clear
     output "Generating a basic serverconfig.php"
@@ -737,10 +738,10 @@ define('"'"'YIIMP_PUBLIC_EXPLORER'"'"', true);
 define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', false);
 define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
-define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"');
+define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'18AwGT19befE4Z3siEiAzsF8n9MoJEifiH'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${server_name}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
-define('"'"'YAAMP_SITE_NAME'"'"', '"'"'TheCryptoPool'"'"');
+define('"'"'YAAMP_SITE_NAME'"'"', '"'"'PoolofD32th'"'"');
 define('"'"'YAAMP_ADMIN_EMAIL'"'"', '"'"''"${EMAIL}"''"'"');
 define('"'"'YAAMP_ADMIN_IP'"'"', '"'"''"${Public}"''"'"'); // samples: "80.236.118.26,90.234.221.11" or "10.0.0.1/8"
 define('"'"'YAAMP_ADMIN_WEBCONSOLE'"'"', true);
@@ -771,7 +772,7 @@ define('"'"'NICEHASH_API_ID'"'"','"'"'9205'"'"');
 define('"'"'NICEHASH_DEPOSIT'"'"','"'"'3J9tapPoFCtouAZH7Th8HAPsD8aoykEHzk'"'"');
 define('"'"'NICEHASH_DEPOSIT_AMOUNT'"'"','"'"'0.01'"'"');
 $cold_wallet_table = array(
-	'"'"'1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y'"'"' => 0.10,
+	'"'"'18AwGT19befE4Z3siEiAzsF8n9MoJEifiH'"'"' => 0.10,
 );
 // Sample fixed pool fees
 $configFixedPoolFees = array(
@@ -804,16 +805,18 @@ cd ~
 output "Final Directory permissions"
 output ""
 whoami=`whoami`
-sudo usermod -aG www-data $whoami
-sudo chown -R www-data:www-data /var/log
+#sudo usermod -aG www-data $whoami
+#sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
 sudo chown -R www-data:www-data /var/web
+sudo touch /var/log/debug.log
+sudo chown -R www-data:www-data /var/log/debug.log
 sudo chmod -R 775 /var/www/$server_name/html
 sudo chmod -R 775 /var/web
 sudo chmod -R 775 /var/stratum
 sudo chmod -R 775 /var/web/yaamp/runtime
-sudo chmod -R 775 /root/backup/
-sudo chmod -R 775 /var/log
+sudo chmod -R 664 /root/backup/
+sudo chmod -R 644 /var/log/debug.log
 sudo chmod -R 775 /var/web/serverconfig.php
 sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
 sudo service nginx restart
@@ -825,4 +828,4 @@ output "Please make sure to change your wallet addresses in the /var/web/serverc
 output ""
 output "Please make sure to add your public and private keys."
 output ""
-output "If you found this script helpful please consider donating some BTC Donation: 1KuE2LMZMPXJ4gsVniWLuyyPsqqZs5Av4y"
+output "If you found this script helpful please consider donating some BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH"
