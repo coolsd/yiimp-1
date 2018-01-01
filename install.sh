@@ -197,7 +197,7 @@ sudo cp -r stratum /var/stratum
 sudo cp -r run.sh /var/stratum
 cd $HOME/yiimp
 sudo cp -r $HOME/yiimp/bin/. /bin/
-sudo cp -r $HOME/yiimp/blocknotify/blocknotify /usr/local/bin/
+sudo cp -r $HOME/yiimp/blocknotify/blocknotify /usr/bin/
 sudo mkdir -p /etc/yiimp
 sudo mkdir -p /$HOME/backup/
 #fixing yiimp
