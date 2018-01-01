@@ -807,6 +807,7 @@ cd ~
 output "Final Directory permissions"
 output ""
 whoami=`whoami`
+sudo mkdir /root/backup/
 #sudo usermod -aG www-data $whoami
 #sudo chown -R www-data:www-data /var/log
 sudo chown -R www-data:www-data /var/stratum
