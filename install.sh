@@ -1,12 +1,13 @@
 #!/bin/bash
 ################################################################################
 # Original Author:   crombiecrunch
-# Current Author: manfromafar
-# Web:     yiimp.poolofd32th.club 
+# Fork Author: manfromafar
+# Current Author: Xavatar
+# Web:     
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.x
-# BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH
+# 
 # 
 ################################################################################
 output() {
