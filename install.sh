@@ -158,11 +158,11 @@ default         0;
 	#scrypt
 	sudo ufw allow 3433/tcp
 	#skein
-	sudo ufw allow 1817/tcp
+	sudo ufw allow 4933/tcp
 	#x11
 	sudo ufw allow 3533/tcp
 	#xevan
-	sudo ufw allow 1294/tcp
+	sudo ufw allow 3739/tcp
     sudo ufw --force enable    
     fi
     
