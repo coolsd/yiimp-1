@@ -154,7 +154,7 @@ default         0;
 	#nist5
 	sudo ufw allow 3833/tcp
 	#quark
-	sudo ufw allow 1961/tcp
+	sudo ufw allow 4033/tcp
 	#scrypt
 	sudo ufw allow 3433/tcp
 	#skein
