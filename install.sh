@@ -60,6 +60,7 @@ output ""
     sudo rm /etc/nginx/sites-enabled/default
     sudo service nginx start
     sudo service cron start
+	
     #Making Nginx a bit hard
     echo 'map $http_user_agent $blockedagent {
 default         0;
@@ -96,8 +97,17 @@ default         0;
     sudo aptitude -y install librtmp-dev
     sudo aptitude -y install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
     sudo aptitude -y install sendmail
+	sudo aptitude -y install mutt
     sudo aptitude -y install git
     sudo aptitude -y install pwgen -y
+	
+	#Installing Package to compile currency
+	sudo aptitude -y install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev
+	sudo aptitude -y install software-properties-common
+	sudo aptitude -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
+	sudo add-apt-repository -y ppa:bitcoin/bitcoin
+	sudo aptitude -y update
+	sudo aptitude -y install libdb4.8-dev libdb4.8++-dev
     
     
     #Generating Random Passwords
