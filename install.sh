@@ -107,7 +107,7 @@ default         0;
 	sudo aptitude -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
 	sudo add-apt-repository -y ppa:bitcoin/bitcoin
 	sudo aptitude -y update
-	sudo aptitude -y install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++ libminiupnpc10
+	sudo aptitude -y install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++ libminiupnpc10 libzmq5
     
     
     #Generating Random Passwords
@@ -729,6 +729,7 @@ define('"'"'EXCH_YOBIT_SECRET'"'"', '"'"''"'"');
      sudo mysql --defaults-group-suffix=host1 --force < 2017-10-bookmarks.sql
      sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
 	 sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
+	 sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
      
     
     output "Generating a basic serverconfig.php"
