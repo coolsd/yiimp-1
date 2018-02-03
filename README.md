@@ -1,4 +1,8 @@
 # yiimp
+
+Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig
+
+
 Install script for yiimp on Ubuntu 16.04
 
 While I did add some server security to the script, it is every server owners responsibility to fully secure their own servers. After the installation you will still need to customize your serverconfig.php file to your liking, add your API keys, and build/add your coins to the control panel. 
@@ -59,6 +63,4 @@ bash install.sh
 
 If this helped you or you feel giving please donate BTC Donation: 16xpWzWP2ZaBQWQCDAaseMZBFwnwRUL4bD
 
-Feel free to join our Discord channel at https://discord.gg/zdBbAQ
 
-Crombie Crunch
