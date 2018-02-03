@@ -1,6 +1,5 @@
 # yiimp
 
-***********************************
 
 Discord : https://discord.gg/zcCXjkQ
 
