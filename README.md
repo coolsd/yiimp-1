@@ -16,13 +16,21 @@ Install script for yiimp on Ubuntu 16.04
 Connect on your VPS =>
 
 adduser pool
+
 adduser pool sudo
+
 su - pool
+
 git clone https://github.com/xavatar/yiimp_install_scrypt.git
+
 cd yiimp_install_scrypt/
+
 ***** Do not run the script as root *****
+
 sudo bash install.sh
+
 sudo bash screen-scrypt.sh
+
 
 
 Finish !
@@ -38,14 +46,23 @@ You must update the following files:
 This script has an interactive beginning and will ask for the following information :
 
 Enter time zone
+
 Server Name 
+
 Are you using a subdomain
+
 Enter support email
+
 Set stratum to AutoExchange
+
 New location for /site/adminRights
+
 Your Public IP for admin access
+
 Install Fail2ban
+
 Install UFW and configure ports
+
 Install LetsEncrypt SSL
 
 
