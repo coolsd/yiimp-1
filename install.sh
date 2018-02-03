@@ -853,4 +853,4 @@ output "Please make sure to change your wallet addresses in the /var/web/serverc
 output ""
 output "Please make sure to add your public and private keys."
 output ""
-output "If you found this script helpful please consider donating some BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH"
+output "If you found this script helpful please consider donating some BTC Donation: 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz"
