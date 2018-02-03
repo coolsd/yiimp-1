@@ -42,6 +42,7 @@ You must update the following files:
 1. /var/web/serverconfig.php - update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..
 2. /etc/yiimp/keys.php - update with secrect keys from the exchanges. 
 
+***********************************
 
 This script has an interactive beginning and will ask for the following information :
 
