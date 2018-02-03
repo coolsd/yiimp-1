@@ -5,7 +5,7 @@ Discord : https://discord.gg/zcCXjkQ
 
 TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig
 
-Official Yiimp (used in this scrypt for Yiimp Installation): https://github.com/tpruvot/yiimp
+Official Yiimp (used in this script for Yiimp Installation): https://github.com/tpruvot/yiimp
 
 
 ***********************************
