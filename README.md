@@ -1,4 +1,4 @@
-# Yiimp
+# Yiimp_install_scrypt
 
 
 Discord : https://discord.gg/zcCXjkQ
