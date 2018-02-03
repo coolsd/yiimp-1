@@ -37,8 +37,6 @@ output ""
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
     
      
-    output "If you found this helpful, please donate to BTC Donation: 18AwGT19befE4Z3siEiAzsF8n9MoJEifiH"
-    output ""
     output "Updating system and installing required packages."
     output ""
 	sleep 3
