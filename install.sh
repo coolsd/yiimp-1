@@ -854,3 +854,6 @@ output ""
 output "Please make sure to add your public and private keys."
 output ""
 output "If you found this script helpful please consider donating some BTC Donation: 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz"
+output ""
+output "TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig"
+
