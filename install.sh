@@ -103,7 +103,11 @@ default         0;
     sudo aptitude -y install git
     sudo aptitude -y install pwgen -y
 	
+	
 	#Installing Package to compile crypto currency
+	output " "
+    output "Installing Package to compile crypto currency"
+    output " "
 	sudo add-apt-repository -y ppa:bitcoin/bitcoin
 	sudo aptitude -y update
 	sudo aptitude -y install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++ libminiupnpc10 libzmq5
