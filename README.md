@@ -25,12 +25,12 @@ Connect on your VPS =>
 Finish !
 Go http://xxx.xxxxxx.xxx and Enjoy !
 
-###### **YOU MUST UPDATE THE FOLLOWING FILES :**
+###### :bangbang: **YOU MUST UPDATE THE FOLLOWING FILES :**
 - **/var/web/serverconfig.php :** update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..
 - **/etc/yiimp/keys.php :** update with secrect keys from the exchanges
 
 
-###### **IMPORTANT** : 
+###### :bangbang: **IMPORTANT** : 
 
 - Your mysql information (login/Password) is saved in **~/.my.cnf**
 - **If you reboot your VPS**, you must restart screen-scrypt.sh and screen-stratum.sh (or add crontab)
