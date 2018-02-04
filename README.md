@@ -25,15 +25,15 @@ Connect on your VPS =>
 Finish !
 Go http://xxx.xxxxxx.xxx and Enjoy !
 
-###### **You must update the following files :**
-- **/var/web/serverconfig.php - update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..**
-- **/etc/yiimp/keys.php - update with secrect keys from the exchanges**
+###### **YOU MUST UPDATE THE FOLLOWING FILES :**
+- **/var/web/serverconfig.php :** update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..
+- **/etc/yiimp/keys.php :** update with secrect keys from the exchanges
 
 
 ###### **IMPORTANT** : 
 
-- **Your mysql information (login/Password) is saved in ~/.my.cnf**
-- **If you reboot your VPS, you must restart screen-scrypt.sh and screen-stratum.sh (or add crontab)**
+- Your mysql information (login/Password) is saved in **~/.my.cnf**
+- **If you reboot your VPS**, you must restart screen-scrypt.sh and screen-stratum.sh (or add crontab)
 
 ***********************************
 
@@ -61,5 +61,3 @@ There will be several wallets already in yiimp. These have nothing to do with th
 If you need further assistance we have a small but growing discord channel at https://discord.gg/zcCXjkQ
 
 If this helped you or you feel giving please donate BTC Donation: 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz
-
-
