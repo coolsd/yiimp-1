@@ -30,7 +30,7 @@ cd yiimp_install_scrypt/
 
 sudo bash install.sh
 
-sudo bash screen-scrypt.sh
+sudo bash screen-scrypt.sh (in tuto youtube, i launch the scrypt with root... it does not matter. Just if you reboot your vps, restart this script or add to contrab)
 
 
 
