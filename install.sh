@@ -163,23 +163,33 @@ default         0;
     sudo ufw allow ssh
     sudo ufw allow http
     sudo ufw allow https
-	#groestl
-    sudo ufw allow 3033/tcp
-	#keccak	
-	sudo ufw allow 5133/tcp
-	#neoscrypt
-	sudo ufw allow 4233/tcp
-	#nist5
-	sudo ufw allow 3833/tcp
-	#quark
-	sudo ufw allow 4033/tcp
-	#scrypt
-	sudo ufw allow 3433/tcp
-	#skein
-	sudo ufw allow 4933/tcp
-	#x11
-	sudo ufw allow 3533/tcp
-	#xevan
+	sudo ufw allow 2142/tcp
+    sudo ufw allow 3739/tcp
+    sudo ufw allow 3525/tcp
+    sudo ufw allow 4233/tcp
+    sudo ufw allow 3747/tcp
+    sudo ufw allow 5033/tcp
+    sudo ufw allow 4262/tcp
+    sudo ufw allow 3737/tcp
+    sudo ufw allow 3556/tcp
+    sudo ufw allow 3553/tcp
+    sudo ufw allow 4633/tcp
+    sudo ufw allow 8433/tcp
+    sudo ufw allow 3555/tcp
+    sudo ufw allow 3833/tcp
+    sudo ufw allow 4533/tcp
+    sudo ufw allow 4133/tcp
+    sudo ufw allow 5339/tcp
+    sudo ufw allow 8533/tcp
+    sudo ufw allow 3334/tcp
+    sudo ufw allow 4933/tcp
+    sudo ufw allow 3333/tcp
+    sudo ufw allow 6033/tcp
+    sudo ufw allow 5766/tcp
+    sudo ufw allow 3533/tcp
+    sudo ufw allow 4033/tcp
+    sudo ufw allow 3433/tcp
+    sudo ufw allow 3633/tcp
 	sudo ufw allow 3739/tcp
     sudo ufw --force enable    
     fi
