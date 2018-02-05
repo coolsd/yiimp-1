@@ -163,7 +163,7 @@ default         0;
     sudo ufw allow ssh
     sudo ufw allow http
     sudo ufw allow https
-	sudo ufw allow 2142/tcp
+    sudo ufw allow 2142/tcp
     sudo ufw allow 3739/tcp
     sudo ufw allow 3525/tcp
     sudo ufw allow 4233/tcp
@@ -190,7 +190,7 @@ default         0;
     sudo ufw allow 4033/tcp
     sudo ufw allow 3433/tcp
     sudo ufw allow 3633/tcp
-	sudo ufw allow 3739/tcp
+    sudo ufw allow 3739/tcp
     sudo ufw --force enable    
     fi
     
