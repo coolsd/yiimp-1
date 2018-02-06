@@ -107,7 +107,7 @@ default         0;
     sudo aptitude -y install librtmp-dev
     sudo aptitude -y install sendmail
     sudo aptitude -y install mutt
-    sudo aptitude -y install git
+    sudo aptitude -y install git screen
     sudo aptitude -y install pwgen -y
 
 
