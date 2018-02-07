@@ -27,7 +27,7 @@ Go http://xxx.xxxxxx.xxx or https://xxx.xxxxxx.xxx (if you have chosen LetsEncry
 
 ###### :bangbang: **YOU MUST UPDATE THE FOLLOWING FILES :**
 - **/var/web/serverconfig.php :** update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..
-- **/etc/yiimp/keys.php :** update with secrect keys from the exchanges
+- **/etc/yiimp/keys.php :** update with secrect keys from the exchanges (not mandatory)
 
 
 ###### :bangbang: **IMPORTANT** : 
