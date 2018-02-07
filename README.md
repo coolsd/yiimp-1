@@ -1,4 +1,4 @@
-# Yiimp_install_scrypt (update Feb 4, 2018)
+# Yiimp_install_scrypt (update Feb 8, 2018)
 
 
 Discord : https://discord.gg/zcCXjkQ
@@ -20,10 +20,10 @@ Connect on your VPS =>
 - cd yiimp_install_scrypt/
 - sudo bash install.sh (Do not run the script as root)
 - sudo bash screen-scrypt.sh (in tuto youtube, i launch the scrypt with root... it does not matter)
-- sudo bash screen-stratum.sh (configure before start this script... add or remove algo you use) 
+- sudo bash screen-stratum.sh ######(configure before start this script... add or remove algo you use)###### 
 
 Finish !
-Go http://xxx.xxxxxx.xxx and Enjoy !
+Go http://xxx.xxxxxx.xxx or https://xxx.xxxxxx.xxx (if you have chosen LetsEncrypt SSL). Enjoy !
 
 ###### :bangbang: **YOU MUST UPDATE THE FOLLOWING FILES :**
 - **/var/web/serverconfig.php :** update this file to include your public ip to access the admin panel. update with public keys from exchanges. update with other information specific to your server..
