@@ -46,7 +46,7 @@ Go http://xxx.xxxxxx.xxx or https://xxx.xxxxxx.xxx (if you have chosen LetsEncry
 - Enter support email
 - Set stratum to AutoExchange
 - New location for /site/adminRights
-- Your Public IP for admin access
+- Your Public IP for admin access (Put your PERSONNAL IP, NOT IP of your VPS)
 - Install Fail2ban
 - Install UFW and configure ports
 - Install LetsEncrypt SSL
