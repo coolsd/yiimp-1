@@ -815,7 +815,7 @@ define('"'"'YIIMP_PUBLIC_EXPLORER'"'"', true);
 define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', true);
 define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
-define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz'"'"');
+define('"'"'YAAMP_BTCADDRESS'"'"', '"'"'1C1hnjk3WhuAvUN6Ny6LTxPD3rwSZwapW7'"'"');
 define('"'"'YAAMP_SITE_URL'"'"', '"'"''"${server_name}"''"'"');
 define('"'"'YAAMP_STRATUM_URL'"'"', YAAMP_SITE_URL); // change if your stratum server is on a different host
 define('"'"'YAAMP_SITE_NAME'"'"', '"'"'YIIMP'"'"');
@@ -914,8 +914,6 @@ output " "
 output "Please make sure to change your wallet addresses in the /var/web/serverconfig.php file."
 output " "
 output "Please make sure to add your public and private keys."
-output " "
-output "If you found this script helpful please consider donating some BTC Donation: 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz"
 output " "
 output "TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig"
 output " "

@@ -62,4 +62,6 @@ There will be several wallets already in yiimp. These have nothing to do with th
 
 If you need further assistance we have a small but growing discord channel at https://discord.gg/zcCXjkQ
 
-If this helped you or you feel giving please donate BTC Donation: 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz
+If this helped you or you feel giving please donate : 
+- BTC Donation : 1C1hnjk3WhuAvUN6Ny6LTxPD3rwSZwapW7
+- BCH Donation : 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz
