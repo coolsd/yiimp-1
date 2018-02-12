@@ -12,6 +12,8 @@ Official Yiimp (used in this script for Yiimp Installation): https://github.com/
 
 ## Install script for yiimp on Ubuntu 16.04
 
+USE THIS SCRIPT ON FRESH INSTALL UBUNTU 16.04 !
+
 Connect on your VPS =>
 - adduser pool
 - adduser pool sudo
