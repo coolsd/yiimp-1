@@ -123,7 +123,7 @@ default         0;
     sudo add-apt-repository -y ppa:bitcoin/bitcoin
     sudo apt-get -y update
     sudo apt-get install -y libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
-    sudo aptitude -y update    
+       
     
     #Generating Random Passwords
     password=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
