@@ -115,15 +115,15 @@ default         0;
     output " "
     output "Installing Package to compile crypto currency"
     output " "
+    sudo aptitude -y install software-properties-common build-essential
+    sudo aptitude -y install  libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev
+    sudo aptitude -y install libminiupnpc10 libzmq5
+    sudo aptitude -y install libcanberra-gtk-module libqrencode-dev libzmq3-dev
+    sudo aptitude -y install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
     sudo add-apt-repository -y ppa:bitcoin/bitcoin
     sudo apt-get -y update
-    sudo apt-get install -y libdb4.8-dev libdb4.8++-dev
-    sudo aptitude -y update
-    sudo aptitude -y install libdb5.3 libdb5.3++ libminiupnpc10 libzmq5
-    sudo aptitude -y install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev
-    sudo aptitude -y install software-properties-common libcanberra-gtk-module libqrencode-dev libzmq3-dev
-    sudo aptitude -y install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
-    
+    sudo apt-get install -y libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
+    sudo aptitude -y update    
     
     #Generating Random Passwords
     password=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
