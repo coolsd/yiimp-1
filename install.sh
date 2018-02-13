@@ -115,6 +115,7 @@ default         0;
     output " "
     output "Installing Package to compile crypto currency"
     output " "
+	sleep 3
     sudo aptitude -y install software-properties-common build-essential
     sudo aptitude -y install libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev
     sudo aptitude -y install libminiupnpc10 libzmq5
