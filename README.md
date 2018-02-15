@@ -35,6 +35,7 @@ Go http://xxx.xxxxxx.xxx or https://xxx.xxxxxx.xxx (if you have chosen LetsEncry
 
 ###### :bangbang: **IMPORTANT** : 
 
+- The configuration of yiimp and coin require a minimum of knowledge in linux
 - Your mysql information (login/Password) is saved in **~/.my.cnf**
 - **If you reboot your VPS**, you must restart screen-scrypt.sh (or add crontab)
 - Remember to restart **memcached service** after the db change (update or import new .sql)
