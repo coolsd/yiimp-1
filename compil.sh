@@ -59,3 +59,4 @@ sudo make libleveldb.a libmemenv.a
 cd ..
 sudo make -f makefile.unix USE_UPNP=-
 output "$coin finished and can be found in CoinBuilds/$coin/src/ Make sure you sudo strip Coind and coin-cli if it exists, copy to /usr/bin"
+fi
