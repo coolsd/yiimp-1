@@ -46,7 +46,10 @@ fi
 cd "${coin}"
 
 if [ -f autogen.sh ]; then
-        sudo ./autogen.sh
+		output " "
+        output "Auto Compilation Starting "
+		output " "
+		sudo ./autogen.sh
         sudo ./configure
         sudo make
 		output " "
@@ -74,7 +77,7 @@ if [ -d 'leveldb' ]; then
 	cd ..
 fi
 output " "
-output "Compilation Strating"
+output "SRC Compilation Starting "
 output " "
 sudo make -f makefile.unix
 output " "
