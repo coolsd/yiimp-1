@@ -49,8 +49,16 @@ if [ -f autogen.sh ]; then
 		output " "
         output "Auto Compilation Starting "
 		output " "
+		output "Starting ./autogen.sh"
+		output " "
 		sudo ./autogen.sh
+		output " "
+		output "Starting ./configure"
+		output " "
         sudo ./configure
+		output " "
+		output "Starting make"
+		output " "
         sudo make
 		output " "
         output "$coin_name finished and can be found in CoinBuilds/$coin/src/ Make sure you sudo strip Coind and coin-cli if it exists, copy to /usr/bin"
