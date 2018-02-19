@@ -68,3 +68,4 @@ If you need further assistance we have a small but growing discord channel at ht
 If this helped you or you feel giving please donate : 
 - BTC Donation : 1C1hnjk3WhuAvUN6Ny6LTxPD3rwSZwapW7
 - BCH Donation : 1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz
+- ETH Donation : 0xc23E6902fF8Cd8878EDADE18Dc49B3505395F0a1
