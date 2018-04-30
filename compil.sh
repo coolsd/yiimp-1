@@ -51,11 +51,14 @@ if [ -f autogen.sh ]; then
 		output " "
 		output "Starting ./autogen.sh"
 		output " "
+		sudo chmod +x ./autogen.sh
 		sudo ./autogen.sh
 		output " "
 		output "Starting ./configure"
 		output " "
-        sudo ./configure
+		sudo chmod +x ./configure
+		sudo ./configure CPPFLAGS="-I/usr/local/include"
+		sudo chmod +x share/genbuild.sh
 		output " "
 		output "Starting make"
 		output " "
@@ -65,6 +68,12 @@ if [ -f autogen.sh ]; then
 		output " "
 else
         cd src
+	
+if [ -f rpcrawtransaction.cpp ]; then
+
+	sudo sed -i 's/<const\ CScriptID\&/<CScriptID/' rpcrawtransaction.cpp
+	sudo sed -i 's/<CScriptID&>/<CScriptID>/g' rpcrawtransaction.cpp
+	
 if [[ ! -e 'obj' ]]; then
 	output " "
 	output "Creation directory obj"
