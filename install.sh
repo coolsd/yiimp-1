@@ -62,8 +62,10 @@ displayErr() {
     
     sudo aptitude -y install nginx
     sudo rm /etc/nginx/sites-enabled/default
-    sudo service nginx start
-    sudo service cron start
+    sudo systemctl start nginx.service
+    sudo systemctl enable nginx.service
+    sudo systemctl start cron.service
+    sudo systemctl enable cron.service
 	
 
     #Making Nginx a bit hard
@@ -87,6 +89,8 @@ default         0;
     rootpasswd=$(openssl rand -base64 12)
     export DEBIAN_FRONTEND="noninteractive"
     sudo aptitude -y install mariadb-server
+	sudo systemctl start mysql
+    sudo systemctl enable mysql
     
     output " "
     output "Installing php7.x and other needed files"
@@ -399,7 +403,7 @@ sudo chmod +x /var/stratum/config/run.sh
 
     sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
     sudo ln -s /var/web /var/www/$server_name/html
-    sudo service nginx restart
+    sudo systemctl restart nginx.service
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
     output " "
@@ -517,8 +521,8 @@ sudo chmod +x /var/stratum/config/run.sh
         
 ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 	fi
-	sudo service nginx restart
-	sudo service php7.0-fpm reload
+	sudo systemctl restart nginx.service
+	sudo systemctl reload php7.0-fpm.service
 	else
 	echo 'include /etc/nginx/blockuseragents.rules;
 	server {
@@ -600,7 +604,8 @@ sudo chmod +x /var/stratum/config/run.sh
 
     sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
     sudo ln -s /var/web /var/www/$server_name/html
-    sudo service nginx restart
+    sudo systemctl restart nginx.service
+	sudo systemctl reload php7.0-fpm.service
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
     output " "
@@ -719,8 +724,8 @@ sudo chmod +x /var/stratum/config/run.sh
         
 ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 	fi
-	sudo service nginx restart
-	sudo service php7.0-fpm reload
+	sudo systemctl restart nginx.service
+	sudo systemctl reload php7.0-fpm.service
 	fi
     
     output " "
@@ -936,8 +941,8 @@ sudo chmod -R 664 /root/backup/
 sudo chmod -R 644 /var/log/debug.log
 sudo chmod -R 775 /var/web/serverconfig.php
 sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
-sudo service nginx restart
-sudo service php7.0-fpm reload
+sudo systemctl restart nginx.service
+sudo systemctl reload php7.0-fpm.service
 
 output " "
 output " "
