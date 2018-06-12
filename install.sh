@@ -62,8 +62,10 @@ displayErr() {
     
     sudo aptitude -y install nginx
     sudo rm /etc/nginx/sites-enabled/default
-    sudo service nginx start
-    sudo service cron start
+    sudo systemctl start nginx.service
+    sudo systemctl enable nginx.service
+    sudo systemctl start cron.service
+    sudo systemctl enable cron.service
 	
 
     #Making Nginx a bit hard
