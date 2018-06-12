@@ -7,6 +7,8 @@ TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig
 
 Official Yiimp (used in this script for Yiimp Installation): https://github.com/tpruvot/yiimp
 
+Install script for yiimp on Ubuntu 17.10 : https://github.com/xavatar/yiimp_install_scrypt_ubuntu17.10
+
 
 ***********************************
 
