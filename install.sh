@@ -89,8 +89,8 @@ default         0;
     rootpasswd=$(openssl rand -base64 12)
     export DEBIAN_FRONTEND="noninteractive"
     sudo aptitude -y install mariadb-server
-	sudo systemctl start mariadb.service
-    sudo systemctl enable mariadb.service
+	sudo systemctl start mysql
+    sudo systemctl enable mysql
     
     output " "
     output "Installing php7.x and other needed files"
