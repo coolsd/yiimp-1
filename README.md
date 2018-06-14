@@ -9,6 +9,8 @@ Official Yiimp (used in this script for Yiimp Installation): https://github.com/
 
 Install script for yiimp on Ubuntu 17.10 : https://github.com/xavatar/yiimp_install_scrypt_ubuntu17.10
 
+Install script for yiimp on Ubuntu 18.04 : https://github.com/xavatar/yiimp_install_scrypt_ubuntu18.04
+
 
 ***********************************
 
