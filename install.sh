@@ -941,8 +941,10 @@ sudo chmod -R 664 /root/backup/
 sudo chmod -R 644 /var/log/debug.log
 sudo chmod -R 775 /var/web/serverconfig.php
 sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
-sudo systemctl restart nginx.service
+sudo rm -rf /var/log/nginx/*
 sudo systemctl reload php7.0-fpm.service
+sudo systemctl restart nginx.service
+
 
 output " "
 output " "
