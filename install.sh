@@ -404,6 +404,7 @@ sudo chmod +x /var/stratum/config/run.sh
     sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
     sudo ln -s /var/web /var/www/$server_name/html
     sudo systemctl restart nginx.service
+	sudo systemctl reload php7.0-fpm.service
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
     output " "
