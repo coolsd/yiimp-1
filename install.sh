@@ -27,7 +27,7 @@ displayErr() {
     output "Make sure you double check before hitting enter! Only one shot at these!"
     output " "
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
-    read -e -p "Server name (no http:// or www. just example.com) : " server_name
+    read -e -p "Server name (no http:// or www. just : example.com or pool.example.com) : " server_name
     read -e -p "Are you using a subdomain (pool.example.com?) [y/N] : " sub_domain
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
