@@ -14,9 +14,9 @@ Install script for yiimp on Ubuntu 18.04 : https://github.com/xavatar/yiimp_inst
 
 ***********************************
 
-## Install script for yiimp on Ubuntu 16.04
+## Install script for yiimp on Ubuntu Server 16.04
 
-USE THIS SCRIPT ON FRESH INSTALL UBUNTU 16.04 !
+USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 16.04 !
 
 Connect on your VPS =>
 - adduser pool
