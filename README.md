@@ -3,7 +3,9 @@
 
 Discord : https://discord.gg/zcCXjkQ
 
-TUTO Youtube (16.04) : https://www.youtube.com/watch?v=vdBCw6_cyig
+TUTO Youtube (16.04 - Without SSL) : https://www.youtube.com/watch?v=vdBCw6_cyig
+
+TUTO Youtube (16.04 - With SSL) : https://www.youtube.com/watch?v=fWwGow_i-Vw
 
 Official Yiimp (used in this script for Yiimp Installation): https://github.com/tpruvot/yiimp
 
