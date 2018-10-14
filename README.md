@@ -1,4 +1,4 @@
-# Yiimp_install_scrypt (update July 07, 2018)
+# Yiimp_install_scrypt (update October, 2018)
 
 
 Discord : https://discord.gg/zcCXjkQ
