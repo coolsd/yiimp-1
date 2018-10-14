@@ -2,7 +2,7 @@
 ################################################################################
 # Original Author:   crombiecrunch
 # Fork Author: manfromafar
-# Current Author: Xavatar
+# Current Author: Xavatar (https://github.com/xavatar/yiimp_install_scrypt)
 # Web:     
 #
 # Program:
