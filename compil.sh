@@ -2,7 +2,7 @@
 ################################################################################
 # Original Author: crombiecrunch
 # Current Author: Xavatar
-# Web: 
+# Web: https://www.xavatar.com
 #
 # Program:
 #   After entering coin name and github link automatically build coin
