@@ -5,14 +5,14 @@
 # Web: https://www.xavatar.com  
 #
 # Program:
-#   Install Package to compile crypto currency
+#   Install needed Package to compile crypto currency
 # 
 # 
 ################################################################################
     
     # Installing Package to compile crypto currency
     output " "
-    output "Installing Package to compile crypto currency"
+    output "Installing needed Package to compile crypto currency"
     output " "
     sleep 3
     
