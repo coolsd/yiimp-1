@@ -3,7 +3,7 @@
 # Updated by cryptopool.builders for crypto use...
 #####################################################
 
-source conf/functions.sh
+source functions.sh
 clear
 echo -e " Setting our global variables..."
 
