@@ -11,6 +11,8 @@
 # 
 ################################################################################
 	
+	yiimpgithub=
+
 	output() {
     printf "\E[0;33;40m"
     echo $1
@@ -100,11 +102,11 @@
     #hide_output 
     sudo rm /etc/nginx/sites-enabled/default
     #hide_output 
-    #sudo systemctl start nginx.service
+    sudo systemctl start nginx.service
     #hide_output 
     sudo systemctl enable nginx.service
     #hide_output 
-    #sudo systemctl start cron.service
+    sudo systemctl start cron.service
     #hide_output 
     sudo systemctl enable cron.service
     echo -e "$GREEN Done...$COL_RESET"
@@ -163,7 +165,8 @@
     #hide_output sudo 
     sudo phpenmod mbstring
     #hide_output 
-    #sudo systemctl start php7.3-fpm.service
+    sleep 3
+    sudo systemctl start php7.3-fpm
     echo -e "$GREEN Done...$COL_RESET"
 
     
@@ -489,8 +492,8 @@
 
     sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
     sudo ln -s /var/web /var/www/$server_name/html
-    #sudo systemctl reload php7.3-fpm.service
-    #sudo systemctl restart nginx.service
+    sudo systemctl reload php7.3-fpm.service
+    sudo systemctl restart nginx.service
 	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
@@ -611,8 +614,8 @@
     ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 	fi
 	
-	#sudo systemctl reload php7.3-fpm.service
-	#sudo systemctl restart nginx.service
+	sudo systemctl reload php7.3-fpm.service
+	sudo systemctl restart nginx.service
 	
 	else
 	echo 'include /etc/nginx/blockuseragents.rules;
@@ -695,8 +698,8 @@
 
     sudo ln -s /etc/nginx/sites-available/$server_name.conf /etc/nginx/sites-enabled/$server_name.conf
     sudo ln -s /var/web /var/www/$server_name/html
-    #sudo systemctl reload php7.3-fpm.service
-    #sudo systemctl restart nginx.service
+    sudo systemctl reload php7.3-fpm.service
+    sudo systemctl restart nginx.service
 	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
@@ -818,8 +821,8 @@
     ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
 	
     fi
-    #sudo systemctl reload php7.3-fpm.service
-    #sudo systemctl restart nginx.service
+    sudo systemctl reload php7.3-fpm.service
+    sudo systemctl restart nginx.service
     fi
     
     
@@ -1045,10 +1048,10 @@
     sudo chmod -R 775 /var/web/serverconfig.php
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
-    sudo systemctl start cron.service
+    sudo systemctl restart cron.service
     sudo systemctl restart mysql
-    sudo systemctl start nginx.service
-    sudo systemctl start php7.3-fpm.service
+    sudo systemctl restart nginx.service
+    sudo systemctl restart php7.3-fpm.service
 
 
 
