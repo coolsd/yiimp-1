@@ -83,12 +83,12 @@
     
     
     # Switch Aptitude
-    echo
-    echo -e "$CYAN Switching to Aptitude $COL_RESET"
-    echo 
-    sleep 3
-    apt_install aptitude
-    echo -e "$GREEN Done...$COL_RESET $COL_RESET"
+    #echo
+    #echo -e "$CYAN Switching to Aptitude $COL_RESET"
+    #echo 
+    #sleep 3
+    #apt_install aptitude
+    #echo -e "$GREEN Done...$COL_RESET $COL_RESET"
 
 
     # Installing Nginx
