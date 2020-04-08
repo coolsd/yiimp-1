@@ -319,8 +319,8 @@
     
     echo " "
     echo -e "Choose your Yiimp Version : "
-    echo -e "1 : xiaolin1579 (last update: April 2020)"
-    echo -e "2 : tpruvot (last update: Sept 2019)"
+    echo -e "1 : xiaolin1579 (last update : April 2020)"
+    echo -e "2 : tpruvot (Official YiimP, last update : Sept 2019)"
     read -e -p "Enter desired version : 1 or 2 [1 by default] : " yiimpver
 
 
@@ -498,6 +498,7 @@
     sudo ln -s /var/web /var/www/$server_name/html
     hide_output sudo systemctl reload php7.3-fpm.service
     hide_output sudo systemctl restart nginx.service
+    echo -e "$GREEN Done...$COL_RESET"
     	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
 
@@ -621,6 +622,7 @@
 	
 	hide_output sudo systemctl reload php7.3-fpm.service
 	hide_output sudo systemctl restart nginx.service
+	echo -e "$GREEN Done...$COL_RESET"
 	
 	
 	else
@@ -706,6 +708,7 @@
     sudo ln -s /var/web /var/www/$server_name/html
     hide_output sudo systemctl reload php7.3-fpm.service
     hide_output sudo systemctl restart nginx.service
+    echo -e "$GREEN Done...$COL_RESET"
    
 	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
@@ -826,12 +829,14 @@
     }
         
     ' | sudo -E tee /etc/nginx/sites-available/$server_name.conf >/dev/null 2>&1
-	
+
+	echo -e "$GREEN Done...$COL_RESET"
+
     fi
     hide_output sudo systemctl reload php7.3-fpm.service
     hide_output sudo systemctl restart nginx.service
     fi
-    echo -e "$GREEN Done...$COL_RESET"
+    
     
     # Config Database
     echo
@@ -943,7 +948,7 @@
     
     # Generating a basic Yiimp serverconfig.php
     echo
-    echo -e "$GREEN Generating a basic Yiimp serverconfig.php $COL_RESET"
+    echo -e "$CYAN Generating a basic Yiimp serverconfig.php $COL_RESET"
     echo
     sleep 3
     
@@ -1083,12 +1088,16 @@
     echo
     echo
     echo
-    echo -e "$CYAN Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
+    echo -e "$CYAN Whew that was fun, just some reminders. $COL_RESET" 
+    echo -e "$RED Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
     echo
+    echo -e "$RED Yiimp at : http://"$server_name "(https if you select SSL)"
+    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"$admin_panel "(https if you select SSL)"
+    echo -e 
     echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
-    echo
     echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
     echo
     echo -e "$CYAN TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig $COL_RESET"
+    echo -e "$CYAN Xavatar WebSite : https://www.xavatar.com $COL_RESET"
     echo
     echo
