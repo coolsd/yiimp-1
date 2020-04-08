@@ -10,7 +10,8 @@
 # 
 # 
 ################################################################################
-
+	
+	source conf/function.sh
 
     output() {
     printf "\E[0;33;40m"
@@ -46,9 +47,10 @@
     output " "
     sleep 3
         
-    sudo apt-get -y update 
-    sudo apt-get -y upgrade
-    sudo apt-get -y autoremove
+    hide_output sudo apt-get -y update 
+    hide_output sudo apt-get -y upgrade
+    hide_output sudo apt-get -y autoremove
+    echo -e "$GREEN Done...$COL_RESET"
     
     
     # Switch Aptitude
@@ -57,21 +59,22 @@
     output " "
     sleep 3
     
-    sudo apt-get -y install aptitude
-    
-    
+    apt_install aptitude
+    echo -e "$GREEN Done...$COL_RESET"
+
     # Installing Nginx
     output " "
     output "Installing Nginx server."
     output " "
     sleep 3
     
-    sudo aptitude -y install nginx
-    sudo rm /etc/nginx/sites-enabled/default
-    sudo systemctl start nginx.service
-    sudo systemctl enable nginx.service
-    sudo systemctl start cron.service
-    sudo systemctl enable cron.service
+    apt_install nginx
+    hide_output sudo rm /etc/nginx/sites-enabled/default
+    hide_output sudo systemctl start nginx.service
+    hide_output sudo systemctl enable nginx.service
+    hide_output sudo systemctl start cron.service
+    hide_output sudo systemctl enable cron.service
+    echo -e "$GREEN Done...$COL_RESET"
 	
 
     # Making Nginx a bit hard
