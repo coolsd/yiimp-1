@@ -28,7 +28,7 @@
     sudo cp -r conf/editconf.py /usr/bin
     sudo chmod +x /usr/bin/editconf.py
 
-    source etc/functions.sh
+    source /etc/functions.sh
 
     clear
     echo
