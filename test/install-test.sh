@@ -320,7 +320,7 @@
     echo -e "Choose your Yiimp Version : "
     echo -e "1 : xiaolin1579 (last update: April 2020)"
     echo -e "2 : tpruvot (last update: Sept 2019)"
-    read -e -p "Enter desired version (1 or 2) : " yimmpver
+    read -e -p "Enter desired version : 1 or 2 [1 by default] : " yiimpver
 
 
     # Generating Random Password for stratum
@@ -328,7 +328,7 @@
     
     # Compil Blocknotify
     cd ~
-    if [$yimmpver == "2"];then 
+    if [$yiimpver == "2"];then 
     hide_output git clone $githubrepotpruvot
     fi
     else 
