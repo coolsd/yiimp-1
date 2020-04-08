@@ -14,8 +14,8 @@ BLUE=$ESC_SEQ"34;01m"
 MAGENTA=$ESC_SEQ"35;01m"
 CYAN=$ESC_SEQ"36;01m"
 
-function spinner
- {
+
+function spinner {
  		local pid=$!
  		local delay=0.75
  		local spinstr='|/-\'
@@ -46,9 +46,11 @@ function hide_output {
 		rm -f $OUTPUT
 }
 
+
 function apt_get_quiet {
 		DEBIAN_FRONTEND=noninteractive hide_output sudo apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" "$@"
 }
+
 
 function apt_install {
 		PACKAGES=$@
