@@ -76,4 +76,5 @@ if [ "$ARCHITECTURE" != "x86_64" ]; then
   fi
 fi
 
+echo
 echo -e "$GREEN Done...$COL_RESET"
