@@ -13,8 +13,8 @@
 	
 	### Variable ###
 	#githubrepo=https://github.com/Kudaraidee/yiimp.git
-	githubrepo=https://github.com/tpruvot/yiimp.git
-	
+	githubrepotpruvot=https://github.com/tpruvot/yiimp.git
+	githubrepoKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
 
 	output() {
@@ -316,13 +316,23 @@
     echo " "
     sleep 3
     
-    
+    echo " "
+    echo -e "Choose your Yiimp Version : "
+    echo -e "1 : xiaolin1579 (last update: April 2020)"
+    echo -e "2 : tpruvot (last update: Sept 2019)"
+    read -e -p "Enter desired version (1 or 2) : " yimmpver
+
+
     # Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     
     # Compil Blocknotify
     cd ~
-    hide_output git clone $githubrepo
+    if [$yimmpver == "2"];then 
+    hide_output git clone $githubrepotpruvot
+    fi
+    else 
+    hide_output git clone $githubrepoKudaraidee
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
