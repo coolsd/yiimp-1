@@ -498,14 +498,13 @@
     sudo ln -s /var/web /var/www/$server_name/html
     hide_output sudo systemctl reload php7.3-fpm.service
     hide_output sudo systemctl restart nginx.service
-    echo -e "$GREEN Done...$COL_RESET"
-	
+    	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
 
     
     # Install SSL (with SubDomain)
     echo
-    echo -e "$CYAN Install LetsEncrypt and setting SSL (with SubDomain) $COL_RESET"
+    echo -e "Install LetsEncrypt and setting SSL (with SubDomain)"
     echo
     
     apt_install letsencrypt
@@ -622,7 +621,7 @@
 	
 	hide_output sudo systemctl reload php7.3-fpm.service
 	hide_output sudo systemctl restart nginx.service
-	echo -e "$GREEN Done...$COL_RESET"
+	
 	
 	else
 	echo 'include /etc/nginx/blockuseragents.rules;
@@ -707,13 +706,13 @@
     sudo ln -s /var/web /var/www/$server_name/html
     hide_output sudo systemctl reload php7.3-fpm.service
     hide_output sudo systemctl restart nginx.service
-    echo -e "$GREEN Done...$COL_RESET"
+   
 	
     if [[ ("$ssl_install" == "y" || "$ssl_install" == "Y" || "$ssl_install" == "") ]]; then
     
     # Install SSL (without SubDomain)
     echo
-    echo -e "$CYAN Install LetsEncrypt and setting SSL (without SubDomain) $COL_RESET"
+    echo -e "Install LetsEncrypt and setting SSL (without SubDomain)"
     echo
     sleep 3
     
