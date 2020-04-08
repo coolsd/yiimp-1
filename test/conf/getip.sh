@@ -99,3 +99,5 @@ if [ "$PUBLIC_IPV6" = "auto" ]; then
 # Use a public API to get our public IPv6 address, or fall back to local network configuration.
 PUBLIC_IPV6=$(get_publicip_from_web_service 6 || get_default_privateip 6)
 fi
+
+echo -e "$GREEN Done...$COL_RESET"
