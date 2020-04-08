@@ -39,6 +39,7 @@
     clear
     echo
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
+    echo -e "$GREEN Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3"
     echo
     sleep 3
 
