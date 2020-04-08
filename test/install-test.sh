@@ -30,6 +30,14 @@
     echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
     echo
    
+    source conf/prerequisite.sh
+
+    echo 'PUBLIC_IP='"${PUBLIC_IP}"'
+    PUBLIC_IPV6='"${PUBLIC_IPV6}"'
+    DISTRO='"${DISTRO}"'
+    PRIVATE_IP='"${PRIVATE_IP}"'' | sudo -E tee conf/pool.conf >/dev/null 2>&1
+
+
     echo
     echo -e "$RED Make sure you double check before hitting enter! Only one shot at these!$COL_RESET"
     echo
