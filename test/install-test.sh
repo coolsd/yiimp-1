@@ -11,7 +11,9 @@
 # 
 ################################################################################
 	
-	yiimpgithub=
+	#### Variables
+	githubrepo=https://github.com/Kudaraidee/yiimp.git
+	####
 
 	output() {
     printf "\E[0;33;40m"
@@ -331,7 +333,7 @@
     
     # Compil Blocknotify
     cd ~
-    git clone https://github.com/tpruvot/yiimp.git
+    git clone $githubrepo
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     sudo make
@@ -923,6 +925,7 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
+    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
     
     
     # Generating a basic Yiimp serverconfig.php
