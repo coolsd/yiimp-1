@@ -98,6 +98,12 @@
     echo
     sleep 3
     
+    if [ -f /usr/sbin/apache2 ]; then
+    echo -e "Removing apache..."
+    hide_output apt-get -y purge apache2 apache2-*
+    hide_output apt-get -y --purge autoremove
+    fi
+
     apt_install nginx
     hide_output sudo rm /etc/nginx/sites-enabled/default
     hide_output sudo systemctl start nginx.service
