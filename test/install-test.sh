@@ -25,10 +25,14 @@
     echo
     exit 1;
     }
-
-    output " "
-    output "Make sure you double check before hitting enter! Only one shot at these!"
-    output " "
+    
+    echo
+    echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
+    echo
+   
+    echo
+    echo -e "$RED Make sure you double check before hitting enter! Only one shot at these!$COL_RESET"
+    echo
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
     read -e -p "Server name (no http:// or www. just : example.com or pool.example.com) : " server_name
     read -e -p "Are you using a subdomain (pool.example.com?) [y/N] : " sub_domain
@@ -117,7 +121,7 @@
     hide_output sudo phpenmod mbstring
     hide_output sudo systemctl start php7.3-fpm.service
     echo -e "$GREEN Done...$COL_RESET"
-    
+
     
     # Installing other needed files
     output " "
