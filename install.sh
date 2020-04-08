@@ -22,7 +22,7 @@ displayErr() {
     echo
     exit 1;
 }
-
+    clear
     output " "
     output "Yiimp Install Script v0.1"
     output "Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.0"
