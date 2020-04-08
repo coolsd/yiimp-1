@@ -3,7 +3,7 @@
 # Original Author:   crombiecrunch
 # Fork Author: manfromafar
 # Current Author: Xavatar (https://github.com/xavatar/yiimp_install_scrypt)
-# Web:     
+# Web: https://www.xavatar.com    
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3
