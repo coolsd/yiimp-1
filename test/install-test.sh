@@ -29,8 +29,10 @@
     echo
     echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
     echo
+    sleep 3
    
     source conf/prerequisite.sh
+    source conf/getip.sh
 
     echo 'PUBLIC_IP='"${PUBLIC_IP}"'
     PUBLIC_IPV6='"${PUBLIC_IPV6}"'
@@ -122,6 +124,9 @@
     output " "
     sleep 3
     
+    if [ ! -f /etc/apt/sources.list.d/ondrej-php-bionic.list ]; then
+    hide_output sudo add-apt-repository -y ppa:ondrej/php
+    fi
     apt_install php7.3-fpm php7.3-opcache php7.3 php7.3-common php7.3-gd php7.3-mysql php7.3-imap php7.3-cli \
     php7.3-cgi php-pear php-auth mcrypt imagemagick libruby php7.3-curl php7.3-intl php7.3-pspell \
     php7.3-recode php7.3-sqlite3 php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache php-imagick php-gettext php7.3-zip php7.3-mbstring
