@@ -168,12 +168,6 @@
 	sleep 3
 
     
-    clear
-    echo
-    echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
-    echo
-
-    
     # Installing Package to compile crypto currency
     echo
     echo -e "$CYAN Installing Package to compile crypto currency $COL_RESET"
@@ -328,22 +322,22 @@
     
     # Compil Blocknotify
     cd ~
-    git clone $githubrepo
+    hide_output git clone $githubrepo
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
-    sudo make
+    hide_output sudo make
     
     # Compil iniparser
     cd $HOME/yiimp/stratum/iniparser
-    sudo make
+    hide_output sudo make
     
     # Compil Stratum
     cd $HOME/yiimp/stratum
     if [[ ("$BTC" == "y" || "$BTC" == "Y") ]]; then
     sudo sed -i 's/CFLAGS += -DNO_EXCHANGE/#CFLAGS += -DNO_EXCHANGE/' $HOME/yiimp/stratum/Makefile
-    sudo make
+    hide_output sudo make
     fi
-    sudo make
+    hide_output sudo make
     
     # Copy Files (Blocknotify,iniparser,Stratum)
     cd $HOME/yiimp
@@ -377,7 +371,7 @@
     ' | sudo -E tee /var/stratum/config/run.sh >/dev/null 2>&1
     sudo chmod +x /var/stratum/config/run.sh
 
-   echo -e "$GREEN Done...$COL_RESET"
+    echo -e "$GREEN Done...$COL_RESET"
 
 
     # Update Timezone
@@ -399,7 +393,7 @@
     
     # Making Web Server Magic Happen
     echo
-    echo "$CYAN Making Web Server Magic Happen! $COL_RESET"
+    echo -e "$CYAN Making Web Server Magic Happen! $COL_RESET"
     echo
     
     # Adding user to group, creating dir structure, setting permissions
@@ -929,14 +923,14 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
+    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
     
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Generating a basic Yiimp serverconfig.php
     echo
-    echo "$GREEN Generating a basic Yiimp serverconfig.php $COL_RESET"
+    echo -e "$GREEN Generating a basic Yiimp serverconfig.php $COL_RESET"
     echo
     sleep 3
     
@@ -1064,19 +1058,24 @@
     sudo systemctl restart mysql
     sudo systemctl restart nginx.service
     sudo systemctl restart php7.3-fpm.service
+    echo -e "$GREEN Done...$COL_RESET"
+    sleep 3
 
 
-
-    echo " "
-    echo " "
-    echo " "
-    echo " "
-    echo -e "$GREEN Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
-    echo " "
-    echo -e "$GREEN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
-    echo " "
-    echo -e "$GREEN Please make sure to add your public and private keys. $COL_RESET"
-    echo " "
-    echo -e "$GREEN TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig $COL_RESET"
-    echo " "
-    echo " "
+    clear
+    echo
+    echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
+    echo
+    echo 
+    echo
+    echo
+    echo
+    echo -e "$CYAN Whew that was fun, just some reminders. Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
+    echo
+    echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
+    echo
+    echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
+    echo
+    echo -e "$CYAN TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig $COL_RESET"
+    echo
+    echo
