@@ -165,7 +165,7 @@
     #hide_output sudo 
     sudo phpenmod mbstring
     #hide_output 
-    sleep 3
+    sleep 5
     sudo systemctl start php7.3-fpm
     echo -e "$GREEN Done...$COL_RESET"
 
