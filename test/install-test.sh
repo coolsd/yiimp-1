@@ -76,7 +76,7 @@
     read -e -p "Are you using a subdomain (pool.example.com?) [y/N] : " sub_domain
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
-    read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
+    #read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter the Public IP of the system you will use to access the admin panel (http://www.whatsmyip.org/) : " Public
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
@@ -317,11 +317,11 @@
     echo " "
     sleep 3
     
-    echo " "
-    echo -e "Choose your Yiimp Version : "
-    echo -e "1 : xiaolin1579 (last update : April 2020)"
-    echo -e "2 : tpruvot (Official YiimP, last update : Sept 2019)"
-    read -e -p "Enter desired version : 1 or 2 [1 by default] : " yiimpver
+    #echo " "
+    #echo -e "Choose your Yiimp Version : "
+    #echo -e "1 : xiaolin1579 (last update : April 2020)"
+    #echo -e "2 : tpruvot (Official YiimP, last update : Sept 2019)"
+    #read -e -p "Enter desired version : 1 or 2 [1 by default] : " yiimpver
 
 
     # Generating Random Password for stratum
@@ -329,11 +329,11 @@
     
     # Compil Blocknotify
     cd ~
-    if [[ ($yiimpver == "2") ]];then 
+    #if [[ ($yiimpver == "2") ]];then 
     hide_output git clone $githubrepotpruvot
-    else 
-    hide_output git clone $githubrepoKudaraidee
-	fi
+    #else 
+    #hide_output git clone $githubrepoKudaraidee
+	#fi
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
@@ -351,7 +351,7 @@
     
     # Copy Files (Blocknotify,iniparser,Stratum)
     cd $HOME/yiimp
-    sudo sed -i 's/AdminRights/'$admin_panel'/' $HOME/yiimp/web/yaamp/modules/site/SiteController.php
+    sudo sed -i 's/AdminRights/'AdminPanel'/' $HOME/yiimp/web/yaamp/modules/site/SiteController.php
     sudo cp -r $HOME/yiimp/web /var/
     sudo mkdir -p /var/stratum
     cd $HOME/yiimp/stratum
@@ -402,12 +402,12 @@
     
     
     # Making Web Server Magic Happen
-    echo
-    echo -e "$CYAN Making Web Server Magic Happen! $COL_RESET"
-    echo
+    #echo
+    #echo -e "$CYAN Making Web Server Magic Happen! $COL_RESET"
+    #echo
     
     # Adding user to group, creating dir structure, setting permissions
-    sudo mkdir -p /var/www/$server_name/html 
+    #sudo mkdir -p /var/www/$server_name/html 
     
     
     # Creating webserver initial config file
@@ -415,6 +415,9 @@
     echo -e "$CYAN Creating webserver initial config file $COL_RESET"
     echo
     
+    # Adding user to group, creating dir structure, setting permissions
+    sudo mkdir -p /var/www/$server_name/html
+
     if [[ ("$sub_domain" == "y" || "$sub_domain" == "Y") ]]; then
     echo 'include /etc/nginx/blockuseragents.rules;
 	server {
@@ -938,11 +941,11 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    if [[ ($yiimpver == "2") ]];then 
+    #if [[ ($yiimpver == "2") ]];then 
     echo -e "$GREEN Done...$COL_RESET"
-    else
-    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
-    echo -e "$GREEN Done...$COL_RESET"
+    #else
+    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
+    #echo -e "$GREEN Done...$COL_RESET"
     fi
     
     
@@ -1083,7 +1086,7 @@
     clear
     echo
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
-    echo
+    echo -e "$GREEN Finish !!!"
     echo 
     echo
     echo
@@ -1092,7 +1095,7 @@
     echo -e "$RED Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
     echo
     echo -e "$RED Yiimp at : http://"$server_name "(https... if you select SSL)"
-    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"$admin_panel "(https... if you select SSL)"
+    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"AdminPanel "(https... if you select SSL)"
     echo -e 
     echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
     echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
