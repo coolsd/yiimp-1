@@ -4,8 +4,9 @@
 #####################################################
 
 source /etc/functions.sh
-clear
-echo -e " Setting our global variables..."
+echo
+echo -e "$CYAN Setting our global variables... $COL_RESET"
+echo
 
 # If the machine is behind a NAT, inside a VM, etc., it may not know
 # its IP address on the public network / the Internet. Ask the Internet
