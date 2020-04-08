@@ -330,9 +330,9 @@
     cd ~
     if [$yiimpver == "2"];then 
     hide_output git clone $githubrepotpruvot
-    fi
     else 
     hide_output git clone $githubrepoKudaraidee
+	fi
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
@@ -933,10 +933,13 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
-    
+    if [$yiimpver == "2"];then 
     echo -e "$GREEN Done...$COL_RESET"
-
+    else
+    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
+    echo -e "$GREEN Done...$COL_RESET"
+    fi
+    
     
     # Generating a basic Yiimp serverconfig.php
     echo
