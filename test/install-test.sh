@@ -30,6 +30,20 @@
     echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
     echo
     sleep 3
+
+        # Update package and Upgrade Ubuntu
+    echo
+    echo "Updating system and installing required packages."
+    echo 
+    sleep 3
+        
+    hide_output sudo apt-get -y update 
+    hide_output sudo apt-get -y upgrade
+    hide_output sudo apt-get -y autoremove
+    apt_install dialog python3 python3-pip acl nano apt-transport-https
+    echo -e "$GREEN Done...$COL_RESET"
+
+    apt_install dialog python3 python3-pip acl nano apt-transport-https
    
     source conf/prerequisite.sh
     source conf/getip.sh
@@ -53,18 +67,6 @@
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
-    
-    
-    # Update package and Upgrade Ubuntu
-    output " "
-    output "Updating system and installing required packages."
-    output " "
-    sleep 3
-        
-    hide_output sudo apt-get -y update 
-    hide_output sudo apt-get -y upgrade
-    hide_output sudo apt-get -y autoremove
-    echo -e "$GREEN Done...$COL_RESET"
     
     
     # Switch Aptitude
