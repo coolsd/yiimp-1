@@ -6,7 +6,7 @@
 # Web:     
 #
 # Program:
-#   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.0.x
+#   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.0
 # 
 # 
 ################################################################################
@@ -22,7 +22,14 @@ displayErr() {
     echo
     exit 1;
 }
-
+    clear
+    output " "
+    output "Yiimp Install Script v0.1"
+    output "Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.0"
+    output " "
+    sleep 3
+    
+    output " "
     output " "
     output "Make sure you double check before hitting enter! Only one shot at these!"
     output " "
