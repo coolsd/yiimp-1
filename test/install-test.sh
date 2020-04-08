@@ -116,6 +116,7 @@
     hide_output sudo phpenmod mcrypt
     hide_output sudo phpenmod mbstring
     hide_output sudo systemctl start php7.3-fpm.service
+    echo -e "$GREEN Done...$COL_RESET"
     
     
     # Installing other needed files
