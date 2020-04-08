@@ -24,6 +24,12 @@ displayErr() {
 }
 
     output " "
+    output "Yiimp Install Script v0.1"
+    output " "
+    sleep 3
+    
+    output " "
+    output " "
     output "Make sure you double check before hitting enter! Only one shot at these!"
     output " "
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
