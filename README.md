@@ -1,4 +1,4 @@
-# Yiimp_install_scrypt (update October, 2018)
+# Yiimp_install_scrypt (update Avril, 2020)
 
 Site : https://www.xavatar.com
 
