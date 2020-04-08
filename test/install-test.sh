@@ -1091,8 +1091,8 @@
     echo -e "$CYAN Whew that was fun, just some reminders. $COL_RESET" 
     echo -e "$RED Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
     echo
-    echo -e "$RED Yiimp at : http://"$server_name "(https if you select SSL)"
-    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"$admin_panel "(https if you select SSL)"
+    echo -e "$RED Yiimp at : http://"$server_name "(https... if you select SSL)"
+    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"$admin_panel "(https... if you select SSL)"
     echo -e 
     echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
     echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
