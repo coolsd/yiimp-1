@@ -26,6 +26,12 @@
     exit 1;
     }
     
+    sudo cp -r conf/functions.sh /etc/
+    sudo cp -r conf/editconf.py /usr/bin
+    sudo chmod +x /usr/bin/editconf.py
+
+    source etc/functions.sh
+
     clear
     echo
     echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
