@@ -11,9 +11,10 @@
 # 
 ################################################################################
 	
-	#### Variables
+	# Variables
 	githubrepo=https://github.com/Kudaraidee/yiimp.git
-	####
+	
+
 
 	output() {
     printf "\E[0;33;40m"
@@ -36,29 +37,28 @@
 
     clear
     echo
-    echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
+    echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
     echo
     sleep 3
 
-        # Update package and Upgrade Ubuntu
+
+    # Update package and Upgrade Ubuntu
     echo
-    echo "Updating system and installing required packages."
+    echo -e "$CYAN Updating system and installing required packages.$COL_RESET"
     echo 
     sleep 3
         
-    #hide_output 
-    sudo apt -y update 
-    #hide_output 
-    sudo apt -y upgrade
-    #hide_output 
-    sudo apt -y autoremove
-    #apt_install 
-    sudo apt -y install dialog python3 python3-pip acl nano apt-transport-https
+    hide_output sudo apt -y update 
+    hide_output sudo apt -y upgrade
+    hide_output sudo apt -y autoremove
+    apt_install dialog python3 python3-pip acl nano apt-transport-https
     echo -e "$GREEN Done...$COL_RESET"
 
 
     source conf/prerequisite.sh
+    sleep 3
     source conf/getip.sh
+
 
     echo '
     PUBLIC_IP='"${PUBLIC_IP}"'
@@ -84,33 +84,25 @@
     
     # Switch Aptitude
     echo
-    echo "Switching to Aptitude"
+    echo -e "$CYAN Switching to Aptitude $COL_RESET"
     echo 
     sleep 3
-    
-    #apt_install 
-    sudo apt -y install aptitude
-    echo -e "$GREEN Done...$COL_RESET"
+    apt_install aptitude
+    echo -e "$GREEN Done...$COL_RESET $COL_RESET"
 
 
     # Installing Nginx
     echo
-    echo "Installing Nginx server."
+    echo -e "$CYAN Installing Nginx server. $COL_RESET"
     echo
     sleep 3
     
-    #apt_install 
-    sudo apt -y install nginx
-    #hide_output 
-    sudo rm /etc/nginx/sites-enabled/default
-    #hide_output 
-    sudo systemctl start nginx.service
-    #hide_output 
-    sudo systemctl enable nginx.service
-    #hide_output 
-    sudo systemctl start cron.service
-    #hide_output 
-    sudo systemctl enable cron.service
+    apt_install nginx
+    hide_output sudo rm /etc/nginx/sites-enabled/default
+    hide_output sudo systemctl start nginx.service
+    hide_output sudo systemctl enable nginx.service
+    hide_output sudo systemctl start cron.service
+    hide_output sudo systemctl enable cron.service
     echo -e "$GREEN Done...$COL_RESET"
 	
 
@@ -128,25 +120,22 @@
     
     # Installing Mariadb
     echo
-    echo "Installing Mariadb Server."
+    echo -e "$CYAN Installing Mariadb Server. $COL_RESET"
     echo
     sleep 3
         
     # Create random password
     rootpasswd=$(openssl rand -base64 12)
     export DEBIAN_FRONTEND="noninteractive"
-    #apt_install 
-    sudo apt -y install mariadb-server
-    #hide_output 
-    sudo systemctl start mysql
-    #hide_output 
-    sudo systemctl enable mysql
+    apt_install mariadb-server
+    hide_output sudo systemctl start mysql
+    hide_output sudo systemctl enable mysql
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Installing Installing php7.3
     echo
-    echo "Installing php7.3"
+    echo -e "$CYAN Installing php7.3 $COL_RESET"
     echo
     sleep 3
     
@@ -154,50 +143,45 @@
     hide_output sudo add-apt-repository -y ppa:ondrej/php
     fi
     hide_output sudo apt-get -y update
-    #apt_install 
-    sudo apt -y install php7.3-fpm php7.3-opcache php7.3 php7.3-common php7.3-gd php7.3-mysql php7.3-imap php7.3-cli \
+    apt_install php7.3-fpm php7.3-opcache php7.3 php7.3-common php7.3-gd php7.3-mysql php7.3-imap php7.3-cli \
     php7.3-cgi php-pear php-auth imagemagick libruby php7.3-curl php7.3-intl php7.3-pspell \
     php7.3-recode php7.3-sqlite3 php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache php-imagick php-gettext php7.3-zip php7.3-mbstring
-    #apt_install
-    sudo apt -y install php7.1-mcrypt
-    #hide_output
-    sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.3/mods-available/
-    #hide_output 
-    sudo phpenmod mcrypt
-    #hide_output sudo 
-    sudo phpenmod mbstring
-    #hide_output 
+    apt_install php7.1-mcrypt
+    hide_output sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.3/mods-available/
+    hide_output sudo phpenmod mcrypt
+    hide_output sudo sudo phpenmod mbstring
     sleep 5
-    sudo systemctl start php7.3-fpm
+    hide_output sudo systemctl start php7.3-fpm
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Installing other needed files
     echo
-    echo "Installing other needed files"
+    echo -e "$CYAN Installing other needed files $COL_RESET"
     echo
     sleep 3
     
-    #apt_install 
-    sudo apt -y install libgmp3-dev libmysqlclient-dev libcurl4-gnutls-dev libkrb5-dev libldap2-dev libidn11-dev gnutls-dev \
+    apt_install libgmp3-dev libmysqlclient-dev libcurl4-gnutls-dev libkrb5-dev libldap2-dev libidn11-dev gnutls-dev \
     librtmp-dev sendmail mutt screen git
-    sudo apt -y install pwgen -y
+    apt_install pwgen -y
+    echo -e "$GREEN Done...$COL_RESET"
 	
     
     # Installing Package to compile crypto currency
-    output " "
-    output "Installing Package to compile crypto currency"
-    output " "
+    echo
+    echo -e "$CYAN Installing Package to compile crypto currency $COL_RESET"
+    echo
     sleep 3
     
-    sudo aptitude -y install software-properties-common build-essential
-    sudo aptitude -y install libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev gettext
-    sudo aptitude -y install libminiupnpc10 libzmq5
-    sudo aptitude -y install libcanberra-gtk-module libqrencode-dev libzmq3-dev
-    sudo aptitude -y install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
-    sudo add-apt-repository -y ppa:bitcoin/bitcoin
-    sudo apt-get -y update
-    sudo apt-get install -y libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
+    apt_install software-properties-common build-essential
+    apt_install libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev gettext
+    apt_install libminiupnpc10 libzmq5
+    apt_install libcanberra-gtk-module libqrencode-dev libzmq3-dev
+    apt_install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
+    hide_output sudo add-apt-repository -y ppa:bitcoin/bitcoin
+    hide_output sudo apt-get -y update
+    apt_install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
+    echo -e "$GREEN Done...$COL_RESET"
        
     
     # Generating Random Passwords
@@ -207,9 +191,9 @@
     
     
     # Test Email
-    output " "
-    output "Testing to see if server emails are sent"
-    output " "
+    echo
+    echo -e "$CYAN Testing to see if server emails are sent $COL_RESET"
+    echo
     sleep 3
     
     if [[ "$root_email" != "" ]]; then
@@ -227,12 +211,12 @@
         echo "Mail sent"
     fi
     fi
-    
+    echo -e "$GREEN Done...$COL_RESET"
     
     # Installing Fail2Ban & UFW
-    output " "
-    output "Some optional installs (Fail2Ban & UFW)"
-    output " "
+    echo
+    echo -e "$CYAN Some optional installs (Fail2Ban & UFW) $COL_RESET"
+    echo
     sleep 3
     
     
@@ -240,68 +224,69 @@
     sudo aptitude -y install fail2ban
     fi
     if [[ ("$UFW" == "y" || "$UFW" == "Y" || "$UFW" == "") ]]; then
-    sudo apt-get install ufw
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
-    sudo ufw allow ssh
-    sudo ufw allow http
-    sudo ufw allow https
-    sudo ufw allow 3333/tcp
-    sudo ufw allow 3339/tcp
-    sudo ufw allow 3334/tcp
-    sudo ufw allow 3433/tcp
-    sudo ufw allow 3555/tcp
-    sudo ufw allow 3556/tcp
-    sudo ufw allow 3573/tcp
-    sudo ufw allow 3535/tcp
-    sudo ufw allow 3533/tcp
-    sudo ufw allow 3553/tcp
-    sudo ufw allow 3633/tcp
-    sudo ufw allow 3733/tcp
-    sudo ufw allow 3636/tcp
-    sudo ufw allow 3737/tcp
-    sudo ufw allow 3739/tcp
-    sudo ufw allow 3747/tcp
-    sudo ufw allow 3833/tcp
-    sudo ufw allow 3933/tcp
-    sudo ufw allow 4033/tcp
-    sudo ufw allow 4133/tcp
-    sudo ufw allow 4233/tcp
-    sudo ufw allow 4234/tcp
-    sudo ufw allow 4333/tcp
-    sudo ufw allow 4433/tcp
-    sudo ufw allow 4533/tcp
-    sudo ufw allow 4553/tcp
-    sudo ufw allow 4633/tcp
-    sudo ufw allow 4733/tcp
-    sudo ufw allow 4833/tcp
-    sudo ufw allow 4933/tcp
-    sudo ufw allow 5033/tcp
-    sudo ufw allow 5133/tcp
-    sudo ufw allow 5233/tcp
-    sudo ufw allow 5333/tcp
-    sudo ufw allow 5433/tcp
-    sudo ufw allow 5533/tcp
-    sudo ufw allow 5733/tcp
-    sudo ufw allow 5743/tcp
-    sudo ufw allow 3252/tcp
-    sudo ufw allow 5755/tcp
-    sudo ufw allow 5766/tcp
-    sudo ufw allow 5833/tcp
-    sudo ufw allow 5933/tcp
-    sudo ufw allow 6033/tcp
-    sudo ufw allow 5034/tcp
-    sudo ufw allow 6133/tcp
-    sudo ufw allow 6233/tcp
-    sudo ufw allow 6333/tcp
-    sudo ufw allow 6433/tcp
-    sudo ufw allow 7433/tcp
-    sudo ufw allow 8333/tcp
-    sudo ufw allow 8463/tcp
-    sudo ufw allow 8433/tcp
-    sudo ufw allow 8533/tcp
-    sudo ufw --force enable    
+    hide_output sudo apt-get install ufw
+    hide_output sudo ufw default deny incoming
+    hide_output sudo ufw default allow outgoing
+    hide_output sudo ufw allow ssh
+    hide_output sudo ufw allow http
+    hide_output sudo ufw allow https
+    hide_output sudo ufw allow 3333/tcp
+    hide_output sudo ufw allow 3339/tcp
+    hide_output sudo ufw allow 3334/tcp
+    hide_output sudo ufw allow 3433/tcp
+    hide_output sudo ufw allow 3555/tcp
+    hide_output sudo ufw allow 3556/tcp
+    hide_output sudo ufw allow 3573/tcp
+    hide_output sudo ufw allow 3535/tcp
+    hide_output sudo ufw allow 3533/tcp
+    hide_output sudo ufw allow 3553/tcp
+    hide_output sudo ufw allow 3633/tcp
+    hide_output sudo ufw allow 3733/tcp
+    hide_output sudo ufw allow 3636/tcp
+    hide_output sudo ufw allow 3737/tcp
+    hide_output sudo ufw allow 3739/tcp
+    hide_output sudo ufw allow 3747/tcp
+    hide_output sudo ufw allow 3833/tcp
+    hide_output sudo ufw allow 3933/tcp
+    hide_output sudo ufw allow 4033/tcp
+    hide_output sudo ufw allow 4133/tcp
+    hide_output sudo ufw allow 4233/tcp
+    hide_output sudo ufw allow 4234/tcp
+    hide_output sudo ufw allow 4333/tcp
+    hide_output sudo ufw allow 4433/tcp
+    hide_output sudo ufw allow 4533/tcp
+    hide_output sudo ufw allow 4553/tcp
+    hide_output sudo ufw allow 4633/tcp
+    hide_output sudo ufw allow 4733/tcp
+    hide_output sudo ufw allow 4833/tcp
+    hide_output sudo ufw allow 4933/tcp
+    hide_output sudo ufw allow 5033/tcp
+    hide_output sudo ufw allow 5133/tcp
+    hide_output sudo ufw allow 5233/tcp
+    hide_output sudo ufw allow 5333/tcp
+    hide_output sudo ufw allow 5433/tcp
+    hide_output sudo ufw allow 5533/tcp
+    hide_output sudo ufw allow 5733/tcp
+    hide_output sudo ufw allow 5743/tcp
+    hide_output sudo ufw allow 3252/tcp
+    hide_output sudo ufw allow 5755/tcp
+    hide_output sudo ufw allow 5766/tcp
+    hide_output sudo ufw allow 5833/tcp
+    hide_output sudo ufw allow 5933/tcp
+    hide_output sudo ufw allow 6033/tcp
+    hide_output sudo ufw allow 5034/tcp
+    hide_output sudo ufw allow 6133/tcp
+    hide_output sudo ufw allow 6233/tcp
+    hide_output sudo ufw allow 6333/tcp
+    hide_output sudo ufw allow 6433/tcp
+    hide_output sudo ufw allow 7433/tcp
+    hide_output sudo ufw allow 8333/tcp
+    hide_output sudo ufw allow 8463/tcp
+    hide_output sudo ufw allow 8433/tcp
+    hide_output sudo ufw allow 8533/tcp
+    hide_output sudo ufw --force enable    
     fi
+    echo -e "$GREEN Done...$COL_RESET"
     
     
     # Installing PhpMyAdmin
