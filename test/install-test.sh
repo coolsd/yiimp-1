@@ -11,7 +11,7 @@
 # 
 ################################################################################
 	
-	source conf/function.sh
+	source conf/functions.sh
 
     output() {
     printf "\E[0;33;40m"
@@ -26,6 +26,7 @@
     exit 1;
     }
     
+    clear
     echo
     echo -e "$CYAN Yiimp Install Script v0.2 $COL_RESET"
     echo
@@ -37,23 +38,27 @@
     echo 
     sleep 3
         
-    hide_output sudo apt-get -y update 
-    hide_output sudo apt-get -y upgrade
-    hide_output sudo apt-get -y autoremove
-    apt_install dialog python3 python3-pip acl nano apt-transport-https
+    #hide_output 
+    sudo apt -y update 
+    #hide_output 
+    sudo apt -y upgrade
+    #hide_output 
+    sudo apt -y autoremove
+    #apt_install 
+    sudo apt -y install dialog python3 python3-pip acl nano apt-transport-https
     echo -e "$GREEN Done...$COL_RESET"
 
-    apt_install dialog python3 python3-pip acl nano apt-transport-https
-   
+
     source conf/prerequisite.sh
     source conf/getip.sh
 
-    echo 'PUBLIC_IP='"${PUBLIC_IP}"'
+    echo '
+    PUBLIC_IP='"${PUBLIC_IP}"'
     PUBLIC_IPV6='"${PUBLIC_IPV6}"'
     DISTRO='"${DISTRO}"'
     PRIVATE_IP='"${PRIVATE_IP}"'' | sudo -E tee conf/pool.conf >/dev/null 2>&1
 
-
+    clear
     echo
     echo -e "$RED Make sure you double check before hitting enter! Only one shot at these!$COL_RESET"
     echo
@@ -70,26 +75,34 @@
     
     
     # Switch Aptitude
-    output " "
-    output "Switching to Aptitude"
-    output " "
+    echo
+    echo "Switching to Aptitude"
+    echo 
     sleep 3
     
-    apt_install aptitude
+    #apt_install 
+    sudo apt -y install aptitude
     echo -e "$GREEN Done...$COL_RESET"
 
+
     # Installing Nginx
-    output " "
-    output "Installing Nginx server."
-    output " "
+    echo
+    echo "Installing Nginx server."
+    echo
     sleep 3
     
-    apt_install nginx
-    hide_output sudo rm /etc/nginx/sites-enabled/default
-    hide_output sudo systemctl start nginx.service
-    hide_output sudo systemctl enable nginx.service
-    hide_output sudo systemctl start cron.service
-    hide_output sudo systemctl enable cron.service
+    #apt_install 
+    sudo apt -y install nginx
+    #hide_output 
+    sudo rm /etc/nginx/sites-enabled/default
+    #hide_output 
+    sudo systemctl start nginx.service
+    #hide_output 
+    sudo systemctl enable nginx.service
+    #hide_output 
+    sudo systemctl start cron.service
+    #hide_output 
+    sudo systemctl enable cron.service
     echo -e "$GREEN Done...$COL_RESET"
 	
 
@@ -106,57 +119,60 @@
     
     
     # Installing Mariadb
-    output " "
-    output "Installing Mariadb Server."
-    output " "
+    echo
+    echo "Installing Mariadb Server."
+    echo
     sleep 3
         
     # Create random password
     rootpasswd=$(openssl rand -base64 12)
     export DEBIAN_FRONTEND="noninteractive"
-    apt_install mariadb-server
-    hide_output sudo systemctl start mysql
-    hide_output sudo systemctl enable mysql
+    #apt_install 
+    sudo apt -y install mariadb-server
+    #hide_output 
+    sudo systemctl start mysql
+    #hide_output 
+    sudo systemctl enable mysql
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Installing Installing php7.3
-    output " "
-    output "Installing php7.3"
-    output " "
+    echo
+    echo "Installing php7.3"
+    echo
     sleep 3
     
     if [ ! -f /etc/apt/sources.list.d/ondrej-php-bionic.list ]; then
     hide_output sudo add-apt-repository -y ppa:ondrej/php
     fi
     hide_output sudo apt-get -y update
-    apt_install php7.3-fpm php7.3-opcache php7.3 php7.3-common php7.3-gd php7.3-mysql php7.3-imap php7.3-cli \
-    php7.3-cgi php-pear php-auth mcrypt imagemagick libruby php7.3-curl php7.3-intl php7.3-pspell \
+    #apt_install 
+    sudo apt -y install php7.3-fpm php7.3-opcache php7.3 php7.3-common php7.3-gd php7.3-mysql php7.3-imap php7.3-cli \
+    php7.3-cgi php-pear php-auth imagemagick libruby php7.3-curl php7.3-intl php7.3-pspell \
     php7.3-recode php7.3-sqlite3 php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache php-imagick php-gettext php7.3-zip php7.3-mbstring
-    hide_output sudo phpenmod mcrypt
-    hide_output sudo phpenmod mbstring
-    hide_output sudo systemctl start php7.3-fpm.service
+    #apt_install
+    sudo apt -y install php7.1-mcrypt
+    #hide_output
+    sudo ln -s /etc/php/7.1/mods-available/mcrypt.ini /etc/php/7.3/mods-available/
+    #hide_output 
+    sudo phpenmod mcrypt
+    #hide_output sudo 
+    phpenmod mbstring
+    #hide_output 
+    sudo systemctl start php7.3-fpm.service
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Installing other needed files
-    output " "
-    output "Installing other needed files"
-    output " "
+    echo
+    echo "Installing other needed files"
+    echo
     sleep 3
     
-    sudo aptitude -y install libgmp3-dev
-    sudo aptitude -y install libmysqlclient-dev
-    sudo aptitude -y install libcurl4-gnutls-dev
-    sudo aptitude -y install libkrb5-dev
-    sudo aptitude -y install libldap2-dev
-    sudo aptitude -y install libidn11-dev
-    sudo aptitude -y install gnutls-dev
-    sudo aptitude -y install librtmp-dev
-    sudo aptitude -y install sendmail
-    sudo aptitude -y install mutt
-    sudo aptitude -y install git screen
-    sudo aptitude -y install pwgen -y
+    #apt_install 
+    sudo apt -y install libgmp3-dev libmysqlclient-dev libcurl4-gnutls-dev libkrb5-dev libldap2-dev libidn11-dev gnutls-dev \
+    librtmp-dev sendmail mutt screen git
+    sudo apt -y install pwgen -y
 	
     
     # Installing Package to compile crypto currency
