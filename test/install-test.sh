@@ -98,9 +98,10 @@
     # Create random password
     rootpasswd=$(openssl rand -base64 12)
     export DEBIAN_FRONTEND="noninteractive"
-    sudo aptitude -y install mariadb-server
-    sudo systemctl start mysql
-    sudo systemctl enable mysql
+    apt_install mariadb-server
+    hide_output sudo systemctl start mysql
+    hide_output sudo systemctl enable mysql
+    echo -e "$GREEN Done...$COL_RESET"
     
     
     # Installing Installing php7.x
