@@ -329,7 +329,7 @@
     
     # Compil Blocknotify
     cd ~
-    if [$yiimpver == "2"];then 
+    if [ $yiimpver == "2"];then 
     hide_output git clone $githubrepotpruvot
     else 
     hide_output git clone $githubrepoKudaraidee
@@ -934,7 +934,7 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    if [$yiimpver == "2"];then 
+    if [ $yiimpver == "2"];then 
     echo -e "$GREEN Done...$COL_RESET"
     else
     sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
