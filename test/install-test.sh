@@ -71,7 +71,7 @@
     echo -e "$RED Make sure you double check before hitting enter! Only one shot at these! $COL_RESET"
     echo
     read -e -p "Enter time zone (e.g. America/New_York) : " TIME
-    read -e -p "Server name (no http:// or www. just : example.com or pool.example.com) : " server_name
+    read -e -p "Domain Name (no http:// or www. just : example.com or pool.example.com or 185.22.24.26) : " server_name
     read -e -p "Are you using a subdomain (pool.example.com?) [y/N] : " sub_domain
     read -e -p "Enter support email (e.g. admin@example.com) : " EMAIL
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
@@ -384,7 +384,7 @@
     
     # Update time zone
     sudo ln -sf /usr/share/zoneinfo/$TIME /etc/localtime
-    apt_install -y install ntpdate
+    apt_install ntpdate
     
     # Write time to clock.
     sudo hwclock -w
