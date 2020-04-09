@@ -252,6 +252,7 @@
     
     if [[ ("$install_fail2ban" == "y" || "$install_fail2ban" == "Y" || "$install_fail2ban" == "") ]]; then
     apt_install fail2ban
+    sudo systemctl status fail2ban | sed -n "1,3p"
         fi
 
 
@@ -316,11 +317,11 @@
     hide_output sudo ufw allow 8463/tcp
     hide_output sudo ufw allow 8433/tcp
     hide_output sudo ufw allow 8533/tcp
-    hide_output sudo ufw --force enable    
+    hide_output sudo ufw --force enable 
+    sudo systemctl status ufw | sed -n "1,3p"   
     fi
 
-    sudo systemctl status ufw | sed -n "1,3p"
-    sudo systemctl status fail2ban | sed -n "1,3p"
+    
     echo
     echo -e "$GREEN Done...$COL_RESET"
 
