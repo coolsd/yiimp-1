@@ -341,7 +341,9 @@
     #hide_output git clone $githubrepoKudaraidee
 	#fi
     cd $HOME/yiimp/blocknotify
+    echo -e "blocknotify"
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
+    echo -e "blocknotify"
     hide_output sudo make
     
     # Compil iniparser
@@ -357,7 +359,9 @@
     
     # Copy Files (Blocknotify,iniparser,Stratum)
     cd $HOME/yiimp
+    echo -e "SiteController"
     sudo sed -i 's/AdminRights/'AdminPanel'/' $HOME/yiimp/web/yaamp/modules/site/SiteController.php
+    echo -e "SiteController"
     sudo cp -r $HOME/yiimp/web /var/
     sudo mkdir -p /var/stratum
     cd $HOME/yiimp/stratum
@@ -959,7 +963,7 @@
     #else
     #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
     #echo -e "$GREEN Done...$COL_RESET"
-    fi
+    #fi
     
     
     # Generating a basic Yiimp serverconfig.php
