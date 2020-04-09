@@ -1126,28 +1126,27 @@
     sudo usermod -aG www-data $whoami
     sudo usermod -a -G www-data $whoami
 
-    sudo mkdir /root/backup/
-    
-    sudo mkdir /var/log/yiimp
-    sudo touch /var/log/yiimp/debug.log
-    sudo chown -R www-data:www-data /var/log/yiimp
-    sudo chmod -R 775 /var/log/yiimp
-    
-    sudo chown -R www-data:www-data /var/stratum
-    sudo chmod -R 775 /var/stratum
-
-    sudo chown -R www-data:www-data /var/web
-    sudo chmod -R 775 /var/web
     sudo find /var/web -type d -exec chmod 755 {} +
     sudo find /var/web -type f -exec chmod 664 {} +
     sudo chgrp www-data /var/web -R
     sudo chmod g+w /var/web -R
+    
+    sudo mkdir /var/log/yiimp
+    sudo touch /var/log/yiimp/debug.log
+    sudo chgrp www-data /var/log/yiimp -R
+    sudo chmod -R 775 /var/log/yiimp
+    
+    sudo chgrp www-data /var/stratum -R
+    sudo chmod -R 775 /var/stratum
 
-
+    #sudo chown -R www-data:www-data /var/web
+    #sudo chmod -R 775 /var/web
     #sudo chmod -R 775 /var/www/$server_name/html
     #sudo chmod -R 775 /var/web/yaamp/runtime
     #sudo chmod -R 775 /var/web/serverconfig.php
-    sudo chmod -R 664 /root/backup/
+
+    #sudo chmod -R 664 /root/backup/
+    #sudo mkdir /root/backup/
     
     
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
@@ -1191,3 +1190,5 @@
     echo -e "$RED**************************************************$COL_RESET"
     echo -e "$RED YOU MUST REBOOT NOW  TO FINALIZE INSTALLATION!!! $COL_RESET"
     echo -e "$RED**************************************************$COL_RESET"
+    echo
+    echo
