@@ -1144,7 +1144,7 @@
     sudo mkdir /var/log/yiimp
     sudo touch /var/log/yiimp/debug.log
     sudo chgrp www-data /var/log/yiimp -R
-    sudo chmod 775 /var/log/yiimp
+    sudo chmod 775 /var/log/yiimp -R
     
     sudo chgrp www-data /var/stratum -R
     sudo chmod 775 /var/stratum
