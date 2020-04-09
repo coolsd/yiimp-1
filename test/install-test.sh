@@ -1135,7 +1135,7 @@
     sudo usermod -aG www-data $whoami
     sudo usermod -a -G www-data $whoami
 
-    sudo find /var/web -type d -exec chmod 755 {} +
+    sudo find /var/web -type d -exec chmod 775 {} +
     sudo find /var/web -type f -exec chmod 664 {} +
     sudo chgrp www-data /var/web -R
     sudo chmod g+w /var/web -R
@@ -1143,10 +1143,10 @@
     sudo mkdir /var/log/yiimp
     sudo touch /var/log/yiimp/debug.log
     sudo chgrp www-data /var/log/yiimp -R
-    sudo chmod -R 775 /var/log/yiimp
+    sudo chmod 775 /var/log/yiimp
     
     sudo chgrp www-data /var/stratum -R
-    sudo chmod -R 775 /var/stratum
+    sudo chmod 775 /var/stratum
 
     #sudo chown -R www-data:www-data /var/web
     #sudo chmod -R 775 /var/web
