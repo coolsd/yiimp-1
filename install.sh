@@ -1020,7 +1020,7 @@ $configAlgoNormCoef = array(
     sudo chown -R www-data:www-data /var/web
     sudo chmod -R 775 /var/web
     sudo find /var/web -type d -exec chmod 755 {} +
-    sudo find /var/web -type f -exec chmod 644 {} +
+    sudo find /var/web -type f -exec chmod 664 {} +
     sudo chgrp -R www-data /var/web/
     sudo chmod g+w -R /var/web/
 
