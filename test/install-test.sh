@@ -6,13 +6,13 @@
 # Web: https://www.xavatar.com    
 #
 # Program:
-#   Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3
+#   Install yiimp on Ubuntu 16.04/18.04 running Nginx, MariaDB, and php7.3
 # 
 # 
 ################################################################################
 	
 	### Variable ###
-	#githubrepo=https://github.com/Kudaraidee/yiimp.git
+	githubrepo=https://github.com/tpruvot/yiimp.git
 	githubrepotpruvot=https://github.com/tpruvot/yiimp.git
 	githubrepoKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
@@ -366,7 +366,7 @@
     # Compil Blocknotify
     cd ~
     #if [[ ($yiimpver == "2") ]];then 
-    hide_output git clone $githubrepotpruvot
+    hide_output git clone $githubrepo
     #else 
     #hide_output git clone $githubrepoKudaraidee
 	#fi
