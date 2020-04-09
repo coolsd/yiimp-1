@@ -1119,18 +1119,28 @@
     sleep 3
 
     whoami=`whoami`
+    sudo usermod -aG www-data $whoami
+    sudo usermod -a -G www-data $whoami
+
     sudo mkdir /root/backup/
-    sudo chown -R www-data:www-data /var/stratum
-    sudo chown -R www-data:www-data /var/web
     
     sudo mkdir /var/log/yiimp
     sudo touch /var/log/yiimp/debug.log
     sudo chown -R www-data:www-data /var/log/yiimp
-    sudo chmod -R 644 /var/log/yiimp/debug.log
-        
-    #sudo chmod -R 775 /var/www/$server_name/html
+    sudo chmod -R 775 /var/log/yiimp
+    
+    sudo chown -R www-data:www-data /var/stratum
     sudo chmod -R 775 /var/stratum
+
+    sudo chown -R www-data:www-data /var/web
     sudo chmod -R 775 /var/web
+    sudo find /var/web -type d -exec chmod 755 {} +
+    sudo find /var/web -type f -exec chmod 644 {} +
+    sudo chgrp -R www-data /var/web/
+    sudo chmod g+w -R /var/web/
+
+
+    #sudo chmod -R 775 /var/www/$server_name/html
     #sudo chmod -R 775 /var/web/yaamp/runtime
     #sudo chmod -R 775 /var/web/serverconfig.php
     sudo chmod -R 664 /root/backup/
@@ -1138,14 +1148,6 @@
     
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
-
-    sudo usermod -aG www-data $whoami
-    sudo usermod -a -G www-data $whoami
-    sudo find /var/web -type d -exec chmod 755 {} +
-    sudo find /var/web -type f -exec chmod 644 {} +
-    sudo chgrp -R www-data /var/web/
-    sudo chmod g+w -R /var/web/
-
 
     sudo systemctl restart cron.service
     sudo systemctl restart mysql
