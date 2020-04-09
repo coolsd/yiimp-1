@@ -164,7 +164,7 @@
     php7.3-cgi php-pear php-auth imagemagick libruby php7.3-curl php7.3-intl php7.3-pspell mcrypt\
     php7.3-recode php7.3-sqlite3 php7.3-tidy php7.3-xmlrpc php7.3-xsl memcached php-memcache php-imagick php-gettext php7.3-zip php7.3-mbstring
     hide_output sudo phpenmod mcrypt
-    hide_output sudo sudo phpenmod mbstring
+    hide_output sudo phpenmod mbstring
     sleep 5
     hide_output sudo systemctl start php7.3-fpm
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
