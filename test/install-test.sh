@@ -341,9 +341,7 @@
     #hide_output git clone $githubrepoKudaraidee
 	#fi
     cd $HOME/yiimp/blocknotify
-    echo -e "blocknotify"
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
-    echo -e "blocknotify"
     hide_output sudo make
     
     # Compil iniparser
@@ -359,9 +357,7 @@
     
     # Copy Files (Blocknotify,iniparser,Stratum)
     cd $HOME/yiimp
-    echo -e "SiteController"
     sudo sed -i 's/AdminRights/'AdminPanel'/' $HOME/yiimp/web/yaamp/modules/site/SiteController.php
-    echo -e "SiteController"
     sudo cp -r $HOME/yiimp/web /var/
     sudo mkdir -p /var/stratum
     cd $HOME/yiimp/stratum
@@ -375,7 +371,7 @@
     sudo mkdir -p /etc/yiimp
     sudo mkdir -p /$HOME/backup/
     #fixing yiimp
-    sed -i "s|ROOTDIR=/data/yiimp|ROOTDIR=/var|g" /bin/yiimp
+    sudo sed -i "s|ROOTDIR=/data/yiimp|ROOTDIR=/var|g" /bin/yiimp
     #fixing run.sh
     sudo rm -r /var/stratum/config/run.sh
     echo '
@@ -412,7 +408,7 @@
     if [ ! -f /etc/timezone ]; then
     echo "Setting timezone to UTC."
     echo "Etc/UTC" > sudo /etc/timezone
-    restart_service rsyslog
+    sudo systemctl restart rsyslog
     fi
     
     echo -e "$GREEN Done...$COL_RESET"
