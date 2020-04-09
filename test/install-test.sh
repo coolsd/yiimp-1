@@ -110,6 +110,8 @@
     hide_output sudo systemctl enable nginx.service
     hide_output sudo systemctl start cron.service
     hide_output sudo systemctl enable cron.service
+    sudo systemctl status nginx | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
 	
 
@@ -137,6 +139,8 @@
     apt_install mariadb-server
     hide_output sudo systemctl start mysql
     hide_output sudo systemctl enable mysql
+    sudo systemctl status mysql | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
 
     
@@ -159,6 +163,8 @@
     hide_output sudo sudo phpenmod mbstring
     sleep 5
     hide_output sudo systemctl start php7.3-fpm
+    sudo systemctl status php7.3-fpm | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
 
     
@@ -230,7 +236,7 @@
     
     if [[ ("$install_fail2ban" == "y" || "$install_fail2ban" == "Y" || "$install_fail2ban" == "") ]]; then
     apt_install fail2ban
-    fi
+        fi
 
 
     if [[ ("$UFW" == "y" || "$UFW" == "Y" || "$UFW" == "") ]]; then
@@ -296,13 +302,17 @@
     hide_output sudo ufw allow 8533/tcp
     hide_output sudo ufw --force enable    
     fi
+
+    sudo systemctl status ufw | sed -n "1,3p"
+    sudo systemctl status fail2ban | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
 
     
     # Installing PhpMyAdmin
-    echo " "
+    echo
     echo -e "$CYAN Installing phpmyadmin $COL_RESET"
-    echo " "
+    echo
     sleep 3
     
     echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect" | sudo debconf-set-selections
@@ -316,11 +326,11 @@
 	
 	
     # Installing Yiimp
-    echo " "
+    echo
     echo -e "$CYAN Installing Yiimp $COL_RESET"
-    echo " "
+    echo
     echo -e "Grabbing yiimp fron Github, building files and setting file structure."
-    echo " "
+    echo
     sleep 3
     
     #echo " "
@@ -410,7 +420,8 @@
     echo "Etc/UTC" > sudo /etc/timezone
     sudo systemctl restart rsyslog
     fi
-    
+    sudo systemctl status rsyslog | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
     
     
@@ -1090,8 +1101,12 @@
     sudo rm -rf /var/log/nginx/*
     sudo systemctl restart cron.service
     sudo systemctl restart mysql
+    sudo systemctl status mysql | sed -n "1,3p"
     sudo systemctl restart nginx.service
+    sudo systemctl status nginx | sed -n "1,3p"
     sudo systemctl restart php7.3-fpm.service
+    sudo systemctl status php7.3-fpm | sed -n "1,3p"
+    echo
     echo -e "$GREEN Done...$COL_RESET"
     sleep 3
 
