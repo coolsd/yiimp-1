@@ -1188,7 +1188,10 @@
     echo -e "$RED Yiimp at : http://"$server_name "(https... if SSL enabled)"
     echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"AdminPanel "(https... if SSL enabled)"
     echo -e "$RED Yiimp phpMyAdmin at : http://"$server_name"/phpmyadmin (https... if SSL enabled)"
-    echo -e 
+    echo
+    echo -e "$RED If you want change 'AdminPanel' to access Panel Admin : Edit this file : /var/web/yaamp/modules/site/SiteController.php"
+    echo -e "$RED Line 11 => change 'AdminPanel' and use the new address"
+    echo
     echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
     echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
     echo
