@@ -46,6 +46,7 @@
 
     # Update package and Upgrade Ubuntu
     echo
+    echo
     echo -e "$CYAN => Updating system and installing required packages :$COL_RESET"
     echo 
     sleep 3
@@ -131,6 +132,7 @@
     
     # Installing Mariadb
     echo
+    echo
     echo -e "$CYAN => Installing Mariadb Server : $COL_RESET"
     echo
     sleep 3
@@ -147,6 +149,7 @@
 
     
     # Installing Installing php7.3
+    echo
     echo
     echo -e "$CYAN => Installing php7.3 : $COL_RESET"
     echo
@@ -172,6 +175,7 @@
     
     # Installing other needed files
     echo
+    echo
     echo -e "$CYAN => Installing other needed files : $COL_RESET"
     echo
     sleep 3
@@ -184,6 +188,7 @@
 
     
     # Installing Package to compile crypto currency
+    echo
     echo
     echo -e "$CYAN => Installing Package to compile crypto currency $COL_RESET"
     echo
@@ -208,6 +213,7 @@
     
     # Test Email
     echo
+    echo
     echo -e "$CYAN => Testing to see if server emails are sent $COL_RESET"
     echo
     sleep 3
@@ -230,6 +236,7 @@
     echo -e "$GREEN Done...$COL_RESET"
     
     # Installing Fail2Ban & UFW
+    echo
     echo
     echo -e "$CYAN => Some optional installs (Fail2Ban & UFW) $COL_RESET"
     echo
@@ -313,6 +320,7 @@
     
     # Installing PhpMyAdmin
     echo
+    echo
     echo -e "$CYAN => Installing phpMyAdmin $COL_RESET"
     echo
     sleep 3
@@ -328,6 +336,7 @@
 	
 	
     # Installing Yiimp
+    echo
     echo
     echo -e "$CYAN => Installing Yiimp $COL_RESET"
     echo
@@ -404,6 +413,7 @@
 
     # Update Timezone
     echo
+    echo
     echo -e "$CYAN => Update default timezone. $COL_RESET"
     echo
     
@@ -437,6 +447,7 @@
     
     
     # Creating webserver initial config file
+    echo
     echo
     echo -e "$CYAN => Creating webserver initial config file $COL_RESET"
     echo
@@ -869,6 +880,7 @@
     
     # Config Database
     echo
+    echo
     echo -e "$CYAN => Now for the database fun! $COL_RESET"
     echo
     sleep 3
@@ -937,6 +949,7 @@
  
     # Peforming the SQL import
     echo
+    echo
     echo -e "$CYAN => Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you $COL_RESET"
     echo
     echo -e "Performing the SQL import"
@@ -976,6 +989,7 @@
     
     
     # Generating a basic Yiimp serverconfig.php
+    echo
     echo
     echo -e "$CYAN => Generating a basic Yiimp serverconfig.php $COL_RESET"
     echo
@@ -1063,6 +1077,7 @@
 
     # Updating stratum config files with database connection info
     echo
+    echo
     echo -e "$CYAN => Updating stratum config files with database connection info. $COL_RESET"
     echo
     sleep 3
@@ -1079,6 +1094,7 @@
 
 
     # Final Directory permissions
+    echo
     echo
     echo -e "$CYAN => Final Directory permissions $COL_RESET"
     echo
@@ -1123,8 +1139,9 @@
     echo -e "$CYAN Whew that was fun, just some reminders. $COL_RESET" 
     echo -e "$RED Your mysql information is saved in ~/.my.cnf. this installer did not directly install anything required to build coins. $COL_RESET"
     echo
-    echo -e "$RED Yiimp at : http://"$server_name "(https... if you select SSL)"
-    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"AdminPanel "(https... if you select SSL)"
+    echo -e "$RED Yiimp at : http://"$server_name "(https... if SSL enabled)"
+    echo -e "$RED Yiimp Panel Admin at : http://"$server_name"/site/"AdminPanel "(https... if SSL enabled)"
+    echo -e "$RED Yiimp phpMyAdmin at : http://"$server_name"/phpmyadmin (https... if SSL enabled)"
     echo -e 
     echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
     echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"

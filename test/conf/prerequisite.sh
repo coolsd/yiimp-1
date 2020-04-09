@@ -6,6 +6,7 @@
 #####################################################
 
 echo
+echo
 echo -e "$CYAN => Check prerequisite : $COL_RESET"
 echo
 

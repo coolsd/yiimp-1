@@ -5,6 +5,7 @@
 
 source /etc/functions.sh
 echo
+echo
 echo -e "$CYAN => Setting our global variables : $COL_RESET"
 echo
 
