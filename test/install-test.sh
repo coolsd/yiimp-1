@@ -997,7 +997,9 @@
     # Make config file
     echo '
     <?php
+
     ini_set('"'"'date.timezone'"'"', '"'"'UTC'"'"');
+    
     define('"'"'YAAMP_LOGS'"'"', '"'"'/var/log/yiimp'"'"');
     define('"'"'YAAMP_HTDOCS'"'"', '"'"'/var/web'"'"');
 
@@ -1037,7 +1039,8 @@
     define('"'"'YAAMP_ADMIN_IP'"'"', '"'"''"${Public}"''"'"'); // samples: "80.236.118.26,90.234.221.11" or "10.0.0.1/8"
     
     define('"'"'YAAMP_ADMIN_WEBCONSOLE'"'"', true);
-    define('"'"'YAAMP_NOTIFY_NEW_COINS'"'"', true);
+    define('"'"'YAAMP_CREATE_NEW_COINS'"'"', false);
+    define('"'"'YAAMP_NOTIFY_NEW_COINS'"'"', false);
     
     define('"'"'YAAMP_DEFAULT_ALGO'"'"', '"'"'x11'"'"');
     
@@ -1068,6 +1071,7 @@
     define('"'"'NICEHASH_API_ID'"'"','"'"'825979'"'"');
     define('"'"'NICEHASH_DEPOSIT'"'"','"'"'3ABoqBjeorjzbyHmGMppM62YLssUgJhtuf'"'"');
     define('"'"'NICEHASH_DEPOSIT_AMOUNT'"'"','"'"'0.01'"'"');
+    
     $cold_wallet_table = array(
 	'"'"'1PqjApUdjwU9k4v1RDWf6XveARyEXaiGUz'"'"' => 0.10,
     );
