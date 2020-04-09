@@ -38,10 +38,10 @@
 
     clear
     echo
-    echo -e "*************************"
+    echo -e "$GREEN*****************************************************************$COL_RESET"
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
-    echo -e "$GREEN Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3"
-    echo -e "*************************"
+    echo -e "$GREEN Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3 $COL_RESET"
+    echo -e "$GREEN*****************************************************************$COL_RESET"
     echo
     sleep 3
 
@@ -1130,10 +1130,10 @@
     echo
     echo
     echo
-    echo -e "*************************"
+    echo -e "$GREEN**************************$COL_RESET"
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
-    echo -e "$GREEN Finish !!!"
-    echo -e "*************************"
+    echo -e "$GREEN Finish !!! $COL_RESET"
+    echo -e "$GREEN**************************$COL_RESET"
     echo 
     echo
     echo
