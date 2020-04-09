@@ -5,7 +5,7 @@
 
 source /etc/functions.sh
 echo
-echo -e "$CYAN Setting our global variables... $COL_RESET"
+echo -e "$CYAN => Setting our global variables : $COL_RESET"
 echo
 
 # If the machine is behind a NAT, inside a VM, etc., it may not know

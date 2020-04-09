@@ -46,7 +46,7 @@
 
     # Update package and Upgrade Ubuntu
     echo
-    echo -e "$CYAN Updating system and installing required packages.$COL_RESET"
+    echo -e "$CYAN => Updating system and installing required packages :$COL_RESET"
     echo 
     sleep 3
         
@@ -68,6 +68,7 @@
     DISTRO='"${DISTRO}"'
     PRIVATE_IP='"${PRIVATE_IP}"'' | sudo -E tee conf/pool.conf >/dev/null 2>&1
 
+    echo
     echo
     echo -e "$RED Make sure you double check before hitting enter! Only one shot at these! $COL_RESET"
     echo
@@ -94,7 +95,8 @@
 
     # Installing Nginx
     echo
-    echo -e "$CYAN Installing Nginx server. $COL_RESET"
+    echo
+    echo -e "$CYAN => Installing Nginx server : $COL_RESET"
     echo
     sleep 3
     
@@ -129,7 +131,7 @@
     
     # Installing Mariadb
     echo
-    echo -e "$CYAN Installing Mariadb Server. $COL_RESET"
+    echo -e "$CYAN => Installing Mariadb Server : $COL_RESET"
     echo
     sleep 3
         
@@ -146,7 +148,7 @@
     
     # Installing Installing php7.3
     echo
-    echo -e "$CYAN Installing php7.3 $COL_RESET"
+    echo -e "$CYAN => Installing php7.3 : $COL_RESET"
     echo
     sleep 3
     
@@ -170,7 +172,7 @@
     
     # Installing other needed files
     echo
-    echo -e "$CYAN Installing other needed files $COL_RESET"
+    echo -e "$CYAN => Installing other needed files : $COL_RESET"
     echo
     sleep 3
     
@@ -183,7 +185,7 @@
     
     # Installing Package to compile crypto currency
     echo
-    echo -e "$CYAN Installing Package to compile crypto currency $COL_RESET"
+    echo -e "$CYAN => Installing Package to compile crypto currency $COL_RESET"
     echo
     sleep 3
     
@@ -206,7 +208,7 @@
     
     # Test Email
     echo
-    echo -e "$CYAN Testing to see if server emails are sent $COL_RESET"
+    echo -e "$CYAN => Testing to see if server emails are sent $COL_RESET"
     echo
     sleep 3
     
@@ -229,7 +231,7 @@
     
     # Installing Fail2Ban & UFW
     echo
-    echo -e "$CYAN Some optional installs (Fail2Ban & UFW) $COL_RESET"
+    echo -e "$CYAN => Some optional installs (Fail2Ban & UFW) $COL_RESET"
     echo
     sleep 3
     
@@ -311,7 +313,7 @@
     
     # Installing PhpMyAdmin
     echo
-    echo -e "$CYAN Installing phpmyadmin $COL_RESET"
+    echo -e "$CYAN => Installing phpMyAdmin $COL_RESET"
     echo
     sleep 3
     
@@ -327,7 +329,7 @@
 	
     # Installing Yiimp
     echo
-    echo -e "$CYAN Installing Yiimp $COL_RESET"
+    echo -e "$CYAN => Installing Yiimp $COL_RESET"
     echo
     echo -e "Grabbing yiimp fron Github, building files and setting file structure."
     echo
@@ -402,7 +404,7 @@
 
     # Update Timezone
     echo
-    echo -e "$CYAN Update default timezone. $COL_RESET"
+    echo -e "$CYAN => Update default timezone. $COL_RESET"
     echo
     
     # Check if link file
@@ -436,7 +438,7 @@
     
     # Creating webserver initial config file
     echo
-    echo -e "$CYAN Creating webserver initial config file $COL_RESET"
+    echo -e "$CYAN => Creating webserver initial config file $COL_RESET"
     echo
     
     # Adding user to group, creating dir structure, setting permissions
@@ -867,7 +869,7 @@
     
     # Config Database
     echo
-    echo -e "$CYAN Now for the database fun! $COL_RESET"
+    echo -e "$CYAN => Now for the database fun! $COL_RESET"
     echo
     sleep 3
     
@@ -935,7 +937,7 @@
  
     # Peforming the SQL import
     echo
-    echo -e "$CYAN Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you $COL_RESET"
+    echo -e "$CYAN => Database 'yiimpfrontend' and users 'panel' and 'stratum' created with password $password and $password2, will be saved for you $COL_RESET"
     echo
     echo -e "Performing the SQL import"
     echo
@@ -975,7 +977,7 @@
     
     # Generating a basic Yiimp serverconfig.php
     echo
-    echo -e "$CYAN Generating a basic Yiimp serverconfig.php $COL_RESET"
+    echo -e "$CYAN => Generating a basic Yiimp serverconfig.php $COL_RESET"
     echo
     sleep 3
     
@@ -1061,7 +1063,7 @@
 
     # Updating stratum config files with database connection info
     echo
-    echo -e "$CYAN Updating stratum config files with database connection info. $COL_RESET"
+    echo -e "$CYAN => Updating stratum config files with database connection info. $COL_RESET"
     echo
     sleep 3
  
@@ -1078,7 +1080,7 @@
 
     # Final Directory permissions
     echo
-    echo -e "$CYAN Final Directory permissions $COL_RESET"
+    echo -e "$CYAN => Final Directory permissions $COL_RESET"
     echo
     sleep 3
 
@@ -1111,7 +1113,6 @@
     sleep 3
 
 
-    clear
     echo
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
     echo -e "$GREEN Finish !!!"

@@ -6,7 +6,7 @@
 #####################################################
 
 echo
-echo -e "$CYAN Check prerequisite... $COL_RESET"
+echo -e "$CYAN => Check prerequisite : $COL_RESET"
 echo
 
 if [ "`lsb_release -d | sed 's/.*:\s*//' | sed 's/18\.04\.[0-9]/18.04/' `" == "Ubuntu 18.04 LTS" ]; then
@@ -76,5 +76,4 @@ if [ "$ARCHITECTURE" != "x86_64" ]; then
   fi
 fi
 
-echo
 echo -e "$GREEN Done...$COL_RESET"
