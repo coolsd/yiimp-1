@@ -918,7 +918,7 @@ define('"'"'YAAMP_PAYMENTS_MINI'"'"', 0.001);
 
 define('"'"'YAAMP_ALLOW_EXCHANGE'"'"', false);
 define('"'"'YIIMP_PUBLIC_EXPLORER'"'"', true);
-define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', true);
+define('"'"'YIIMP_PUBLIC_BENCHMARK'"'"', false);
 
 define('"'"'YIIMP_FIAT_ALTERNATIVE'"'"', '"'"'USD'"'"'); // USD is main
 define('"'"'YAAMP_USE_NICEHASH_API'"'"', false);
