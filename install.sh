@@ -1021,8 +1021,8 @@ $configAlgoNormCoef = array(
     sudo chmod -R 775 /var/web
     sudo find /var/web -type d -exec chmod 755 {} +
     sudo find /var/web -type f -exec chmod 664 {} +
-    sudo chgrp -R www-data /var/web/
-    sudo chmod g+w -R /var/web/
+    sudo chgrp www-data /var/web -R
+    sudo chmod g+w /var/web -R
 
 
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
