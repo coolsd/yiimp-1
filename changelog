@@ -1,0 +1,18 @@
+Yiimp v0.2 // 10.04.2020
+
+Information =>
+* Works with Ubuntu Server 16.04 / 18.04
+* Update PHP 7.3
+* Remove question Panel Admin
+* Remove question Time Zone
+* Add screen-scrypt to crontab
+* Add script to remove all coin (utils/delcoin.sh)
+
+Fix =>
+* Fix command cli « Yiimp » : OK
+* Fix Backup SQL FrontEnd : OK (/var/log/yiimp/sauv)
+* Fix Permission on folder
+
+Change =>
+* /etc/screen-scrypt.sh = add to crontab (main,loop2,blocks,debug)
+* /var/yiimp/sauv =  Backup SQL FrontEnd
