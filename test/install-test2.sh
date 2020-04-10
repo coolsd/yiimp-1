@@ -200,21 +200,21 @@
 
     
     # Installing Package to compile crypto currency
-    echo
-    echo
-    echo -e "$CYAN => Installing Package to compile crypto currency $COL_RESET"
-    echo
-    sleep 3
+    #echo
+    #echo
+    #echo -e "$CYAN => Installing Package to compile crypto currency $COL_RESET"
+    #echo
+    #sleep 3
     
-    apt_install software-properties-common build-essential
-    apt_install libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev gettext
-    apt_install libminiupnpc10 libzmq5
-    apt_install libcanberra-gtk-module libqrencode-dev libzmq3-dev
-    apt_install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
-    hide_output sudo add-apt-repository -y ppa:bitcoin/bitcoin
-    hide_output sudo apt -y update
-    apt_install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
-    echo -e "$GREEN Done...$COL_RESET"
+    #apt_install software-properties-common build-essential
+    #apt_install libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils git cmake libboost-all-dev zlib1g-dev libz-dev libseccomp-dev libcap-dev libminiupnpc-dev gettext
+    #apt_install libminiupnpc10 libzmq5
+    #apt_install libcanberra-gtk-module libqrencode-dev libzmq3-dev
+    #apt_install libqt5gui5 libqt5core5a libqt5webkit5-dev libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
+    #hide_output sudo add-apt-repository -y ppa:bitcoin/bitcoin
+    #hide_output sudo apt -y update
+    #apt_install libdb4.8-dev libdb4.8++-dev libdb5.3 libdb5.3++
+    #echo -e "$GREEN Done...$COL_RESET"
        
     
     # Generating Random Passwords
@@ -1176,7 +1176,7 @@
     sudo systemctl restart php7.3-fpm.service
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
 
-    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+    #(crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
 
 
     echo
