@@ -7,12 +7,11 @@
 #
 # Program:
 #   Install yiimp on Ubuntu 16.04/18.04 running Nginx, MariaDB, and php7.3
-# 
+#   v0.2
 # 
 ################################################################################
 	
 	### Variable ###
-	githubrepo=https://github.com/tpruvot/yiimp.git
 	githubrepotpruvot=https://github.com/tpruvot/yiimp.git
 	githubrepoKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
@@ -29,16 +28,24 @@
     echo
     exit 1;
     }
+
+    #Add user group sudo + no password
+    whoami=`whoami`
+    sudo usermod -aG sudo ${whoami}
+    echo '# yiimp
+    # It needs passwordless sudo functionality.
+    '""''"${whoami}"''""' ALL=(ALL) NOPASSWD:ALL
+    ' | sudo -E tee /etc/sudoers.d/${whoami} >/dev/null 2>&1
     
+    #Copy needed files
     sudo cp -r conf/functions.sh /etc/
+    sudo cp -r conf/screen-scrypt.sh /etc/
     sudo cp -r conf/editconf.py /usr/bin/
     sudo chmod +x /usr/bin/editconf.py
-
-    sudo cp -r conf/screen-scrypt.sh /etc/
     sudo chmod +x /etc/screen-scrypt.sh
 
-
     source /etc/functions.sh
+
 
     clear
     echo
@@ -85,6 +92,7 @@
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
     #read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter the Public IP of the system you will use to access the admin panel (http://www.whatsmyip.org/) : " Public
+    read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2 Kudaraidee) [1 by default] : " yiimpver
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
@@ -357,23 +365,17 @@
     echo
     sleep 3
     
-    #echo " "
-    #echo -e "Choose your Yiimp Version : "
-    #echo -e "1 : xiaolin1579 (last update : April 2020)"
-    #echo -e "2 : tpruvot (Official YiimP, last update : Sept 2019)"
-    #read -e -p "Enter desired version : 1 or 2 [1 by default] : " yiimpver
-
 
     # Generating Random Password for stratum
     blckntifypass=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1`
     
     # Compil Blocknotify
     cd ~
-    #if [[ ($yiimpver == "2") ]];then 
-    hide_output git clone $githubrepo
-    #else 
-    #hide_output git clone $githubrepoKudaraidee
-	#fi
+    if [[ ("$yiimpver" == "1" || "$yiimpver" == "") ]];then 
+    hide_output git clone $githubrepotpruvot
+    else 
+    hide_output git clone $githubrepoKudaraidee
+	fi
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
@@ -993,12 +995,12 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    #if [[ ($yiimpver == "2") ]];then 
+    if [[ ("$yiimpver" == "2") ]];then 
     echo -e "$GREEN Done...$COL_RESET"
-    #else
-    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
-    #echo -e "$GREEN Done...$COL_RESET"
-    #fi
+    else
+    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
+    echo -e "$GREEN Done...$COL_RESET"
+    fi
     
     
     # Generating a basic Yiimp serverconfig.php
@@ -1154,22 +1156,23 @@
     sudo chgrp www-data /var/stratum -R
     sudo chmod 775 /var/stratum
 
-    sudo mkdir -p /var/yiimp/sauv
+    sudo mkdir -p /var/yiimp/script
     sudo chgrp www-data /var/yiimp -R
     sudo chmod 775 /var/yiimp -R
-    
-    
-    #sudo mkdir /root/backup/
-    #sudo chmod 775 /root/backup
-    #sudo chown -R www-data:www-data /var/web
-    #sudo chmod -R 775 /var/web
-    #sudo chmod -R 775 /var/www/$server_name/html
-    #sudo chmod -R 775 /var/web/yaamp/runtime
-    #sudo chmod -R 775 /var/web/serverconfig.php
-    
+
+
+    #Add to contrab screen-scrypt
+    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+
+    #fix error screen main
+    sudo sed -i 's/service $webserver start/sudo service $webserver start/g' /var/web/yaamp/modules/thread/CronjobController.php
+    sudo sed -i 's/service nginx stop/sudo service nginx stop/g' /var/web/yaamp/modules/thread/CronjobController.php
+
+    #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
 
+    #Restart service
     sudo systemctl restart cron.service
     sudo systemctl restart mysql
     sudo systemctl status mysql | sed -n "1,3p"
@@ -1177,8 +1180,6 @@
     sudo systemctl status nginx | sed -n "1,3p"
     sudo systemctl restart php7.3-fpm.service
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
-
-    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
 
 
     echo

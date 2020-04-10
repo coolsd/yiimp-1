@@ -12,7 +12,6 @@
 ################################################################################
 	
 	### Variable ###
-	githubrepo=https://github.com/tpruvot/yiimp.git
 	githubrepotpruvot=https://github.com/tpruvot/yiimp.git
 	githubrepoKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
@@ -379,7 +378,7 @@
     # Compil Blocknotify
     cd ~
     #if [[ ($yiimpver == "2") ]];then 
-    hide_output git clone $githubrepo
+    hide_output git clone $githubrepotpruvot
     #else 
     #hide_output git clone $githubrepoKudaraidee
 	#fi
