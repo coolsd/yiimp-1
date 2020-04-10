@@ -1016,6 +1016,7 @@
 
     define('"'"'YAAMP_LOGS'"'"', '"'"'/var/log/yiimp'"'"');
     define('"'"'YAAMP_HTDOCS'"'"', '"'"'/var/web'"'"');
+    define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"'/var/yiimp/sauv'"'"');
 
     define('"'"'YAAMP_BIN'"'"', '"'"'/var/bin'"'"');
     
@@ -1156,6 +1157,8 @@
     sudo mkdir /root/backup/
     sudo chmod 775 /root/backup
     
+    sudo mkdir -p /var/yiimp/sauv
+    sudo chmod 775 /var/yiimp/sauv
     
     #sudo chown -R www-data:www-data /var/web
     #sudo chmod -R 775 /var/web
