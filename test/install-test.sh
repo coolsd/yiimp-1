@@ -12,8 +12,9 @@
 ################################################################################
 	
 	### Variable ###
-	githubrepotpruvot=https://github.com/tpruvot/yiimp.git
-	githubrepoKudaraidee=https://github.com/Kudaraidee/yiimp.git
+    githubrepo=https://github.com/tpruvot/yiimp.git
+	githubyiimptpruvot=https://github.com/tpruvot/yiimp.git
+	githubyiimpKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
 
 	output() {
@@ -92,7 +93,7 @@
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
     #read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter the Public IP of the system you will use to access the admin panel (http://www.whatsmyip.org/) : " Public
-    read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2=Kudaraidee) [1 by default] : " yiimpver
+    #read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2=Kudaraidee) [1 by default] : " yiimpver
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
@@ -371,11 +372,11 @@
     
     # Compil Blocknotify
     cd ~
-    if [[ ("$yiimpver" == "1" || "$yiimpver" == "") ]];then 
-    hide_output git clone $githubrepotpruvot
-    else 
-    hide_output git clone $githubrepoKudaraidee
-	fi
+    #if [[ ("$yiimpver" == "1" || "$yiimpver" == "") ]];then 
+    hide_output git clone $githubrepo
+    #else 
+    #hide_output git clone $githubrepoKudaraidee
+	#fi
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
@@ -995,12 +996,12 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    if [[ ("$yiimpver" == "2") ]];then 
+    #if [[ ("$yiimpver" == "2") ]];then 
     echo -e "$GREEN Done...$COL_RESET"
-    else
-    sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
-    echo -e "$GREEN Done...$COL_RESET"
-    fi
+    #else
+    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
+    #echo -e "$GREEN Done...$COL_RESET"
+    #fi
     
     
     # Generating a basic Yiimp serverconfig.php
