@@ -92,7 +92,7 @@
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
     #read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter the Public IP of the system you will use to access the admin panel (http://www.whatsmyip.org/) : " Public
-    read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2 Kudaraidee) [1 by default] : " yiimpver
+    read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2=Kudaraidee) [1 by default] : " yiimpver
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
