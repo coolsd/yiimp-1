@@ -4,6 +4,7 @@ Thanks to cryptopool-builders !!!!!!!!
 Information =>
 * Works with Ubuntu Server 16.04 / 18.04
 * Update PHP 7.3
+* Change Aptitude by APT
 * Remove question Panel Admin
 * Remove question Time Zone
 * Add screen-scrypt to crontab
@@ -12,7 +13,7 @@ Information =>
 Fix =>
 * Fix command cli « Yiimp » : OK
 * Fix Backup SQL FrontEnd : OK (/var/log/yiimp/sauv)
-* Fix Permission on folder
+* Fix Permission on some folder
 
 Change =>
 * /etc/screen-scrypt.sh = add to crontab (main,loop2,blocks,debug)
