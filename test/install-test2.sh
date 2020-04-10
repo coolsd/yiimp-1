@@ -1168,6 +1168,9 @@
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
 
+    sudo sed -i 's/service $webserver start/sudo service $webserver start/g' /var/web/yaamp/modules/thread/CronjobController.php
+    sudo sed -i 's/service nginx stop/sudo service nginx stop/g' /var/web/yaamp/modules/thread/CronjobController.php
+
     sudo systemctl restart cron.service
     sudo systemctl restart mysql
     sudo systemctl status mysql | sed -n "1,3p"
