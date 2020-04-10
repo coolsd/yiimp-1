@@ -31,8 +31,12 @@
     }
     
     sudo cp -r conf/functions.sh /etc/
-    sudo cp -r conf/editconf.py /usr/bin
+    sudo cp -r conf/editconf.py /usr/bin/
     sudo chmod +x /usr/bin/editconf.py
+
+    sudo cp -r conf/screen-scrypt.sh /etc/
+    sudo chmod +x /etc/screen-scrypt.sh
+
 
     source /etc/functions.sh
 
@@ -1149,15 +1153,15 @@
     sudo chgrp www-data /var/stratum -R
     sudo chmod 775 /var/stratum
 
+    sudo mkdir /root/backup/
+    
+    
+    #sudo chmod 775 /root/backup
     #sudo chown -R www-data:www-data /var/web
     #sudo chmod -R 775 /var/web
     #sudo chmod -R 775 /var/www/$server_name/html
     #sudo chmod -R 775 /var/web/yaamp/runtime
     #sudo chmod -R 775 /var/web/serverconfig.php
-
-    #sudo chmod -R 664 /root/backup/
-    #sudo mkdir /root/backup/
-    
     
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
