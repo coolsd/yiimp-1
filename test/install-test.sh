@@ -940,7 +940,6 @@
     /* Sample config file to put in /etc/yiimp/keys.php */
     define('"'"'YIIMP_MYSQLDUMP_USER'"'"', '"'"'panel'"'"');
     define('"'"'YIIMP_MYSQLDUMP_PASS'"'"', '"'"''"${password}"''"'"');
-    define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"''"/var/yiimp/sauv"''"'"');
     /* Keys required to create/cancel orders and access your balances/deposit addresses */
     define('"'"'EXCH_BITTREX_SECRET'"'"', '"'"''"'"');
     define('"'"'EXCH_BITSTAMP_SECRET'"'"','"'"''"'"');
@@ -1017,6 +1016,7 @@
 
     define('"'"'YAAMP_LOGS'"'"', '"'"'/var/log/yiimp'"'"');
     define('"'"'YAAMP_HTDOCS'"'"', '"'"'/var/web'"'"');
+    define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"''"/var/yiimp/sauv"''"'"');
     
     define('"'"'YAAMP_BIN'"'"', '"'"'/var/bin'"'"');
     
@@ -1154,12 +1154,13 @@
     sudo chgrp www-data /var/stratum -R
     sudo chmod 775 /var/stratum
 
-    sudo mkdir /root/backup/
-    sudo chmod 775 /root/backup
-    
     sudo mkdir -p /var/yiimp/sauv
-    sudo chmod 775 /var/yiimp/sauv
+    sudo chgrp www-data /var/yiimp -R
+    sudo chmod 775 /var/yiimp -R
     
+    
+    #sudo mkdir /root/backup/
+    #sudo chmod 775 /root/backup
     #sudo chown -R www-data:www-data /var/web
     #sudo chmod -R 775 /var/web
     #sudo chmod -R 775 /var/www/$server_name/html
