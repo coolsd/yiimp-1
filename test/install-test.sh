@@ -42,10 +42,10 @@
 
     clear
     echo
-    echo -e "$GREEN******************************************************************$COL_RESET"
+    echo -e "$GREEN************************************************************************$COL_RESET"
     echo -e "$GREEN Yiimp Install Script v0.2 $COL_RESET"
-    echo -e "$GREEN Install yiimp on Ubuntu 16.04 running Nginx, MariaDB, and php7.3 $COL_RESET"
-    echo -e "$GREEN******************************************************************$COL_RESET"
+    echo -e "$GREEN Install yiimp on Ubuntu 16.04/18.04 running Nginx, MariaDB, and php7.3 $COL_RESET"
+    echo -e "$GREEN************************************************************************$COL_RESET"
     echo
     sleep 3
 
@@ -1154,9 +1154,9 @@
     sudo chmod 775 /var/stratum
 
     sudo mkdir /root/backup/
+    sudo chmod 775 /root/backup
     
     
-    #sudo chmod 775 /root/backup
     #sudo chown -R www-data:www-data /var/web
     #sudo chmod -R 775 /var/web
     #sudo chmod -R 775 /var/www/$server_name/html
@@ -1173,6 +1173,10 @@
     sudo systemctl status nginx | sed -n "1,3p"
     sudo systemctl restart php7.3-fpm.service
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
+
+    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+
+
     echo
     echo -e "$GREEN Done...$COL_RESET"
     sleep 3
