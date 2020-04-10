@@ -39,7 +39,6 @@ Go http://xxx.xxx.xxx.xxx or https://xxx.xxx.xxx.xxx (if you have chosen LetsEnc
 
 - The configuration of yiimp and coin require a minimum of knowledge in linux
 - Your mysql information (login/Password) is saved in **~/.my.cnf**
-- Remember to restart **memcached service** after the db change (update or import new .sql)
 
 ***********************************
 
