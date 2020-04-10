@@ -1156,7 +1156,7 @@
     sudo chgrp www-data /var/stratum -R
     sudo chmod 775 /var/stratum
 
-    sudo mkdir -p /var/yiimp/script
+    sudo mkdir -p /var/yiimp/sauv
     sudo chgrp www-data /var/yiimp -R
     sudo chmod 775 /var/yiimp -R
 
