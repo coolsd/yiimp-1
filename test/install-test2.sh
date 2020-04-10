@@ -1157,20 +1157,17 @@
     sudo chmod 775 /var/yiimp -R
     
     
-    #sudo mkdir /root/backup/
-    #sudo chmod 775 /root/backup
-    #sudo chown -R www-data:www-data /var/web
-    #sudo chmod -R 775 /var/web
-    #sudo chmod -R 775 /var/www/$server_name/html
-    #sudo chmod -R 775 /var/web/yaamp/runtime
-    #sudo chmod -R 775 /var/web/serverconfig.php
-    
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
-
+    
+    #fix error screen main
     sudo sed -i 's/service $webserver start/sudo service $webserver start/g' /var/web/yaamp/modules/thread/CronjobController.php
     sudo sed -i 's/service nginx stop/sudo service nginx stop/g' /var/web/yaamp/modules/thread/CronjobController.php
 
+    #add screen script to crontab
+    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+
+    #Restart main service
     sudo systemctl restart cron.service
     sudo systemctl restart mysql
     sudo systemctl status mysql | sed -n "1,3p"
@@ -1179,7 +1176,7 @@
     sudo systemctl restart php7.3-fpm.service
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
 
-    #(crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+    
 
 
     echo
