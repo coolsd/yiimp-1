@@ -29,7 +29,16 @@
     echo
     exit 1;
     }
+
+    #Add user group sudo + no password
+    whoami=`whoami`
+    sudo usermod -aG sudo ${whoami}
+    echo '# yiimp
+    # It needs passwordless sudo functionality.
+    '""''"${whoami}"''""' ALL=(ALL) NOPASSWD:ALL
+    ' | sudo -E tee /etc/sudoers.d/${whoami} >/dev/null 2>&1
     
+
     sudo cp -r conf/functions.sh /etc/
     sudo cp -r conf/editconf.py /usr/bin/
     sudo chmod +x /usr/bin/editconf.py
