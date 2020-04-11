@@ -46,8 +46,8 @@ Finish !
 
 ###### This script has an interactive beginning and will ask for the following information :
 
-- Server Name 
-- Are you using a subdomain
+- Server Name (crypto.com OR pool.crypto.com OR 80.41.52.63)
+- Are you using a subdomain (mypoolx11.crypto.com)
 - Enter support email
 - Set stratum to AutoExchange
 - Your Public IP for admin access (Put your PERSONNAL IP, NOT IP of your VPS)
