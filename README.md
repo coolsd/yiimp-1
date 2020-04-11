@@ -18,7 +18,7 @@ Original SCRIPT : https://github.com/cryptopool-builders/multipool_original_yiim
 USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 16.04 / 18.04 !
 
 Connect on your VPS =>
-- adduser pool
+- adduser pool (pool it's just an example...)
 - adduser pool sudo
 - su - pool
 - sudo apt -y install git
