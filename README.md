@@ -46,7 +46,7 @@ Finish !
 
 ###### This script has an interactive beginning and will ask for the following information :
 
-- Server Name (crypto.com OR pool.crypto.com OR 80.41.52.63)
+- Server Name (no http:// or www !!!!! Example : crypto.com OR pool.crypto.com OR 80.41.52.63)
 - Are you using a subdomain (mypoolx11.crypto.com)
 - Enter support email
 - Set stratum to AutoExchange
