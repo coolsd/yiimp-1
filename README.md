@@ -4,7 +4,7 @@ Site : https://www.xavatar.com
 
 Discord : https://discord.gg/zcCXjkQ
 
-TUTO Youtube (16.04 - Without SSL) : Soon...
+TUTO Youtube (16.04 - Without SSL) : https://www.youtube.com/watch?v=qE0rhfJ1g2k
 
 Official Yiimp (used in this script for Yiimp Installation): https://github.com/tpruvot/yiimp
 
