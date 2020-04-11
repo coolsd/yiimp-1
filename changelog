@@ -12,7 +12,7 @@ Information =>
 
 Fix =>
 * Fix command cli « Yiimp » : OK
-* Fix Backup SQL FrontEnd : OK (/var/log/yiimp/sauv)
+* Fix Backup SQL FrontEnd : OK (/var/yiimp/sauv)
 * Fix Permission on some folder
 
 Change =>
