@@ -1209,7 +1209,7 @@
     echo -e "$CYAN Please make sure to change your public keys / wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
     echo -e "$CYAN Please make sure to change your private keys in the /etc/yiimp/keys.php file. $COL_RESET"
     echo
-    echo -e "$CYAN TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig $COL_RESET"
+    echo -e "$CYAN TUTO Youtube : https://www.youtube.com/watch?v=qE0rhfJ1g2k $COL_RESET"
     echo -e "$CYAN Xavatar WebSite : https://www.xavatar.com $COL_RESET"
     echo
     echo
