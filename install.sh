@@ -12,11 +12,11 @@
 	
     ### Variable ###
     githubrepo=https://github.com/tpruvot/yiimp.git
-    githubyiimptpruvot=https://github.com/tpruvot/yiimp.git
-    githubyiimpKudaraidee=https://github.com/Kudaraidee/yiimp.git
+    githubyiimp-tpruvot=https://github.com/tpruvot/yiimp.git
+    githubyiimp-Kudaraidee=https://github.com/Kudaraidee/yiimp.git
 
 
-	output() {
+    output() {
     printf "\E[0;33;40m"
     echo $1
     printf "\E[0m"
