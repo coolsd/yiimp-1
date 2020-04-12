@@ -10,10 +10,10 @@
 # 
 ################################################################################
 	
-	### Variable ###
+    ### Variable ###
     githubrepo=https://github.com/tpruvot/yiimp.git
-	githubyiimptpruvot=https://github.com/tpruvot/yiimp.git
-	githubyiimpKudaraidee=https://github.com/Kudaraidee/yiimp.git
+    githubyiimptpruvot=https://github.com/tpruvot/yiimp.git
+    githubyiimpKudaraidee=https://github.com/Kudaraidee/yiimp.git
 
 
 	output() {
