@@ -1206,8 +1206,8 @@
     echo -e "$RED If you want change 'AdminPanel' to access Panel Admin : Edit this file : /var/web/yaamp/modules/site/SiteController.php"
     echo -e "$RED Line 11 => change 'AdminPanel' and use the new address"
     echo
-    echo -e "$CYAN Please make sure to change your wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
-    echo -e "$CYAN Please make sure to add your public and private keys. $COL_RESET"
+    echo -e "$CYAN Please make sure to change your public keys / wallet addresses in the /var/web/serverconfig.php file. $COL_RESET"
+    echo -e "$CYAN Please make sure to change your private keys in the /etc/yiimp/keys.php file. $COL_RESET"
     echo
     echo -e "$CYAN TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig $COL_RESET"
     echo -e "$CYAN Xavatar WebSite : https://www.xavatar.com $COL_RESET"
