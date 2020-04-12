@@ -127,6 +127,7 @@
     hide_output sudo systemctl enable nginx.service
     hide_output sudo systemctl start cron.service
     hide_output sudo systemctl enable cron.service
+    sleep 5
     sudo systemctl status nginx | sed -n "1,3p"
     echo
     echo -e "$GREEN Done...$COL_RESET"
@@ -157,6 +158,7 @@
     apt_install mariadb-server
     hide_output sudo systemctl start mysql
     hide_output sudo systemctl enable mysql
+    sleep 5
     sudo systemctl status mysql | sed -n "1,3p"
     echo
     echo -e "$GREEN Done...$COL_RESET"
@@ -266,6 +268,7 @@
     
     if [[ ("$install_fail2ban" == "y" || "$install_fail2ban" == "Y" || "$install_fail2ban" == "") ]]; then
     apt_install fail2ban
+    sleep 5
     sudo systemctl status fail2ban | sed -n "1,3p"
         fi
 
@@ -331,7 +334,8 @@
     hide_output sudo ufw allow 8463/tcp
     hide_output sudo ufw allow 8433/tcp
     hide_output sudo ufw allow 8533/tcp
-    hide_output sudo ufw --force enable 
+    hide_output sudo ufw --force enable
+    sleep 5
     sudo systemctl status ufw | sed -n "1,3p"   
     fi
 
