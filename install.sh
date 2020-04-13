@@ -1141,7 +1141,7 @@
 
     #fix error screen main "backup sql frontend"
     sudo sed -i "s|/root/backup|/var/yiimp/sauv|g" /var/web/yaamp/core/backend/system.php
-    sudo sed '14d' /var/web/yaamp/defaultconfig.php
+    sudo sed -i '14d' /var/web/yaamp/defaultconfig.php
 
     #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
