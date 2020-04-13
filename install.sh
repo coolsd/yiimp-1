@@ -10,12 +10,6 @@
 # 
 ################################################################################
 	
-    ### Variable ###
-    #githubyiimp-tpruvot=https://github.com/tpruvot/yiimp.git
-    #githubyiimp-Kudaraidee=https://github.com/Kudaraidee/yiimp.git
-    githubrepo=https://github.com/tpruvot/yiimp.git
-    
-
 
     output() {
     printf "\E[0;33;40m"
@@ -93,7 +87,6 @@
     read -e -p "Set Pool to AutoExchange? i.e. mine any coin with BTC address? [y/N] : " BTC
     #read -e -p "Please enter a new location for /site/adminRights this is to customize the Admin Panel entrance url (e.g. myAdminpanel) : " admin_panel
     read -e -p "Enter the Public IP of the system you will use to access the admin panel (http://www.whatsmyip.org/) : " Public
-    #read -e -p "Enter desired Yiimp GitHub (1=tpruvot or 2=Kudaraidee) [1 by default] : " yiimpver
     read -e -p "Install Fail2ban? [Y/n] : " install_fail2ban
     read -e -p "Install UFW and configure ports? [Y/n] : " UFW
     read -e -p "Install LetsEncrypt SSL? IMPORTANT! You MUST have your domain name pointed to this server prior to running the script!! [Y/n]: " ssl_install
@@ -376,11 +369,7 @@
     
     # Compil Blocknotify
     cd ~
-    #if [[ ("$yiimpver" == "1" || "$yiimpver" == "") ]];then 
-    hide_output git clone $githubrepo
-    #else 
-    #hide_output git clone $githubrepoKudaraidee
-	#fi
+    hide_output git clone https://github.com/tpruvot/yiimp
     cd $HOME/yiimp/blocknotify
     sudo sed -i 's/tu8tu5/'$blckntifypass'/' blocknotify.cpp
     hide_output sudo make
@@ -437,15 +426,6 @@
     echo -e "$CYAN => Update default timezone. $COL_RESET"
     echo
     
-    # Check if link file
-    #sudo [ -L /etc/localtime ] &&  sudo unlink /etc/localtime
-    # Update time zone
-    #sudo ln -sf /usr/share/zoneinfo/$TIME /etc/localtime
-    #apt_install ntpdate
-    # Write time to clock.
-    #sudo hwclock -w
-    #echo -e "$GREEN Done...$COL_RESET"
-
     echo -e " Setting TimeZone to UTC...$COL_RESET"
     if [ ! -f /etc/timezone ]; then
     echo "Setting timezone to UTC."
@@ -455,15 +435,6 @@
     sudo systemctl status rsyslog | sed -n "1,3p"
     echo
     echo -e "$GREEN Done...$COL_RESET"
-    
-    
-    # Making Web Server Magic Happen
-    #echo
-    #echo -e "$CYAN Making Web Server Magic Happen! $COL_RESET"
-    #echo
-    
-    # Adding user to group, creating dir structure, setting permissions
-    #sudo mkdir -p /var/www/$server_name/html 
     
     
     # Creating webserver initial config file
@@ -947,6 +918,7 @@
     /* Sample config file to put in /etc/yiimp/keys.php */
     define('"'"'YIIMP_MYSQLDUMP_USER'"'"', '"'"'panel'"'"');
     define('"'"'YIIMP_MYSQLDUMP_PASS'"'"', '"'"''"${password}"''"'"');
+    define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"''"/var/yiimp/sauv"''"'"');
     /* Keys required to create/cancel orders and access your balances/deposit addresses */
     define('"'"'EXCH_BITTREX_SECRET'"'"', '"'"''"'"');
     define('"'"'EXCH_BITSTAMP_SECRET'"'"','"'"''"'"');
@@ -1000,13 +972,8 @@
     sudo mysql --defaults-group-suffix=host1 --force < 2017-11-segwit.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-01-stratums_ports.sql
     sudo mysql --defaults-group-suffix=host1 --force < 2018-02-coins_getinfo.sql
-    #if [[ ("$yiimpver" == "2") ]];then 
     echo -e "$GREEN Done...$COL_RESET"
-    #else
-    #sudo mysql --defaults-group-suffix=host1 --force < 2018-09-22-workers.sql
-    #echo -e "$GREEN Done...$COL_RESET"
-    #fi
-    
+        
     
     # Generating a basic Yiimp serverconfig.php
     echo
@@ -1023,8 +990,7 @@
 
     define('"'"'YAAMP_LOGS'"'"', '"'"'/var/log/yiimp'"'"');
     define('"'"'YAAMP_HTDOCS'"'"', '"'"'/var/web'"'"');
-    define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"''"/var/yiimp/sauv"''"'"');
-    
+        
     define('"'"'YAAMP_BIN'"'"', '"'"'/var/bin'"'"');
     
     define('"'"'YAAMP_DBHOST'"'"', '"'"'localhost'"'"');
@@ -1169,9 +1135,13 @@
     #Add to contrab screen-scrypt
     (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
 
-    #fix error screen main
+    #fix error screen main "service"
     sudo sed -i 's/service $webserver start/sudo service $webserver start/g' /var/web/yaamp/modules/thread/CronjobController.php
     sudo sed -i 's/service nginx stop/sudo service nginx stop/g' /var/web/yaamp/modules/thread/CronjobController.php
+
+    #fix error screen main "backup sql frontend"
+    sudo sed -i "s|/root/backup|/var/yiimp/sauv|g" /var/web/yaamp/core/backend/system.php
+    sudo sed -i '14d' /var/web/yaamp/defaultconfig.php
 
     #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
