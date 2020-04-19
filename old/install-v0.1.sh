@@ -829,6 +829,7 @@ password='"${rootpasswd}"'
 /* Sample config file to put in /etc/yiimp/keys.php */
 define('"'"'YIIMP_MYSQLDUMP_USER'"'"', '"'"'panel'"'"');
 define('"'"'YIIMP_MYSQLDUMP_PASS'"'"', '"'"''"${password}"''"'"');
+define('"'"'YIIMP_MYSQLDUMP_PATH'"'"', '"'"''"/var/yiimp/sauv"''"'"');
 /* Keys required to create/cancel orders and access your balances/deposit addresses */
 define('"'"'EXCH_BITTREX_SECRET'"'"', '"'"'<my_bittrex_api_secret_key>'"'"');
 define('"'"'EXCH_BITSTAMP_SECRET'"'"','"'"''"'"');
@@ -1010,44 +1011,40 @@ $configAlgoNormCoef = array(
     output " "
     sleep 3
 
-    #whoami=`whoami`
-    #sudo mkdir /root/backup/
-    #sudo usermod -aG www-data $whoami
-    #sudo chown -R www-data:www-data /var/log
-    #sudo chown -R www-data:www-data /var/stratum
-    #sudo chown -R www-data:www-data /var/web
-    #sudo touch /var/log/debug.log
-    #sudo chown -R www-data:www-data /var/log/debug.log
-    #sudo chmod -R 775 /var/www/$server_name/html
-    #sudo chmod -R 775 /var/web
-    #sudo chmod -R 775 /var/stratum
-    #sudo chmod -R 775 /var/web/yaamp/runtime
-    #sudo chmod -R 664 /root/backup/
-    #sudo chmod -R 644 /var/log/debug.log
-    #sudo chmod -R 775 /var/web/serverconfig.php
-
     whoami=`whoami`
     sudo usermod -aG www-data $whoami
     sudo usermod -a -G www-data $whoami
 
-    sudo mkdir /root/backup/
-    
-    sudo mkdir /var/log/yiimp
-    sudo touch /var/log/yiimp/debug.log
-    sudo chown -R www-data:www-data /var/log/yiimp
-    sudo chmod -R 775 /var/log/yiimp
-    
-    sudo chown -R www-data:www-data /var/stratum
-    sudo chmod -R 775 /var/stratum
-
-    sudo chown -R www-data:www-data /var/web
-    sudo chmod -R 775 /var/web
-    sudo find /var/web -type d -exec chmod 755 {} +
+    sudo find /var/web -type d -exec chmod 775 {} +
     sudo find /var/web -type f -exec chmod 664 {} +
     sudo chgrp www-data /var/web -R
     sudo chmod g+w /var/web -R
+    
+    sudo mkdir /var/log/yiimp
+    sudo touch /var/log/yiimp/debug.log
+    sudo chgrp www-data /var/log/yiimp -R
+    sudo chmod 775 /var/log/yiimp -R
+    
+    sudo chgrp www-data /var/stratum -R
+    sudo chmod 775 /var/stratum
+
+    sudo mkdir -p /var/yiimp/sauv
+    sudo chgrp www-data /var/yiimp -R
+    sudo chmod 775 /var/yiimp -R
 
 
+    #Add to contrab screen-scrypt
+    (crontab -l 2>/dev/null; echo "@reboot sleep 20 && /etc/screen-scrypt.sh") | crontab -
+
+    #fix error screen main "service"
+    sudo sed -i 's/service $webserver start/sudo service $webserver start/g' /var/web/yaamp/modules/thread/CronjobController.php
+    sudo sed -i 's/service nginx stop/sudo service nginx stop/g' /var/web/yaamp/modules/thread/CronjobController.php
+
+    #fix error screen main "backup sql frontend"
+    sudo sed -i "s|/root/backup|/var/yiimp/sauv|g" /var/web/yaamp/core/backend/system.php
+    sudo sed -i '14d' /var/web/yaamp/defaultconfig.php
+
+    #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
 
