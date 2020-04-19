@@ -13,7 +13,7 @@ Original Yiimp Installer : https://github.com/cryptopool-builders/multipool_orig
 
 ***********************************
 
-## Install script for yiimp on Ubuntu Server 16.04 / 18.04
+## Install script for yiimp on Ubuntu Server 16.04 / 18.04 (use Trpuvot's Yiimp)
 
 USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 16.04 / 18.04 !
 
@@ -30,6 +30,12 @@ Connect on your VPS =>
 Finish !
 - Go http://xxx.xxx.xxx.xxx or https://xxx.xxx.xxx.xxx (if you have chosen LetsEncrypt SSL). Enjoy !
 - Go http://xxx.xxx.xxx.xxx/AdminPanel or https://xxx.xxx.xxx.xxx/AdminPanel to access Panel Admin
+
+If you are issue after installation (nginx,mariadb... not found), use this script : bash install-debug.sh (watch the log during installation)
+
+###### :bangbang: **Kudaraidee Install Script :**
+- Instead Trpuvot's Yiimp, you can use the Kudaraidee's Repo Yiimp : git clone -b Kudaraidee https://github.com/Kudaraidee/yiimp.git
+- It's an updated Yiimp, with more algo, some fix....
 
 ###### :bangbang: **YOU MUST UPDATE THE FOLLOWING FILES :**
 - **/var/web/serverconfig.php :** update this file to include your public ip (line = YAAMP_ADMIN_IP) to access the admin panel (Put your PERSONNAL IP, NOT IP of your VPS). update with public keys from exchanges. update with other information specific to your server..
