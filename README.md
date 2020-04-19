@@ -13,7 +13,7 @@ Original Yiimp Installer : https://github.com/cryptopool-builders/multipool_orig
 
 ***********************************
 
-## Install script for yiimp on Ubuntu Server 16.04 / 18.04 (use Trpuvot's Yiimp)
+## Install script for yiimp on Ubuntu Server 16.04 / 18.04 (use Tpruvot's Yiimp)
 
 USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 16.04 / 18.04 !
 
@@ -34,7 +34,7 @@ Finish !
 If you are issue after installation (nginx,mariadb... not found), use this script : bash install-debug.sh (watch the log during installation)
 
 ###### :bangbang: **Kudaraidee Install Script :**
-- Instead Trpuvot's Yiimp, you can use the Kudaraidee's Repo Yiimp : git clone -b Kudaraidee https://github.com/Kudaraidee/yiimp.git
+- Instead Tpruvot's Yiimp, you can use the Kudaraidee's Repo Yiimp : git clone -b Kudaraidee https://github.com/Kudaraidee/yiimp.git
 - It's an updated Yiimp, with more algo, some fix....
 
 ###### :bangbang: **YOU MUST UPDATE THE FOLLOWING FILES :**
