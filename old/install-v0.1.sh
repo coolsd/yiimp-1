@@ -22,6 +22,16 @@ displayErr() {
     echo
     exit 1;
 }
+
+    #Add user group sudo + no password
+    whoami=`whoami`
+    sudo usermod -aG sudo ${whoami}
+    echo '# yiimp
+    # It needs passwordless sudo functionality.
+    '""''"${whoami}"''""' ALL=(ALL) NOPASSWD:ALL
+    ' | sudo -E tee /etc/sudoers.d/${whoami} >/dev/null 2>&1
+
+
     clear
     output " "
     output "Yiimp Install Script v0.1"
