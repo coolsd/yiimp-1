@@ -32,7 +32,7 @@ displayErr() {
     ' | sudo -E tee /etc/sudoers.d/${whoami} >/dev/null 2>&1
 
     #Copy needed files
-    sudo cp -r ../utils/screen-scrypt.sh /etc/
+    sudo cp -r screen-scrypt.sh /etc/
 
 
     clear
