@@ -122,6 +122,7 @@
     sudo systemctl enable cron.service
     sleep 5
     sudo systemctl status nginx | sed -n "1,3p"
+    sleep 15
     echo
     echo -e "$GREEN Done...$COL_RESET"
     
@@ -153,6 +154,7 @@
     sudo systemctl enable mysql
     sleep 5
     sudo systemctl status mysql | sed -n "1,3p"
+    sleep 15
     echo
     echo -e "$GREEN Done...$COL_RESET"
 
@@ -185,6 +187,7 @@
     sleep 5
     sudo systemctl start php7.3-fpm
     sudo systemctl status php7.3-fpm | sed -n "1,3p"
+    sleep 15
     echo
     echo -e "$GREEN Done...$COL_RESET"
 
@@ -1188,8 +1191,8 @@
     echo -e "$CYAN Xavatar WebSite : https://www.xavatar.com $COL_RESET"
     echo
     echo
-    echo -e "$RED**************************************************$COL_RESET"
-    echo -e "$RED YOU MUST REBOOT NOW  TO FINALIZE INSTALLATION!!! $COL_RESET"
-    echo -e "$RED**************************************************$COL_RESET"
+    echo -e "$RED***************************************************$COL_RESET"
+    echo -e "$RED YOU MUST REBOOT NOW  TO FINALIZE INSTALLATION !!! $COL_RESET"
+    echo -e "$RED***************************************************$COL_RESET"
     echo
     echo
