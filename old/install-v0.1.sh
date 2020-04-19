@@ -1079,3 +1079,8 @@ $configAlgoNormCoef = array(
     output "TUTO Youtube : https://www.youtube.com/watch?v=vdBCw6_cyig"
     output " "
     output " "
+    echo -e "$RED***************************************************$COL_RESET"
+    echo -e "$RED YOU MUST REBOOT NOW  TO FINALIZE INSTALLATION !!! $COL_RESET"
+    echo -e "$RED***************************************************$COL_RESET"
+    echo
+    echo
