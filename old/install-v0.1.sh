@@ -31,6 +31,9 @@ displayErr() {
     '""''"${whoami}"''""' ALL=(ALL) NOPASSWD:ALL
     ' | sudo -E tee /etc/sudoers.d/${whoami} >/dev/null 2>&1
 
+    #Copy needed files
+    sudo cp -r ../utils/screen-scrypt.sh /etc/
+
 
     clear
     output " "
