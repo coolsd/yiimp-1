@@ -1061,6 +1061,10 @@ $configAlgoNormCoef = array(
     #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
+    
+    #Hold update OpenSSL
+    #If you want remove the hold : sudo apt-mark unhold openssl
+    sudo apt-mark hold openssl
 
     sudo systemctl reload php7.0-fpm.service
     sudo systemctl restart nginx.service
