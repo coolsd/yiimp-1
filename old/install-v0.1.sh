@@ -980,10 +980,6 @@ $configAlgoNormCoef = array(
     output " "
     sleep 3
     
-    #Hold update OpenSSL
-    #If you want remove the hold : sudo apt-mark unhold openssl
-    sudo apt-mark hold openssl
-    
     whoami=`whoami`
     sudo mkdir /root/backup/
     #sudo usermod -aG www-data $whoami
