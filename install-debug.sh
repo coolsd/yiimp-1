@@ -1149,6 +1149,10 @@
     #Misc
     sudo mv $HOME/yiimp/ $HOME/yiimp-install-only-do-not-run-commands-from-this-folder
     sudo rm -rf /var/log/nginx/*
+    
+    #Hold update OpenSSL
+    #If you want remove the hold : sudo apt-mark unhold openssl
+    sudo apt-mark hold openssl
 
     #Restart service
     sudo systemctl restart cron.service
