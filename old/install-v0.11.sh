@@ -979,7 +979,11 @@ $configAlgoNormCoef = array(
     output "Final Directory permissions"
     output " "
     sleep 3
-
+    
+    #Hold update OpenSSL
+    #If you want remove the hold : sudo apt-mark unhold openssl
+    sudo apt-mark hold openssl
+    
     whoami=`whoami`
     sudo mkdir /root/backup/
     #sudo usermod -aG www-data $whoami
@@ -999,7 +1003,7 @@ $configAlgoNormCoef = array(
     sudo rm -rf /var/log/nginx/*
     sudo systemctl reload php7.0-fpm.service
     sudo systemctl restart nginx.service
-
+    
 
     output " "
     output " "
